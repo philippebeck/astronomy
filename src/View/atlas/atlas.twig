@@ -1,0 +1,62 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Celestial Atlases{% endblock %}
+
+{% block description %}
+    Here you will find colorful sky maps covering a period of almost a thousand years,
+    as well as Wikipedia links for some atlases and authors.
+{% endblock %}
+
+{% block main %}
+<main class="container-90sm-80lg">
+    <input id="menu-radio1" class="menu-radio1" type="radio" name="menu">
+    <input id="menu-radio2" class="menu-radio2" type="radio" name="menu" checked>
+
+    <nav class="menu">
+        <label for="menu-radio1" title="Show Grid & Fluid Classes">
+            Welcome
+            <i class="fas fa-caret-up fa-2x" aria-hidden="true"></i>
+        </label>
+        <label for="menu-radio2" title="Celestial Atlases Selection">
+            Celestial Atlas
+            <i class="fas fa-caret-up fa-2x" aria-hidden="true"></i>
+        </label>
+    </nav>
+
+    <article class="menu-relay">
+        <header class="menu-target1 mar-bot-lg">
+            <h2>Welcome to my Atlases Collection !</h2>
+
+            <p>
+                After several years of research,
+                I gathered a collection of celestial atlases in colors
+                which I make available for the lovers of stars & the curious...
+            </p>
+            <p>
+                You will therefore find a table of Atlases with all Maps for each
+                and some links to Wikipedia for Atlases & Authors...
+                (some of them only because the others don't currently exist on wiki)
+            </p>
+        </header>
+
+        <section class="menu-target2">
+            <h3>Celestial Atlases List</h3>
+
+            <ul class="fluid-2sm-3lg-4wd">
+                {% for map in demoMaps %}
+                    <li>
+                        <a class="btn-navy cursor-cross"
+                           href="{{ url('atlas!read', {'id': map.atlas_id}) }}"
+                           title="Watch the Atlas : {{ map.atlas_name }} made in {{ map.published_year }}">
+                            <figure class="button-navy">
+                                <img src="img/thumbnails/tn_{{ map.map_name }}.jpg" alt="Chart of {{ map.atlas_name }}">
+                                <figcaption>{{ map.atlas_name|replace({'-': ' '})|title }}<br>({{ map.published_year|trim('0', 'left') }})</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </article>
+</main>
+{% endblock %}
