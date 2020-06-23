@@ -55,7 +55,7 @@
                             <td>{{ object["absolute_magnitude_h"] }}</td>
                             <td>{{ dump(object["is_potentially_hazardous_asteroid"])|replace({'bool(false)': "No", 'bool(true)': "Yes"}) }}</td>
                             <td>
-                                <a class="button-navy" href="{{ object["nasa_jpl_url"] }}" title="Watch the Jet Propulsion Laboratory Small-Body Database Browser">
+                                <a class="button-navy cursor-cross" href="{{ object["nasa_jpl_url"] }}" title="Watch the Jet Propulsion Laboratory Small-Body Database Browser">
                                     <i class="fas fa-database fa-2x"></i>
                                 </a>
                             </td>

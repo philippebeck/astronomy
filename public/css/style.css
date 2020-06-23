@@ -20,6 +20,10 @@ select {
   font-family: var(--monospace-font-family);
 }
 
+thead {
+  font-size: 90%;
+}
+
 .navbar {
   --navbar-background-color: var(--blue-dark);
 }
