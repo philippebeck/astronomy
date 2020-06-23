@@ -1,0 +1,35 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block main %}
+    <!-- CONTROLS -->
+    <input id="menu-radio1" class="menu-radio1" type="radio" name="menu">
+    <input id="menu-radio2" class="menu-radio2" type="radio" name="menu" checked>
+    <input id="menu-radio3" class="menu-radio3" type="radio" name="menu">
+    <input id="menu-radio4" class="menu-radio4" type="radio" name="menu">
+
+    <nav class="menu">
+        <label class="button-red btn-lg" for="menu-radio1" title="Show Constellations">
+            <i class="far fa-star fa-lg" aria-hidden="true"></i> Constellation
+        </label>
+        <label class="button-green btn-lg" for="menu-radio2" title="Show Atlases">
+            <i class="fas fa-atlas fa-lg" aria-hidden="true"></i> Atlas
+        </label>
+        <label class="button-blue btn-lg" for="menu-radio3" title="Show Maps">
+            <i class="far fa-map fa-lg" aria-hidden="true"></i> Map
+        </label>
+        <label class="button btn-lg" for="menu-radio4" title="Show the User">
+            <i class="far fa-user fa-lg" aria-hidden="true"></i> User
+        </label>
+    </nav>
+
+    <main id="admin" class="menu-relay">
+        {{ include('admin/adminConstellation.twig') }}
+        {{ include('admin/adminAtlas.twig') }}
+        {{ include('admin/adminMap.twig') }}
+        {{ include('admin/adminUser.twig') }}
+    </main>
+{% endblock %}
