@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>{{ block('title') }}</title>
+
+    <link rel="canonical" href="{% block canonical %}https://astronomy.philippebeck.net{% endblock %}">
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+
+    <meta name="description"    content="{{ block('description') }}">
+    <meta name="author"         content="Philippe Beck">
+    <meta name="copyright"      content="MIT">
+
+    <meta property="og:type"        content="website">
+    <meta property="og:title"       content="{{ block('title') }}">
+    <meta property="og:url"         content="{{ block('canonical') }}">
+    <meta property="og:description" content="{{ block('description') }}">
+    <meta property="og:image"       content="{% block image %}https://astronomy.philippebeck.net/img/thumbnails/tn_1693igp3.jpg{% endblock %}">
+
+    <meta name="twitter:card"           content="summary">
+    <meta name="twitter:title"          content="{{ block('title') }}">
+    <meta name="twitter:site"           content="{{ block('canonical') }}">
+    <meta name="twitter:description"    content="{{ block('description') }}">
+    <meta name="twitter:image"          content="{{ block('image') }}">
+    <meta name="twitter:creator"        content="@philippepjbeck">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Text+Me+One%7cCinzel:400,700,900%7cShare+Tech+Mono">
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="node_modules/animadio/dist/min/animadio.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script data-ad-client="ca-pub-3068718378181393" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+
+<body>
+
+    {{ include('layout/navbar.twig') }}
+
+    <header class="pad-top-sm">
+        {% if (hasAlert()) %}
+            <p id="alert" class="container width-md bg-{{ getAlertType() }} color-white bord-sm bord-curve bord-white anima-slideB anima-md anima-bezier anima-altrev">{{ getAlertMessage() }}</p>
+        {% endif %}
+
+        <h1>{{ block('title') }}</h1>
+    </header>
+
+    {% block main %}{% endblock %}
+
+    {{ include('layout/footer.twig') }}
+
+    <script src="js/script.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+</body>
+</html>
