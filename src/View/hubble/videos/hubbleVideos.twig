@@ -1,0 +1,28 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Hubble Videos{% endblock %}
+
+{% block description %}Hubble List of Videos{% endblock %}
+
+{% block main %}
+    {% if not videos %}
+        {{ redirect('hubble') }}
+    {% endif %}
+
+    <main>
+        {{ include("hubble/videos/videosPagination.twig") }}
+
+        <ul>
+            {% for video in videos %}
+                <li>
+                    <form method="post" action={{ url('hubble!video') }}>
+                        <input name="item" type="hidden" value="{{ video.id }}">
+                        <input class="button-navy" type="submit" value="{{ video.name }}" title="Watch the Video {{ video.id }}">
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+
+        {{ include("hubble/videos/videosPagination.twig") }}
+    </main>
+{% endblock %}

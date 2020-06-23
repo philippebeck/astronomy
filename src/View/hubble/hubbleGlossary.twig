@@ -1,0 +1,22 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Hubble Glossary{% endblock %}
+
+{% block description %}Hubble List of Terms{% endblock %}
+
+{% block main %}
+    {% if not glossary %}
+        {{ redirect('hubble') }}
+    {% endif %}
+
+    <main>
+        <ul>
+            {% for term in glossary %}
+                <li>
+                    <p>{{ term.name }}</p>
+                    <p>{{ term.definition }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+{% endblock %}

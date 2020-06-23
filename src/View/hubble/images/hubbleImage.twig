@@ -1,0 +1,33 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Hubble Image{% endblock %}
+
+{% block description %}
+    Image {{ image["id"] }} named {{ image["name"] }} from {{ image["mission"]|capitalize }} Mission
+{% endblock %}
+
+{% block main %}
+    {% if not image %}
+        {{ redirect('hubble') }}
+    {% endif %}
+
+    <main>
+        <h2>{{ image["name"] }}</h2>
+
+        <figure>
+            <a href="https:{{ image["image_files"]|last }}" title="Clic to Watch in Full Size">
+                <img class="bord-curve" src="https:{{ image["image_files"]|first }}" alt="Thumbnail of the Image {{ image["id"] }}">
+            </a>
+            <figcaption class="align-justify">{{ image["description"]|raw }}</figcaption>
+        </figure>
+
+        <ul>
+            <li>Collection : {{ cleanString(image["collection"]) }}</li>
+            <li>Mission : {{ image["mission"]|capitalize }}</li>
+        </ul>
+
+        {% if image["credits"] %}
+            <p>Credits : {{ image["credits"]|raw }}</p>
+        {% endif %}
+    </main>
+{% endblock %}

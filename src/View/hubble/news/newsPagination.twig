@@ -1,0 +1,13 @@
+<ul class="row placo-evenly">
+    <li>
+        <a href="{{ url('hubble!news', {'page': getGetVar('page') - 1}) }}" title="Go to the Previous Page">
+            <i class="far fa-arrow-alt-circle-left fa-3x"></i>
+        </a>
+    </li>
+    <li class="bord-rounded pad-sm bg-white color-blue font-bold">{{ getGetVar('page') }}</li>
+    <li>
+        <a href="{{ url('hubble!news', {'page': getGetVar('page') + 1}) }}" title="Go to the Next Page">
+            <i class="far fa-arrow-alt-circle-right fa-3x"></i>
+        </a>
+    </li>
+</ul>

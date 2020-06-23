@@ -1,0 +1,38 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Hubble Release{% endblock %}
+
+{% block description %}
+    Release {{ release["news_id"] }} named {{ release["name"] }} & published {{ release["publication"]|date("D d M Y") }} from {{ release["mission"]|capitalize }} Mission
+{% endblock %}
+
+{% block main %}
+    {% if not release %}
+        {{ redirect('hubble') }}
+    {% endif %}
+
+    <main>
+        <h2>{{ release["name"] }}</h2>
+
+        <figure>
+            <a href="https:{{ release["keystone_image_2x"] }}" title="Clic to Watch in Full Size">
+                <img class="bord-curve" src="https:{{ release["thumbnail_2x"] }}" alt="Thumbnail of the Release {{ release["news_id"] }}">
+            </a>
+            <figcaption class="align-justify">{{ release["abstract"]|raw }}</figcaption>
+        </figure>
+
+        <ul>
+            <li>
+                <a href="{{ release["url"] }}" target="_blank" rel="noopener noreferrer" title="Clic to Watch the Release Page">
+                    Release : {{ release["news_id"] }}
+                </a>
+            </li>
+            <li>Publication : {{ release["publication"]|date("D d M Y") }}</li>
+            <li>Mission : {{ release["mission"]|capitalize }}</li>
+        </ul>
+
+        {% if release["credits"] %}
+            <p>Credits : {{ release["credits"]|raw }}</p>
+        {% endif %}
+    </main>
+{% endblock %}

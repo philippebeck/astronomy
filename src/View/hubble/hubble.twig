@@ -1,0 +1,56 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Hubble Telescope{% endblock %}
+
+{% block description %}Hubble Data Type Selection{% endblock %}
+
+{% block main %}
+    <main>
+        <ul class="row">
+            <li>
+                <a class="button-red btn-lg" href="{{ url('hubble!images', {'page': 1}) }}" title="Show Images">
+                    <i class="far fa-image fa-2x"></i> Images
+                </a>
+            </li>
+            <li>
+                <a class="button-green btn-lg" href="{{ url('hubble!news', {'page': 1}) }}" title="Show News">
+                    <i class="far fa-newspaper fa-2x"></i> News
+                </a>
+            </li>
+            <li>
+                <a class="button-blue btn-lg" href="{{ url('hubble!videos', {'page': 1}) }}" title="Show Videos">
+                    <i class="fas fa-film fa-2x"></i> Videos
+                </a>
+            </li>
+        </ul>
+        
+        <section>
+            <h2>{{ hubble["name"] }}</h2>
+
+            <figure>
+                <a href="https:{{ hubble["keystone_image_2x"] }}" title="Clic to Watch in Full Size">
+                    <img class="bord-curve" src="https:{{ hubble["thumbnail_2x"] }}" alt="Thumbnail of the Release {{ hubble["news_id"] }}">
+                </a>
+                <figcaption class="align-justify">{{ hubble["abstract"]|raw }}</figcaption>
+            </figure>
+
+            <ul>
+                <li>
+                    <a href="{{ hubble["url"] }}" target="_blank" rel="noopener noreferrer" title="Clic to Watch the Release Page">
+                        Release : {{ hubble["news_id"] }}
+                    </a>
+                </li>
+                <li>Publication : {{ hubble["publication"]|date("D d M Y") }}</li>
+                <li>Mission : {{ hubble["mission"]|capitalize }}</li>
+            </ul>
+
+            {% if hubble["credits"] %}
+                <p>Credits : {{ hubble["credits"]|raw }}</p>
+            {% endif %}
+        </section>
+
+        <a class="button-purple" href="{{ url('hubble!glossary') }}" title="Show Glossary">
+            <i class="fas fa-journal-whills fa-2x"></i> Glossary
+        </a>
+    </main>
+{% endblock %}
