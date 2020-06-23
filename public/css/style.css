@@ -1,0 +1,29 @@
+:root {
+  --sans-serif-font-family: 'Text Me One', sans-serif;
+  --serif-font-family: 'Cinzel', serif;
+  --monospace-font-family: 'Share Tech Mono', monospace;
+}
+
+body {
+  --body-color: var(--white);
+  --body-background-color: var(--black);
+
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+main [src*="img/user/"] {
+  width: 200px;
+}
+
+select {
+  font-family: var(--monospace-font-family);
+}
+
+.navbar {
+  --navbar-background-color: var(--blue-dark);
+}
+
+.table {
+  --table-row-odd-hover-background-color: var(--sky);
+}
