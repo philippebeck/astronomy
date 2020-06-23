@@ -1,0 +1,27 @@
+{
+  "name": "astronomy",
+  "description": "Website for astronomy with celestial atlas, map, picture, video, news & data",
+  "keywords": [
+    "application",
+    "archive",
+    "astronomy",
+    "media",
+    "mvc",
+    "php",
+    "web"
+  ],
+  "license": "MIT",
+  "main": "index.php",
+  "homepage": "https://astronomy.philippebeck.net",
+  "repository": "github:philippebeck/astronomy",
+  "bugs": "https://github.com/philippebeck/astronomy/issues",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.1",
+    "animadio": "^2.4.5"
+  },
+  "author": {
+    "name": "Philippe Beck",
+    "email": "philippe@philippebeck.net",
+    "url": "https://philippebeck.net"
+  }
+}
