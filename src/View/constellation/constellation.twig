@@ -1,0 +1,21 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}{{ constellation.name|replace({'-': ' '})|title }}{% endblock %}
+
+{% block description %}Constellation {{ constellation.name|replace({'-': ' '})|title }}{% endblock %}
+
+{% block main %}
+<main class="container-90tn-80sm-70md-60lg-50wd">
+
+    {% if constellation.description %}
+    <section class="bg-white bord-rounded">
+        <h2 class="mar-sm">History of {{ constellation.name|replace({'-': ' '})|title }}</h2>
+        <p class="pad-md align-justify">{{ constellation.description }}</p>
+    </section>
+    {% endif %}
+
+    <figure>
+        <img class="bord-curve" src="img/constellation/{{ constellation.name }}.jpg" alt="Chart of {{ constellation.name }}">
+    </figure>
+</main>
+{% endblock %}
