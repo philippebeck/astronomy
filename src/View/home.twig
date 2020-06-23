@@ -1,0 +1,18 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Astronomy{% endblock %}
+
+{% block description %}Homepage of Astronomy{% endblock %}
+
+{% block main %}
+    <main>
+        <h2>Welcome !</h2>
+
+        <figure>
+            <a href="{{ apod["hdurl"] }}" title="Clic to See in HD !">
+                <img class="bord-curve" src="{{ apod["url"] }}" alt="Astronomy Picture Of the Day">
+            </a>
+            <figcaption>{{ apod["title"] }}</figcaption>
+        </figure>
+    </main>
+{% endblock %}
