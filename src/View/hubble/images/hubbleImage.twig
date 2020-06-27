@@ -12,22 +12,24 @@
     {% endif %}
 
     <main>
-        <h2>{{ image["name"] }}</h2>
+        <article itemscope itemtype="http://schema.org/ImageObject">
+            <h2 itemprop="name">{{ image["name"] }}</h2>
 
-        <figure>
-            <a href="https:{{ image["image_files"]|last }}" title="Clic to Watch in Full Size">
-                <img class="bord-curve" src="https:{{ image["image_files"]|first }}" alt="Thumbnail of the Image {{ image["id"] }}">
-            </a>
-            <figcaption class="align-justify">{{ image["description"]|raw }}</figcaption>
-        </figure>
+            <figure>
+                <a href="https:{{ image["image_files"]|last }}" title="Clic to Watch in Full Size" itemprop="contentUrl">
+                    <img class="bord-curve" src="https:{{ image["image_files"]|first }}" alt="Thumbnail of the Image {{ image["id"] }}" itemprop="thumbnail">
+                </a>
+                <figcaption class="align-justify" itemprop="description">{{ image["description"]|raw }}</figcaption>
+            </figure>
 
-        <ul>
-            <li>Collection : {{ cleanString(image["collection"]) }}</li>
-            <li>Mission : {{ image["mission"]|capitalize }}</li>
-        </ul>
+            <ul>
+                <li itemprop="isPartOf">Collection : {{ cleanString(image["collection"]) }}</li>
+                <li>Mission : {{ image["mission"]|capitalize }}</li>
+            </ul>
 
-        {% if image["credits"] %}
-            <p>Credits : {{ image["credits"]|raw }}</p>
-        {% endif %}
+            {% if image["credits"] %}
+                <p itemprop="author">Credits : {{ image["credits"]|raw }}</p>
+            {% endif %}
+        </article>
     </main>
 {% endblock %}

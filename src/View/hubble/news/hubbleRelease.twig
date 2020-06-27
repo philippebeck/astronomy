@@ -12,27 +12,29 @@
     {% endif %}
 
     <main>
-        <h2>{{ release["name"] }}</h2>
+        <article itemscope itemtype="http://schema.org/ImageObject">
+            <h2 itemprop="name">{{ release["name"] }}</h2>
 
-        <figure>
-            <a href="https:{{ release["keystone_image_2x"] }}" title="Clic to Watch in Full Size">
-                <img class="bord-curve" src="https:{{ release["thumbnail_2x"] }}" alt="Thumbnail of the Release {{ release["news_id"] }}">
-            </a>
-            <figcaption class="align-justify">{{ release["abstract"]|raw }}</figcaption>
-        </figure>
-
-        <ul>
-            <li>
-                <a href="{{ release["url"] }}" target="_blank" rel="noopener noreferrer" title="Clic to Watch the Release Page">
-                    Release : {{ release["news_id"] }}
+            <figure>
+                <a href="https:{{ release["keystone_image_2x"] }}" title="Clic to Watch in Full Size" itemprop="contentUrl">
+                    <img class="bord-curve" src="https:{{ release["thumbnail_2x"] }}" alt="Thumbnail of the Release {{ release["news_id"] }}" itemprop="thumbnail">
                 </a>
-            </li>
-            <li>Publication : {{ release["publication"]|date("D d M Y") }}</li>
-            <li>Mission : {{ release["mission"]|capitalize }}</li>
-        </ul>
+                <figcaption class="align-justify" itemprop="description">{{ release["abstract"]|raw }}</figcaption>
+            </figure>
 
-        {% if release["credits"] %}
-            <p>Credits : {{ release["credits"]|raw }}</p>
-        {% endif %}
+            <ul>
+                <li>
+                    <a href="{{ release["url"] }}" target="_blank" rel="noopener noreferrer" title="Clic to Watch the Release Page" itemprop="associatedArticle">
+                        Release : {{ release["news_id"] }}
+                    </a>
+                </li>
+                <li itemprop="datePublished">Publication : {{ release["publication"]|date("D d M Y") }}</li>
+                <li>Mission : {{ release["mission"]|capitalize }}</li>
+            </ul>
+
+            {% if release["credits"] %}
+                <p itemprop="author">Credits : {{ release["credits"]|raw }}</p>
+            {% endif %}
+        </article>
     </main>
 {% endblock %}
