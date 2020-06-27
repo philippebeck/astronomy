@@ -12,28 +12,30 @@
     {% endif %}
 
     <main>
-        <h2>{{ video["name"] }}</h2>
+        <article itemscope itemtype="http://schema.org/VideoObject">
+            <h2 itemprop="name">{{ video["name"] }}</h2>
 
-        <figure>
-            <video class="bord-curve" controls>
-                {% if video["html_5_video"] %}
-                    <source src="{{ video["html_5_video"]["video_url"] }}" type="video/mp4">
-                    <p>Sorry, your browser doesn't support embedded videos. <a href="{{ video["html_5_video"]["video_url"] }}">Here you can download it !</a></p>
-                {% else %}
-                    <source src="{{ video["video_files"]|first }}" type="video/mp4">
-                    <p>Sorry, your browser doesn't support embedded videos. <a href="{{ video["video_files"]|first }}">Here you can download it !</a></p>
-                {% endif %}
-            </video>
-            <figcaption class="align-justify">{{ video["short_description"]|raw }}</figcaption>
-        </figure>
+            <figure>
+                <video class="bord-curve" controls>
+                    {% if video["html_5_video"] %}
+                        <source src="{{ video["html_5_video"]["video_url"] }}" type="video/mp4" itemprop="contentUrl">
+                        <p>Sorry, your browser doesn't support embedded videos. <a href="{{ video["html_5_video"]["video_url"] }}" itemprop="contentUrl">Here you can download it !</a></p>
+                    {% else %}
+                        <source src="{{ video["video_files"]|first }}" type="video/mp4" itemprop="contentUrl">
+                        <p>Sorry, your browser doesn't support embedded videos. <a href="{{ video["video_files"]|first }}" itemprop="contentUrl">Here you can download it !</a></p>
+                    {% endif %}
+                </video>
+                <figcaption class="align-justify" itemprop="description">{{ video["short_description"]|raw }}</figcaption>
+            </figure>
 
-        <ul>
-            <li>Collection : {{ cleanString(video["collection"]) }}</li>
-            <li>Mission : {{ video["mission"]|capitalize }}</li>
-        </ul>
+            <ul>
+                <li itemprop="isPartOf">Collection : {{ cleanString(video["collection"]) }}</li>
+                <li>Mission : {{ video["mission"]|capitalize }}</li>
+            </ul>
 
-        {% if video["credits"] %}
-            <p>Credits : {{ video["credits"]|raw }}</p>
-        {% endif %}
+            {% if video["credits"] %}
+                <p itemprop="author">Credits : {{ video["credits"]|raw }}</p>
+            {% endif %}
+        </article>
     </main>
 {% endblock %}
