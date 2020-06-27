@@ -3,13 +3,13 @@ CREATE DATABASE `astronomy` CHARACTER SET utf8;
 
 USE `astronomy`;
 
-CREATE TABLE User
+CREATE TABLE `User`
 (
-    id            SMALLINT      UNSIGNED  PRIMARY KEY AUTO_INCREMENT,
-    name          VARCHAR(50)   NOT NULL,
-    image         VARCHAR(50)   UNIQUE,
-    email         VARCHAR(100)  NOT NULL  UNIQUE,
-    pass          VARCHAR(100)  NOT NULL
+    `id`    SMALLINT      UNSIGNED  PRIMARY KEY AUTO_INCREMENT,
+    `name`  VARCHAR(50)   NOT NULL,
+    `image` VARCHAR(50)   UNIQUE,
+    `email` VARCHAR(100)  NOT NULL  UNIQUE,
+    `pass`  VARCHAR(100)  NOT NULL
 )
     ENGINE=INNODB DEFAULT CHARSET=utf8;
 

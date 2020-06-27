@@ -6,7 +6,7 @@
 
 {% block main %}
     <main>
-        <ul class="row">
+        <ul class="menu">
             <li>
                 <a class="button-red btn-lg" href="{{ url('hubble!images', {'page': 1}) }}" title="Show Images">
                     <i class="far fa-image fa-2x"></i> Images
@@ -24,30 +24,30 @@
             </li>
         </ul>
         
-        <section>
-            <h2>{{ hubble["name"] }}</h2>
+        <article itemscope itemtype="http://schema.org/ImageObject">
+            <h2 itemprop="name">{{ hubble["name"] }}</h2>
 
             <figure>
-                <a href="https:{{ hubble["keystone_image_2x"] }}" title="Clic to Watch in Full Size">
-                    <img class="bord-curve" src="https:{{ hubble["thumbnail_2x"] }}" alt="Thumbnail of the Release {{ hubble["news_id"] }}">
+                <a href="https:{{ hubble["keystone_image_2x"] }}" title="Clic to Watch in Full Size" itemprop="contentUrl">
+                    <img class="bord-curve" src="https:{{ hubble["thumbnail_2x"] }}" alt="Thumbnail of the Release {{ hubble["news_id"] }}" itemprop="thumbnail">
                 </a>
-                <figcaption class="align-justify">{{ hubble["abstract"]|raw }}</figcaption>
+                <figcaption class="align-justify" itemprop="description">{{ hubble["abstract"]|raw }}</figcaption>
             </figure>
 
             <ul>
                 <li>
-                    <a href="{{ hubble["url"] }}" target="_blank" rel="noopener noreferrer" title="Clic to Watch the Release Page">
-                        Release : {{ hubble["news_id"] }}
+                    <a href="{{ hubble["url"] }}" target="_blank" rel="noopener noreferrer" title="Clic to Watch the Release Page" itemprop="associatedArticle">
+                        Hubble Release : {{ hubble["news_id"] }}
                     </a>
                 </li>
-                <li>Publication : {{ hubble["publication"]|date("D d M Y") }}</li>
+                <li itemprop="datePublished">Publication : {{ hubble["publication"]|date("D d M Y") }}</li>
                 <li>Mission : {{ hubble["mission"]|capitalize }}</li>
             </ul>
 
             {% if hubble["credits"] %}
-                <p>Credits : {{ hubble["credits"]|raw }}</p>
+                <p itemprop="author">Credits : {{ hubble["credits"]|raw }}</p>
             {% endif %}
-        </section>
+        </article>
 
         <a class="button-purple" href="{{ url('hubble!glossary') }}" title="Show Glossary">
             <i class="fas fa-journal-whills fa-2x"></i> Glossary
