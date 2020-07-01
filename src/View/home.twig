@@ -9,9 +9,15 @@
         <h2>Picture of the Day</h2>
 
         <figure class="container-90md-80lg-70wd">
-            <a href="{{ apod["hdurl"] }}" title="Clic to See in HD !">
-                <img class="bord-curve" src="{{ apod["url"] }}" alt="Astronomy Picture Of the Day">
-            </a>
+
+            {% if apod["hdurl"] %}
+                <a href="{{ apod["hdurl"] }}" title="Clic to See in HD !">
+                    <img class="bord-curve" src="{{ apod["url"] }}" alt="Astronomy Picture Of the Day">
+                </a>
+            {% else %}
+                <iframe class="bord-curve width-lg height-md" src="{{ apod["url"] }}" allowfullscreen></iframe>
+            {% endif %}
+
             <figcaption>
                 <h3>{{ apod["title"] }} ({{ apod["date"] }})</h3>
                 <p class="align-justify">{{ apod["explanation"] }}</p>
