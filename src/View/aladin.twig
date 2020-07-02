@@ -1,0 +1,58 @@
+{% extends "layout/layout.twig" %}
+
+{% block title %}Aladin{% endblock %}
+
+{% block description %}Interactive Sky Atlas Aladin Lite from CDS{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.css">
+{% endblock %}
+
+{% block script %}
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js"></script>
+
+    <script>
+        var aladin = A.aladin("#aladin", {
+            survey: "P/DSS2/color",
+            fov: 0.5,
+            target: "M1",
+            cooFrame: "galactic",
+            reticleColor: "#00ff00",
+            reticleSize: 30,
+            showShareControl: true,
+            showSimbadPointerControl: true
+        });
+
+        $("input[name=survey]").change(function() {
+            aladin.setImageSurvey($(this).val());
+        });
+    </script>
+{% endblock %}
+
+{% block main %}
+    <main class="container-90sm-80md-70lg">
+        <h2>Interactive Sky Atlas</h2>
+
+        <figure class="slider" id="aladin"></figure>
+
+        <ul class="row placo-evenly">
+            <li>
+                <input id="DSS" type="radio" name="survey" value="P/DSS2/color">
+                <label for="DSS">DSS color</label>
+            </li>
+            <li>
+                <input id="DSS-blue" type="radio" name="survey" value="P/DSS2/blue">
+                <label for="DSS-blue">DSS blue</label>
+            </li>
+            <li>
+                <input id="2MASS" type="radio" name="survey" value="P/2MASS/color">
+                <label for="2MASS">2MASS</label>
+            </li>
+            <li>
+                <input id="allwise" type="radio" name="survey" value="P/allWISE/color">
+                <label for="allwise">AllWISE</label>
+            </li>
+        </ul>
+    </main>
+{% endblock %}

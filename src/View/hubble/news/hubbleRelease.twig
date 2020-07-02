@@ -16,7 +16,7 @@
             <h2 itemprop="name">{{ release["name"] }}</h2>
 
             <figure>
-                <a href="https:{{ release["keystone_image_2x"] }}" title="Clic to Watch in Full Size" itemprop="contentUrl">
+                <a href="https:{{ release["keystone_image_2x"] }}" title="Clic to Watch in Full Size" itemprop="image">
                     <img class="bord-curve" src="https:{{ release["thumbnail_2x"] }}" alt="Thumbnail of the Release {{ release["news_id"] }}" itemprop="thumbnail">
                 </a>
                 <figcaption class="align-justify" itemprop="description">{{ release["abstract"]|raw }}</figcaption>
@@ -24,7 +24,7 @@
 
             <ul>
                 <li>
-                    <a href="{{ release["url"] }}" target="_blank" rel="noopener noreferrer" title="Clic to Watch the Release Page" itemprop="associatedArticle">
+                    <a href="{{ release["url"] }}" target="_blank" rel="noopener noreferrer" title="Clic to Watch the Release Page" itemprop="contentUrl">
                         Release : {{ release["news_id"] }}
                     </a>
                 </li>

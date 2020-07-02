@@ -9,17 +9,17 @@
         <ul class="menu">
             <li>
                 <a class="button-red btn-lg" href="{{ url('hubble!images', {'page': 1}) }}" title="Show Images">
-                    <i class="far fa-image fa-2x"></i> Images
+                    Images
                 </a>
             </li>
             <li>
                 <a class="button-green btn-lg" href="{{ url('hubble!news', {'page': 1}) }}" title="Show News">
-                    <i class="far fa-newspaper fa-2x"></i> News
+                    News
                 </a>
             </li>
             <li>
                 <a class="button-blue btn-lg" href="{{ url('hubble!videos', {'page': 1}) }}" title="Show Videos">
-                    <i class="fas fa-film fa-2x"></i> Videos
+                    Videos
                 </a>
             </li>
         </ul>
@@ -28,7 +28,7 @@
             <h2 itemprop="name">{{ hubble["name"] }}</h2>
 
             <figure>
-                <a href="https:{{ hubble["keystone_image_2x"] }}" title="Clic to Watch in Full Size" itemprop="contentUrl">
+                <a href="https:{{ hubble["keystone_image_2x"] }}" title="Clic to Watch in Full Size" itemprop="image">
                     <img class="bord-curve" src="https:{{ hubble["thumbnail_2x"] }}" alt="Thumbnail of the Release {{ hubble["news_id"] }}" itemprop="thumbnail">
                 </a>
                 <figcaption class="align-justify" itemprop="description">{{ hubble["abstract"]|raw }}</figcaption>
@@ -36,7 +36,7 @@
 
             <ul>
                 <li>
-                    <a href="{{ hubble["url"] }}" target="_blank" rel="noopener noreferrer" title="Clic to Watch the Release Page" itemprop="associatedArticle">
+                    <a href="{{ hubble["url"] }}" target="_blank" rel="noopener noreferrer" title="Clic to Watch the Release Page" itemprop="contentUrl">
                         Hubble Release : {{ hubble["news_id"] }}
                     </a>
                 </li>

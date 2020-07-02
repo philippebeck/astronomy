@@ -28,14 +28,14 @@
     <meta name="twitter:image"          content="{{ block('image') }}">
     <meta name="twitter:creator"        content="@philippepjbeck">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Text+Me+One%7cCinzel:400,700,900%7cShare+Tech+Mono">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Text+Me+One%7cCinzel:400,700,900%7cShare+Tech+Mono&display=swap">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="node_modules/animadio/dist/min/animadio.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <script data-ad-client="ca-pub-3068718378181393" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    {% block link %}{% endblock %}
 </head>
 
-<body>
+<body class="align-center">
 
     {{ include('layout/navbar.twig') }}
 
@@ -51,7 +51,6 @@
 
     {{ include('layout/footer.twig') }}
 
-    <script src="js/script.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+    {% block script %}{% endblock %}
 </body>
 </html>

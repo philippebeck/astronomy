@@ -1,76 +1,100 @@
-{% extends 'layout/layout.twig' %}
+{% extends "layout/layout.twig" %}
 
-{% block title %}Mars Rovers{% endblock %}
+{% block title %}Mars{% endblock %}
 
-{% block description %}Mars Rover Photos{% endblock %}
+{% block description %}Mars Photos from Aladin & Rovers{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.css">
+{% endblock %}
+
+{% block script %}
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js"></script>
+
+    <script>
+        var aladin = A.aladin("#aladin", {
+            target: "240 +10.65",
+            cooFrame: "j2000d",
+            fov: 180,
+            showFrame: false,
+            showLayersControl: false,
+            showGotoControl: false
+        });
+
+        var mars = aladin.createImageSurvey(
+            "Mars",
+            "Mars",
+            "https://alasky.u-strasbg.fr/Planets/Mars_Viking_MDIM21/",
+            "j2000",
+            5,
+            {
+                longitudeReversed: true
+            });
+        
+        aladin.setImageSurvey(mars);
+
+        var canvas = document.createElement("canvas");
+        canvas.width = canvas.height = 11;
+
+        var context = canvas.getContext("2d");
+        context.beginPath();
+        context.arc(5, 5, 4, 0, 2 * Math.PI, false);
+        context.closePath();
+        context.strokeStyle = "#ccc";
+        context.lineWidth = 2;
+        context.stroke();
+
+        var geoFeatures = A.catalog({
+            shape: canvas,
+            labelColumn: "name",
+            displayLabel: true,
+            labelColor: "#fff",
+            labelFont: "14px sans-serif"
+        });
+
+        aladin.addCatalog(geoFeatures);
+
+        geoFeatures.addSources(A.source(226.2, 18.65, {name: "Olympus Mons"}));
+        geoFeatures.addSources(A.source(70.5, -42.4, {name: "Hellas Planitia"}));
+        geoFeatures.addSources(A.source(250.4, 40.5, {name: "Alba Mons"}));
+        geoFeatures.addSources(A.source(-59.2, -13.9, {name: "Valles Marineris"}));
+        geoFeatures.addSources(A.source(147.21, 25.02, {name: "Elysium Mons"}));
+        geoFeatures.addSources(A.source(316.0, -49.7, {name: "Argyre Basin"}));
+        geoFeatures.addSources(A.source(32.53, 70, {name: "Vastitas Borealis"}));
+        geoFeatures.addSources(A.source(-112.58, 1.57, {name: "Tharsis Montes"}));
+        geoFeatures.addSources(A.source(298, 25, {name: "Outflow channels"}));
+        geoFeatures.addSources(A.source(30, 19.79, {name: "Arabia Terra"}));
+        geoFeatures.addSources(A.source(70.5, -42.4, {name: "Hellas Basin"}));
+        geoFeatures.addSources(A.source(280, 45, {name: "Tempe Terra"}));
+        geoFeatures.addSources(A.source(87, 12.9, {name: "Isidis Basin"}));
+        geoFeatures.addSources(A.source(117.5, 46.7, {name: "Utopia Basin"}));
+        geoFeatures.addSources(A.source(350, -45, {name: "Noachis Terra"}));
+    </script>
+{% endblock %}
 
 {% block main %}
-    <main>
-        <h2>{{ block("description") }}</h2>
+    <main class="container-90sm-80md-70lg">
+        <input id="menu-radio1" class="menu-radio1" type="radio" name="menu" checked>
+        <input id="menu-radio2" class="menu-radio2" type="radio" name="menu">
 
-        <form class="form" method="post" action="{{ url('mars') }}">
-            <fieldset>
-                <legend>
-                    <i class="fas fa-robot fa-2x" aria-hidden="true"></i>
-                </legend>
-                <ul>
-                    <li>
-                        <label for="rover">Rover</label>
-                        <select id="rover" name="rover">
-                            <option value="{{ params.rover }}">-- Select a Rover ({{ params.rover|capitalize }} selected)</option>
-                            <option value="curiosity">Curiosity : 2012 - 2026 (estimated)</option>
-                            <option value="opportunity">Opportunity : 2004 - 2018</option>
-                            <option value="spirit">Spirit : 2004 - 2010</option>
-                        </select>
-                    </li>
-                    <li>
-                        <label for="camera">Camera</label>
-                        <select id="camera" name="camera">
-                            <option value="{{ params.camera }}">-- Select the Camera ({{ params.camera|upper }} selected)</option>
-                            <optgroup label="All Rovers">
-                                <option value="fhaz">Front Hazard Avoidance Camera</option>
-                                <option value="rhaz">Rear Hazard Avoidance Camera</option>
-                                <option value="navcam">Navigation Camera</option>
-                            </optgroup>
-                            <optgroup label="Curiosity Only">
-                                <option value="mast">Mast Camera</option>
-                                <option value="chemcam">Chemistry & Camera Complex</option>
-                                <option value="mahli">Mars Hand Lens Imager</option>
-                                <option value="mardi">Mars Descent Imager</option>
-                            </optgroup>
-                            <optgroup label="Opportunity & Spirit Only">
-                                <option value="pancam">Panoramic Camera</option>
-                                <option value="minites">Miniature Thermal Emission Spectrometer</option>
-                            </optgroup>
-                        </select>
-                    </li>
-                    <li>
-                        <label for="date">Earth Date</label>
-                        <input id="date" name="date" type="date" value="{{ params.date }}" min="2004-01-05" required>
-                    </li>
-                    <li>
-                        <label for="page">Page</label>
-                        <input id="page" name="page" type="number" min="1" value="{{ params.page }}" placeholder="Type the Page Required" required>
-                    </li>
-                    <li>
-                        <input type="submit" value="Search">
-                    </li>
-                </ul>
-            </fieldset>
-        </form>
+        <nav class="menu">
+            <label class="button-red btn-lg" for="menu-radio1" title="Watch Mars from Aladin">
+                Map
+            </label>
+            <label class="button-blue btn-lg" for="menu-radio2" title="Mars Rovers Photos">
+                Rovers
+            </label>
+        </nav>
 
-        <section>
-            <h3>{{ mars[0]["rover"]["name"] }} : {{ mars[0]["camera"]["name"] }} ({{ mars[0]["earth_date"] }})</h3>
+        <article class="menu-relay mar-bot-lg">
+            <section class="menu-target1">
+                <h2>Mars Interactive Map</h2>
 
-            <figure class="grid-2sm-3lg">
-                {% for photo in mars %}
-                    <figure>
-                        <a href="{{ photo["img_src"] }}" title="Clic to Enlarge">
-                            <img class="bord-curve" src="{{ photo["img_src"] }}" alt="Mars Rover Photo #{{ photo["id"] }}">
-                        </a>
-                    </figure>
-                {% endfor %}
-            </figure>
-        </section>
+                <figure class="slider" id="aladin"></figure>
+            </section>
+
+            {{ include("mars/marsRovers.twig") }}
+        </article>
     </main>
 {% endblock %}
