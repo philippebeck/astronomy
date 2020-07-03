@@ -53,7 +53,7 @@
                             <td>{{ object["estimated_diameter"]["meters"]["estimated_diameter_min"]|number_format(0, '.', ' ') }} < {{ object["estimated_diameter"]["meters"]["estimated_diameter_max"]|number_format(0, '.', ' ') }}</td>
                             <td>{{ object["close_approach_data"][0]["relative_velocity"]["kilometers_per_hour"]|number_format(0, '.', ' ') }}</td>
                             <td>{{ object["absolute_magnitude_h"] }}</td>
-                            <td>{{ dump(object["is_potentially_hazardous_asteroid"])|replace({'bool(false)': "No", 'bool(true)': "Yes"}) }}</td>
+                            <td>{{ object["is_potentially_hazardous_asteroid"]|replace({'1': "Yes"}) }}</td>
                             <td>
                                 <a class="button-navy cursor-cross" href="{{ object["nasa_jpl_url"] }}" title="Watch the Jet Propulsion Laboratory Small-Body Database Browser">
                                     <i class="fas fa-database fa-2x"></i>

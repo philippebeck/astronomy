@@ -21,6 +21,6 @@ class AladinController extends MainController
      */
     public function defaultMethod()
     {
-        return $this->render("aladin.twig",);
+        return $this->render("aladin.twig");
     }
 }
