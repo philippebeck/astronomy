@@ -11,6 +11,7 @@
 {% block script %}
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js"></script>
+    <script src="https://platform.twitter.com/widgets.js"></script>
 
     <script>
         var aladin = A.aladin("#aladin", {
@@ -74,27 +75,60 @@
 {% endblock %}
 
 {% block main %}
-    <main class="container-90sm-80lg">
-        <input id="menu-radio1" class="menu-radio1" type="radio" name="menu" checked>
-        <input id="menu-radio2" class="menu-radio2" type="radio" name="menu">
+    <input id="menu-radio1" class="menu-radio1" type="radio" name="menu" checked>
+    <input id="menu-radio2" class="menu-radio2" type="radio" name="menu">
+    <input id="menu-radio3" class="menu-radio3" type="radio" name="menu">
 
-        <nav class="menu">
-            <label class="button-red btn-lg" for="menu-radio1" title="Watch Mars from Aladin">
-                Map
-            </label>
-            <label class="button-blue btn-lg" for="menu-radio2" title="Mars Rovers Photos">
-                Rovers
-            </label>
-        </nav>
+    <nav class="menu">
+        <label class="button-red btn-lg" for="menu-radio1" title="Watch Mars from Aladin">
+            Map
+        </label>
+        <label class="button-green btn-lg" for="menu-radio2" title="Mars Rovers Photos">
+            Photos
+        </label>
+        <label class="button-blue btn-lg" for="menu-radio3" title="Curiosity Rover Tweets">
+            Tweets
+        </label>
+    </nav>
 
-        <article class="menu-relay mar-bot-lg">
-            <section class="menu-target1">
-                <h2>Mars Interactive Map</h2>
+    <main class="menu-relay container-90sm-80lg mar-bot-lg">
+        <article class="menu-target1">
+            <h2>Mars Interactive Map</h2>
 
-                <figure class="slider" id="aladin"></figure>
-            </section>
+            <figure class="slider" id="aladin"></figure>
+        </article>
 
-            {{ include("mars/marsRovers.twig") }}
+        {{ include("mars/marsRovers.twig") }}
+
+        <article class="menu-target3">
+            <h2>Mars Tweets</h2>
+
+            <ul class="row">
+                <li>
+                    <a class="twitter-timeline"
+                       href="https://twitter.com/MarsCuriosity"
+                       data-theme="dark"
+                       data-width="300">
+                        Tweets by @MarsCuriosity
+                    </a>
+                </li>
+                <li>
+                    <a class="twitter-timeline"
+                       href="https://twitter.com/NASAMars"
+                       data-theme="dark"
+                       data-width="300">
+                        Tweets by @NASAMars
+                    </a>
+                </li>
+                <li>
+                    <a class="twitter-timeline"
+                       href="https://twitter.com/NASAPersevere"
+                       data-theme="dark"
+                       data-width="300">
+                        Tweets by @NASAPersevere
+                    </a>
+                </li>
+            </ul>
         </article>
     </main>
 {% endblock %}
