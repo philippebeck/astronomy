@@ -29,7 +29,7 @@
     </header>
 
     <section>
-        <h2>Made by {{ atlas.author_name}} in {{ atlas.published_year }}</h2>
+        <h2>Made by {{ atlas.author_name}} in {{ atlas.published_year|trim('0', 'left') }}</h2>
 
         <ul class="grid-2sm-3lg-4wd pad-top-lg" itemscope itemtype="https://schema.org/CreativeWork">
             {% for key, map in atlasMaps %}
