@@ -10,31 +10,31 @@
     <ul>
         <li>
             <a href="{{ url('home') }}" accesskey="h" title="Go back Home">
-                <i class="fas fa-globe fa-lg" aria-hidden="true"></i>
+                <i class="fas fa-globe fa-lg"></i>
                 <span>Home</span>
             </a>
         </li>
         <li>
             <a href="{{ url('atlas') }}" accesskey="a" title="Celestial Atlases">
-                <i class="fas fa-atlas fa-lg" aria-hidden="true"></i>
+                <i class="fas fa-atlas fa-lg"></i>
                 <span>Atlas</span>
             </a>
         </li>
         <li>
             <a href="{{ url('constellation') }}" accesskey="c" title="The Constellations">
-                <i class="far fa-star fa-lg" aria-hidden="true"></i>
+                <i class="far fa-star fa-lg"></i>
                 <span>Constellation</span>
             </a>
         </li>
         <li>
             <a href="{{ url('aladin') }}" accesskey="i" title="Interactive Sky Atlas">
-                <i class="far fa-map fa-lg" aria-hidden="true"></i>
+                <i class="far fa-map fa-lg"></i>
                 <span>Aladin</span>
             </a>
         </li>
         <li>
             <a href="{{ url('hubble') }}" accesskey="h" title="Hubble Space Telescope">
-                <i class="fas fa-satellite fa-lg" aria-hidden="true"></i>
+                <i class="fas fa-satellite fa-lg"></i>
                 <span>Hubble</span>
             </a>
         </li>
@@ -43,12 +43,12 @@
     <ul class="anima-slipL">
         <li>
             <a href="{{ url('mars') }}" accesskey="m" title="Mars">
-                <i class="fas fa-robot fa-lg" aria-hidden="true"></i>
+                <i class="fas fa-robot fa-lg"></i>
             </a>
         </li>
         <li>
             <a href="{{ url('neo') }}" accesskey="n" title="Neo">
-                <i class="fas fa-meteor fa-lg" aria-hidden="true"></i>
+                <i class="fas fa-meteor fa-lg"></i>
             </a>
         </li>
         {% if (isLogged()) %}
@@ -59,27 +59,27 @@
             </li>
             <li>
                 <a href="{{ url('user!logout') }}" title="Logout">
-                    <i class="fas fa-space-shuttle fa-lg" aria-hidden="true"></i>
+                    <i class="fas fa-space-shuttle fa-lg"></i>
                 </a>
             </li>
         {% else %}
             <li>
                 <a href="{{ url('contact') }}" title="Contact">
-                    <i class="fas fa-satellite-dish fa-lg" aria-hidden="true"></i>
+                    <i class="fas fa-satellite-dish fa-lg"></i>
                 </a>
             </li>
             <li>
                 <a href="{{ url('user') }}" title="Login">
-                    <i class="fas fa-rocket fa-lg" aria-hidden="true"></i>
+                    <i class="fas fa-rocket fa-lg"></i>
                 </a>
             </li>
         {% endif %}
     </ul>
 
     <label for="navbar-close" title="Close the Navigation Menu">
-        <i class="fas fa-angle-double-up fa-lg" aria-hidden="true"></i>
+        <i class="fas fa-angle-double-up fa-lg"></i>
     </label>
     <label for="navbar-open" title="Open the Navigation Menu">
-        <i class="fas fa-angle-double-down fa-lg" aria-hidden="true"></i>
+        <i class="fas fa-angle-double-down fa-lg"></i>
     </label>
 </nav>
