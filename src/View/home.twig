@@ -4,24 +4,71 @@
 
 {% block description %}Homepage of Astronomy{% endblock %}
 
+{% block script %}<script src="https://platform.twitter.com/widgets.js"></script>{% endblock %}
+
 {% block main %}
-    <main>
-        <h2>Picture of the Day</h2>
+    <input id="menu-radio1" class="menu-radio1" type="radio" name="menu" checked>
+    <input id="menu-radio2" class="menu-radio2" type="radio" name="menu">
 
-        <figure class="container-90md-80lg-70wd">
+    <nav class="menu">
+        <label class="button-red btn-lg" for="menu-radio1" title="Watch Astronomy Picture Of the Day">
+            Picture
+        </label>
+        <label class="button-blue btn-lg" for="menu-radio2" title="Apod Tweets">
+            Tweets
+        </label>
+    </nav>
 
-            {% if apod["hdurl"] %}
-                <a href="{{ apod["hdurl"] }}" title="Clic to See in HD !">
-                    <img class="bord-curve" src="{{ apod["url"] }}" alt="Astronomy Picture Of the Day">
-                </a>
-            {% else %}
-                <iframe class="bord-curve width-lg height-md" src="{{ apod["url"] }}" allowfullscreen></iframe>
-            {% endif %}
+    <main class="menu-relay">
+        <article class="menu-target1">
+            <h2>Picture of the Day</h2>
 
-            <figcaption>
-                <h3>{{ apod["title"] }} ({{ apod["date"] }})</h3>
-                <p class="align-justify">{{ apod["explanation"] }}</p>
-            </figcaption>
-        </figure>
+            <figure class="container-90md-80lg-70wd">
+
+                {% if apod["hdurl"] %}
+                    <a href="{{ apod["hdurl"] }}" title="Clic to See in HD !">
+                        <img class="bord-curve" src="{{ apod["url"] }}" alt="Astronomy Picture Of the Day">
+                    </a>
+                {% else %}
+                    <iframe class="bord-curve width-lg height-md" src="{{ apod["url"] }}" allowfullscreen></iframe>
+                {% endif %}
+
+                <figcaption>
+                    <h3>{{ apod["title"] }} ({{ apod["date"] }})</h3>
+                    <p class="align-justify">{{ apod["explanation"] }}</p>
+                </figcaption>
+            </figure>
+        </article>
+
+        <article class="menu-target2">
+            <h2>NASA Tweets</h2>
+
+            <ul class="row">
+                <li>
+                    <a class="twitter-timeline"
+                       href="https://twitter.com/apod"
+                       data-theme="dark"
+                       data-width="300">
+                        Tweets by @apod
+                    </a>
+                </li>
+                <li>
+                    <a class="twitter-timeline"
+                       href="https://twitter.com/NASA"
+                       data-theme="dark"
+                       data-width="300">
+                        Tweets by @NASA
+                    </a>
+                </li>
+                <li>
+                    <a class="twitter-timeline"
+                       href="https://twitter.com/NASAJPL"
+                       data-theme="dark"
+                       data-width="300">
+                        Tweets by @NASAJPL
+                    </a>
+                </li>
+            </ul>
+        </article>
     </main>
 {% endblock %}
