@@ -2,7 +2,7 @@
 
 {% block title %}Aladin{% endblock %}
 
-{% block description %}Interactive Sky Atlas Aladin Lite from CDS{% endblock %}
+{% block description %}Interactive Sky Atlas Aladin from Strasbourg Astronomical Data Center{% endblock %}
 
 {% block link %}
     <link rel="stylesheet" href="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.css">
@@ -34,8 +34,6 @@
     <main class="container-90sm-80md-70lg">
         <h2>Interactive Sky Atlas</h2>
 
-        <figure class="slider" id="aladin"></figure>
-
         <ul class="row placo-evenly">
             <li>
                 <input id="DSS" type="radio" name="survey" value="P/DSS2/color">
@@ -54,5 +52,15 @@
                 <label for="allwise">AllWISE</label>
             </li>
         </ul>
+
+        <figure class="mar-none mar-bot-lg">
+            <figure class="slider" id="aladin"></figure>
+            <figcaption class="font-monospace">
+                Aladin Sky Atlas, developed at
+                <strong>CDS</strong>,
+                <em>Strasbourg Observatory</em>,
+                France
+            </figcaption>
+        </figure>
     </main>
 {% endblock %}
