@@ -22,11 +22,14 @@
                 </td>
                 <td>{{ user.email }}</td>
                 <td>
+                    <a class="btn-orange" href="{{ url('user!logout') }}" title="Logout">
+                        <i class="fas fa-sign-out-alt fa-fw fa-lg"></i>
+                    </a>
                     <a class="btn-blue" href="{{ url('user!update', {'id': user.id}) }}">
-                        <i class="fas fa-pen-square fa-fw fa-lg" aria-hidden="true"></i>
+                        <i class="fas fa-pen-square fa-fw fa-lg"></i>
                     </a>
                     <a class="btn-red" href="{{ url('user!delete', {'id': user.id}) }}">
-                        <i class="fas fa-times-circle fa-fw fa-lg" aria-hidden="true"></i>
+                        <i class="fas fa-times-circle fa-fw fa-lg"></i>
                     </a>
                 </td>
             </tr>
