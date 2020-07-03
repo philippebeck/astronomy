@@ -4,27 +4,41 @@
 
 {% block description %}Hubble Data Type Selection{% endblock %}
 
+{% block script %}<script src="https://platform.twitter.com/widgets.js"></script>{% endblock %}
+
 {% block main %}
-    <main>
-        <ul class="menu">
-            <li>
-                <a class="button-red btn-lg" href="{{ url('hubble!images', {'page': 1}) }}" title="Show Images">
-                    Images
-                </a>
-            </li>
-            <li>
-                <a class="button-green btn-lg" href="{{ url('hubble!news', {'page': 1}) }}" title="Show News">
-                    News
-                </a>
-            </li>
-            <li>
-                <a class="button-blue btn-lg" href="{{ url('hubble!videos', {'page': 1}) }}" title="Show Videos">
-                    Videos
-                </a>
-            </li>
-        </ul>
-        
-        <article itemscope itemtype="http://schema.org/ImageObject">
+    <input id="menu-radio1" class="menu-radio1" type="radio" name="menu" checked>
+    <input id="menu-radio2" class="menu-radio2" type="radio" name="menu">
+
+    <nav class="menu">
+        <label class="button-red btn-lg" for="menu-radio1" title="Watch Hubble Photos, News & Videos">
+            Last News
+        </label>
+        <label class="button-blue btn-lg" for="menu-radio2" title="Hubble Tweets">
+            Tweets
+        </label>
+    </nav>
+
+    <ul class="row">
+        <li>
+            <a class="button-red btn-lg" href="{{ url('hubble!images', {'page': 1}) }}" title="Show Images">
+                Images
+            </a>
+        </li>
+        <li>
+            <a class="button-green btn-lg" href="{{ url('hubble!news', {'page': 1}) }}" title="Show News">
+                News
+            </a>
+        </li>
+        <li>
+            <a class="button-blue btn-lg" href="{{ url('hubble!videos', {'page': 1}) }}" title="Show Videos">
+                Videos
+            </a>
+        </li>
+    </ul>
+
+    <main class="menu-relay">
+        <article class="menu-target1" itemscope itemtype="http://schema.org/ImageObject">
             <h2 itemprop="name">{{ hubble["name"] }}</h2>
 
             <figure>
@@ -49,8 +63,39 @@
             {% endif %}
         </article>
 
-        <a class="button-purple" href="{{ url('hubble!glossary') }}" title="Show Glossary">
-            <i class="fas fa-journal-whills fa-2x"></i> Glossary
-        </a>
+        <article class="menu-target2 relative">
+            <h2>Hubble Tweets</h2>
+
+            <ul class="row">
+                <li>
+                    <a class="twitter-timeline"
+                       href="https://twitter.com/HubbleTelescope"
+                       data-theme="dark"
+                       data-width="300">
+                        Tweets by @HubbleTelescope
+                    </a>
+                </li>
+                <li>
+                    <a class="twitter-timeline"
+                       href="https://twitter.com/NASAHubble"
+                       data-theme="dark"
+                       data-width="300">
+                        Tweets by @NASAHubble
+                    </a>
+                </li>
+                <li>
+                    <a class="twitter-timeline"
+                       href="https://twitter.com/HUBBLE_space"
+                       data-theme="dark"
+                       data-width="300">
+                        Tweets by @HUBBLE_space
+                    </a>
+                </li>
+            </ul>
+        </article>
     </main>
+
+    <a class="button-purple" href="{{ url('hubble!glossary') }}" title="Show Glossary">
+        <i class="fas fa-journal-whills fa-2x"></i> Glossary
+    </a>
 {% endblock %}
