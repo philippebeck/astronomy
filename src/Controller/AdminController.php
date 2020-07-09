@@ -22,7 +22,7 @@ class AdminController extends MainController
      */
     public function defaultMethod()
     {
-        if ($this->service->getSecurity()->checkIsAdmin() !== true) {
+        if ($this->getSecurity()->checkIsAdmin() !== true) {
             $this->redirect("home");
         }
 

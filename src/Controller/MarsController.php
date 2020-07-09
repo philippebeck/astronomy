@@ -72,7 +72,7 @@ class MarsController extends MainController
             . "&api_key="
             . NASA_API;
 
-        $mars = $this->service->getCurl()->getApiData($query);
+        $mars = $this->getCurl()->getApiData($query);
         $mars = $mars["photos"];
 
         $params = [

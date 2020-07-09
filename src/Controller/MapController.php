@@ -68,7 +68,7 @@ class MapController extends MainController
         $img        = "img/atlas/" . $this->data["map_name"] . $this->getFiles()->setFileExtension();
         $thumbnail  = "img/thumbnails/tn_". $this->data["map_name"] . $this->getFiles()->setFileExtension();
 
-        $this->service->getImage()->makeThumbnail($img, 300, $thumbnail);
+        $this->getImage()->makeThumbnail($img, 300, $thumbnail);
     }
 
     /**
@@ -79,7 +79,7 @@ class MapController extends MainController
      */
     public function createMethod()
     {
-        if ($this->service->getSecurity()->checkIsAdmin() !== true) {
+        if ($this->getSecurity()->checkIsAdmin() !== true) {
             $this->redirect("home");
         }
 
@@ -107,7 +107,7 @@ class MapController extends MainController
      */
     public function updateMethod()
     {
-        if ($this->service->getSecurity()->checkIsAdmin() !== true) {
+        if ($this->getSecurity()->checkIsAdmin() !== true) {
             $this->redirect("home");
         }
 
@@ -137,7 +137,7 @@ class MapController extends MainController
 
     public function deleteMethod()
     {
-        if ($this->service->getSecurity()->checkIsAdmin() !== true) {
+        if ($this->getSecurity()->checkIsAdmin() !== true) {
             $this->redirect("home");
         }
 

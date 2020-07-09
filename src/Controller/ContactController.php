@@ -26,8 +26,8 @@ class ContactController extends MainController
 
             if (isset($mail["g-recaptcha-response"]) && !empty($mail["g-recaptcha-response"])) {
 
-                if ($this->service->getSecurity()->checkRecaptcha($mail["g-recaptcha-response"])) {
-                    $this->service->getMail()->sendMessage($mail);
+                if ($this->getSecurity()->checkRecaptcha($mail["g-recaptcha-response"])) {
+                    $this->getMail()->sendMessage($mail);
                     $this->getSession()->createAlert("Message successfully sent to " . MAIL_USERNAME . " !", "green");
 
                     $this->redirect("home");

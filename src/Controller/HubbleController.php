@@ -46,7 +46,7 @@ class HubbleController extends MainController
 
         $this->setQuery();
 
-        $hubble = $this->service->getCurl()->getApiData($this->query);
+        $hubble = $this->getCurl()->getApiData($this->query);
 
         return $this->render("hubble/hubble.twig", ["hubble" => $hubble]);
     }
@@ -87,7 +87,7 @@ class HubbleController extends MainController
         $this->setPage();
         $this->setQuery();
 
-        $news = $this->service->getCurl()->getApiData($this->query);
+        $news = $this->getCurl()->getApiData($this->query);
 
         return $this->render("hubble/news/hubbleNews.twig", ["news" => $news]);
     }
@@ -105,7 +105,7 @@ class HubbleController extends MainController
         $this->setItem();
         $this->setQuery();
 
-        $release = $this->service->getCurl()->getApiData($this->query);
+        $release = $this->getCurl()->getApiData($this->query);
 
         return $this->render("hubble/news/hubbleRelease.twig", ["release" => $release]);
     }
@@ -123,7 +123,7 @@ class HubbleController extends MainController
         $this->setPage();
         $this->setQuery();
 
-        $images = $this->service->getCurl()->getApiData($this->query);
+        $images = $this->getCurl()->getApiData($this->query);
 
         return $this->render("hubble/images/hubbleImages.twig", ["images" => $images]);
     }
@@ -185,7 +185,7 @@ class HubbleController extends MainController
         $this->setItem();
         $this->setQuery();
 
-        $image = $this->service->getCurl()->getApiData($this->query);
+        $image = $this->getCurl()->getApiData($this->query);
         $image = $this->filterImages($image);
 
         return $this->render("hubble/images/hubbleImage.twig", ["image" => $image]);
@@ -204,7 +204,7 @@ class HubbleController extends MainController
         $this->setPage();
         $this->setQuery();
 
-        $videos = $this->service->getCurl()->getApiData($this->query);
+        $videos = $this->getCurl()->getApiData($this->query);
 
         return $this->render("hubble/videos/hubbleVideos.twig", ["videos" => $videos]);
     }
@@ -251,7 +251,7 @@ class HubbleController extends MainController
         $this->setItem();
         $this->setQuery();
 
-        $video = $this->service->getCurl()->getApiData($this->query);
+        $video = $this->getCurl()->getApiData($this->query);
         $video = $this->filterVideos($video);
 
         return $this->render("hubble/videos/hubbleVideo.twig", ["video" => $video]);
@@ -270,7 +270,7 @@ class HubbleController extends MainController
 
         $this->setQuery();
 
-        $glossary = $this->service->getCurl()->getApiData($this->query);
+        $glossary = $this->getCurl()->getApiData($this->query);
 
         return $this->render("hubble/hubbleGlossary.twig", ["glossary" => $glossary]);
     }
