@@ -48,7 +48,7 @@ class ConstellationController extends MainController
      */
     public function updateMethod()
     {
-        if ($this->service->getSecurity()->checkIsAdmin() !== true) {
+        if ($this->getSecurity()->checkIsAdmin() !== true) {
             $this->redirect("home");
         }
 
@@ -63,7 +63,7 @@ class ConstellationController extends MainController
                 $img        = "img/constellation/" . $constellation["name"] . $this->getFiles()->setFileExtension();
                 $thumbnail  = "img/thumbnails/tn_" . $constellation["name"] . $this->getFiles()->setFileExtension();
 
-                $this->service->getImage()->makeThumbnail($img, 300, $thumbnail);
+                $this->getImage()->makeThumbnail($img, 300, $thumbnail);
             }
 
             ModelFactory::getModel("Constellation")->updateData($this->getGet()->getGetVar("id"), $data);

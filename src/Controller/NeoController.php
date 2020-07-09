@@ -53,7 +53,7 @@ class NeoController extends MainController
             . "&api_key="
             . NASA_API;
 
-        $neo = $this->service->getCurl()->getApiData($query);
+        $neo = $this->getCurl()->getApiData($query);
         $neo = $neo["near_earth_objects"];
 
         ksort($neo);

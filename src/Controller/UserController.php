@@ -48,7 +48,7 @@ class UserController extends MainController
 
             if (isset($this->user["g-recaptcha-response"]) && !empty($this->user["g-recaptcha-response"])) {
 
-                if ($this->service->getSecurity()->checkRecaptcha($this->user["g-recaptcha-response"])) {
+                if ($this->getSecurity()->checkRecaptcha($this->user["g-recaptcha-response"])) {
                     $this->checkLogin();
                 }
             }
@@ -76,10 +76,10 @@ class UserController extends MainController
 
     private function setUserImage()
     {
-        $this->user["image"] = $this->service->getString()->cleanString($this->user["name"]) . $this->getFiles()->setFileExtension();
+        $this->user["image"] = $this->getString()->cleanString($this->user["name"]) . $this->getFiles()->setFileExtension();
 
-        $this->getFiles()->uploadFile("img/user/", $this->service->getString()->cleanString($this->user["name"]));
-        $this->service->getImage()->makeThumbnail("img/user/" . $this->user["image"], 150);
+        $this->getFiles()->uploadFile("img/user/", $this->getString()->cleanString($this->user["name"]));
+        $this->getImage()->makeThumbnail("img/user/" . $this->user["image"], 150);
     }
 
     /**
@@ -90,7 +90,7 @@ class UserController extends MainController
      */
     public function createMethod()
     {
-        if ($this->service->getSecurity()->checkIsAdmin() !== true) {
+        if ($this->getSecurity()->checkIsAdmin() !== true) {
             $this->redirect("home");
         }
 
@@ -142,7 +142,7 @@ class UserController extends MainController
      */
     public function updateMethod()
     {
-        if ($this->service->getSecurity()->checkIsAdmin() !== true) {
+        if ($this->getSecurity()->checkIsAdmin() !== true) {
             $this->redirect("home");
         }
 
@@ -170,7 +170,7 @@ class UserController extends MainController
 
     public function deleteMethod()
     {
-        if ($this->service->getSecurity()->checkIsAdmin() !== true) {
+        if ($this->getSecurity()->checkIsAdmin() !== true) {
             $this->redirect("home");
         }
 
