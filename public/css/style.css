@@ -26,7 +26,5 @@ thead {
 }
 
 .foot {
-  --foot-last-child-padding-top: 10px;
-  --foot-last-child-link-margin-right: 0;
-  --foot-last-child-link-margin-left: 0;
+  --foot-visual-padding: 10px 0 2px;
 }
