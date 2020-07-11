@@ -1,6 +1,6 @@
 {
   "name": "philippebeck/astronomy",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "type": "project",
   "description": "Website for Astronomy with medias for constellations, celestial atlases & maps, Nasa pictures, videos, news & data, usage of Hubble, APOD, Mars Rover & Neo APIs",
   "keywords": [

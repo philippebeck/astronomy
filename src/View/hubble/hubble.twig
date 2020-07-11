@@ -11,28 +11,30 @@
     <input id="menu-radio2" class="menu-radio2" type="radio" name="menu">
 
     <nav class="menu">
-        <label class="button-red btn-lg" for="menu-radio1" title="Watch Hubble Photos, News & Videos">
-            Last News
+        <label class="button-red" for="menu-radio1" title="Watch Hubble Photos, News & Videos">
+            <i class="far fa-newspaper color-red-into"></i>
+            <span class="color-red-into">Last News</span>
         </label>
-        <label class="button-blue btn-lg" for="menu-radio2" title="Hubble Tweets">
-            Tweets
+        <label class="button-tw" for="menu-radio2" title="Hubble Tweets">
+            <i class="fab fa-twitter color-tw-into"></i>
+            <span class="color-tw-into">Tweets</span>
         </label>
     </nav>
 
     <ul class="row">
         <li>
             <a class="button-red btn-lg" href="{{ url('hubble!images', {'page': 1}) }}" title="Show Images">
-                Images
+                <i class="far fa-image fa-lg"></i> Images
             </a>
         </li>
         <li>
             <a class="button-green btn-lg" href="{{ url('hubble!news', {'page': 1}) }}" title="Show News">
-                News
+                <i class="far fa-newspaper fa-lg"></i> News
             </a>
         </li>
         <li>
             <a class="button-blue btn-lg" href="{{ url('hubble!videos', {'page': 1}) }}" title="Show Videos">
-                Videos
+                <i class="fas fa-video fa-lg"></i> Videos
             </a>
         </li>
     </ul>
