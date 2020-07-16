@@ -101,7 +101,74 @@
             <figure class="slider" id="aladin"></figure>
         </article>
 
-        {{ include("mars/marsRovers.twig") }}
+        <article class="menu-target2">
+            <h2>Mars Rovers Photos</h2>
+
+            <form class="form" method="post" action="{{ url('mars') }}">
+                <fieldset>
+                    <legend>
+                        <i class="fas fa-robot fa-2x"></i>
+                    </legend>
+                    <ul>
+                        <li>
+                            <label for="rover">Rover</label>
+                            <select id="rover" name="rover">
+                                <option value="{{ params.rover }}">-- Select a Rover ({{ params.rover|capitalize }} selected)</option>
+                                <option value="curiosity">Curiosity : 2012 - 2026 (estimated)</option>
+                                <option value="opportunity">Opportunity : 2004 - 2018</option>
+                                <option value="spirit">Spirit : 2004 - 2010</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label for="camera">Camera</label>
+                            <select id="camera" name="camera">
+                                <option value="{{ params.camera }}">-- Select the Camera ({{ params.camera|upper }} selected)</option>
+                                <optgroup label="All Rovers">
+                                    <option value="fhaz">Front Hazard Avoidance Camera</option>
+                                    <option value="rhaz">Rear Hazard Avoidance Camera</option>
+                                    <option value="navcam">Navigation Camera</option>
+                                </optgroup>
+                                <optgroup label="Curiosity Only">
+                                    <option value="mast">Mast Camera</option>
+                                    <option value="chemcam">Chemistry & Camera Complex</option>
+                                    <option value="mahli">Mars Hand Lens Imager</option>
+                                    <option value="mardi">Mars Descent Imager</option>
+                                </optgroup>
+                                <optgroup label="Opportunity & Spirit Only">
+                                    <option value="pancam">Panoramic Camera</option>
+                                    <option value="minites">Miniature Thermal Emission Spectrometer</option>
+                                </optgroup>
+                            </select>
+                        </li>
+                        <li>
+                            <label for="date">Earth Date</label>
+                            <input id="date" name="date" type="date" value="{{ params.date }}" min="2004-01-05" required>
+                        </li>
+                        <li>
+                            <label for="page">Page</label>
+                            <input id="page" name="page" type="number" min="1" value="{{ params.page }}" placeholder="Type the Page Required" required>
+                        </li>
+                        <li>
+                            <input type="submit" value="Search">
+                        </li>
+                    </ul>
+                </fieldset>
+            </form>
+
+            <section>
+                <h3>{{ mars[0]["rover"]["name"] }} : {{ mars[0]["camera"]["name"] }} ({{ mars[0]["earth_date"] }})</h3>
+
+                <figure class="grid-2sm-3lg">
+                    {% for photo in mars %}
+                        <figure>
+                            <a href="{{ photo["img_src"] }}" title="Clic to Enlarge">
+                                <img class="bord-curve" src="{{ photo["img_src"] }}" alt="Mars Rover Photo #{{ photo["id"] }}">
+                            </a>
+                        </figure>
+                    {% endfor %}
+                </figure>
+            </section>
+        </article>
 
         <article class="menu-target3">
             <h2>Mars Tweets</h2>
