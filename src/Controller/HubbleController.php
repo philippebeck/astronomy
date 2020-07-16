@@ -256,22 +256,4 @@ class HubbleController extends MainController
 
         return $this->render("front/hubble/videos/hubbleVideo.twig", ["video" => $video]);
     }
-
-    /**
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    public function glossaryMethod()
-    {
-        $this->type = "glossary";
-        $this->page = "?page=all";
-
-        $this->setQuery();
-
-        $glossary = $this->getCurl()->getApiData($this->query);
-
-        return $this->render("hubble/hubbleGlossary.twig", ["glossary" => $glossary]);
-    }
 }
