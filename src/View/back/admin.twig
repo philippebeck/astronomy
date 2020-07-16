@@ -1,0 +1,203 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block main %}
+    <input id="menu-radio1" class="menu-radio1" type="radio" name="menu">
+    <input id="menu-radio2" class="menu-radio2" type="radio" name="menu" checked>
+    <input id="menu-radio3" class="menu-radio3" type="radio" name="menu">
+    <input id="menu-radio4" class="menu-radio4" type="radio" name="menu">
+
+    <nav class="menu">
+        <label class="button-red" for="menu-radio1" title="Show Constellations">
+            <i class="far fa-star color-red-into"></i>
+            <span class="color-red-into">Constellation</span>
+        </label>
+        <label class="button-green" for="menu-radio2" title="Show Atlases">
+            <i class="fas fa-atlas color-green-into"></i>
+            <span class="color-green-into">Atlas</span>
+        </label>
+        <label class="button-blue" for="menu-radio3" title="Show Maps">
+            <i class="far fa-map color-blue-into"></i>
+            <span class="color-blue-into">Map</span>
+        </label>
+        <label class="button-purple" for="menu-radio4" title="Show the User">
+            <i class="far fa-user color-purple-into"></i>
+            <span class="color-purple-into">User</span>
+        </label>
+    </nav>
+
+    <main class="menu-relay">
+        <section class="menu-target1">
+            <h2><i class="far fa-star"></i>Constellations</h2>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Constellation</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for constellation in constellations %}
+                    <tr>
+                        <td>
+                            <a href="img/constellation/{{ constellation.name}}.jpg" title="Clic to Watch">
+                                <figure>
+                                    <img class="bord-gray bord-sm"
+                                         src="img/thumbnails/tn_{{ constellation.name }}.jpg"
+                                         alt="Screenshot of the constellation {{ constellation.name|replace({'-': ' '})|title }}">
+                                    <figcaption>{{ constellation.name|replace({'-': ' '})|title }}</figcaption>
+                                </figure>
+                            </a>
+                        </td>
+                        <td>{{ constellation.description }}</td>
+                        <td>
+                            <a class="btn-blue" href="{{ url('constellation!update', {'id': constellation.id}) }}">
+                                <i class="fas fa-pen-square fa-fw fa-lg"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <section class="menu-target2">
+            <h2><i class="fas fa-atlas"></i>Atlas</h2>
+
+            <a class="btn-green btn-lg" href="{{ url('atlas!create') }}">New Atlas</a>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Atlas</th>
+                    <th>Author</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for atlas in atlases %}
+                    <tr>
+                        <td>
+                            {% if atlas.atlas_wiki %}
+                                <a class="button-green"
+                                   href="https://en.wikipedia.org/wiki/{{ atlas.atlas_wiki }}"
+
+                                   title="Wikipedia Atlas Page">
+                                    {{ atlas.atlas_name }} ({{ atlas.published_year|trim('0', 'left') }})
+                                </a>
+                            {% else %}
+                                {{ atlas.atlas_name }} ({{ atlas.published_year|trim('0', 'left') }})
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if atlas.author_wiki %}
+                                <a class="button-purple"
+                                   href="https://en.wikipedia.org/wiki/{{ atlas.author_wiki }}"
+
+                                   title="Wikipedia Author Page">
+                                    {{ atlas.author_name }}
+                                </a>
+                            {% else %}
+                                {{ atlas.author_name }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a class="btn-blue" href="{{ url('atlas!update', {'id': atlas.id}) }}">
+                                <i class="fas fa-pen-square fa-fw fa-lg"></i>
+                            </a>
+                            <a class="btn-red" href="{{ url('atlas!delete', {'id': atlas.id}) }}">
+                                <i class="fas fa-times-circle fa-fw fa-lg"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <section class="menu-target3">
+            <h2><i class="far fa-map"></i>Maps</h2>
+
+            <a class="btn-green btn-lg" href="{{ url('map!create') }}">New Map</a>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Map</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for map in maps %}
+                    <tr>
+                        <td>
+                            <a class="button-navy" href="img/atlas/{{ map.map_name}}.jpg" title="Clic to Watch the Map">{{ map.map_name }}</a>
+                        </td>
+                        <td>
+                            <a class="button-purple"
+                               href="{{ url('atlas!read', {'id': map.atlas_id}) }}"
+                               title="Clic to Watch the Atlas #{{ map.atlas_id }}">
+                                {{ map.description }}
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn-blue" href="{{ url('map!update', {'id': map.id}) }}">
+                                <i class="fas fa-pen-square fa-fw fa-lg"></i>
+                            </a>
+                            <a class="btn-red" href="{{ url('map!delete', {'id': map.id}) }}">
+                                <i class="fas fa-times-circle fa-fw fa-lg"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <section class="menu-target4">
+            <h2><i class="far fa-user"></i>User</h2>
+
+            <a class="btn-green btn-lg" href="{{ url('user!create') }}">New User</a>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>
+                            <figure>
+                                <img class="bord-purple" src="img/user/{{ user.image }}" alt="Screenshot of {{ user.name }}">
+                                <figcaption>{{ user.name }}</figcaption>
+                            </figure>
+                        </td>
+                        <td>{{ user.email }}</td>
+                        <td>
+                            <a class="btn-orange" href="{{ url('user!logout') }}" title="Logout">
+                                <i class="fas fa-sign-out-alt fa-fw fa-lg"></i>
+                            </a>
+                            <a class="btn-blue" href="{{ url('user!update', {'id': user.id}) }}">
+                                <i class="fas fa-pen-square fa-fw fa-lg"></i>
+                            </a>
+                            <a class="btn-red" href="{{ url('user!delete', {'id': user.id}) }}">
+                                <i class="fas fa-times-circle fa-fw fa-lg"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+{% endblock %}
