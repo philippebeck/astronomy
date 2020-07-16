@@ -39,6 +39,6 @@ class ContactController extends MainController
             $this->redirect("contact");
         }
 
-        return $this->render("contact.twig");
+        return $this->render("front/contact.twig");
     }
 }

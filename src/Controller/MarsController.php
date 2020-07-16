@@ -83,7 +83,7 @@ class MarsController extends MainController
 
         ];
 
-        return $this->render("mars/mars.twig", [
+        return $this->render("front/mars.twig", [
             "mars"      => $mars,
             "params"    => $params
         ]);

@@ -58,7 +58,7 @@ class UserController extends MainController
             $this->redirect("user");
         }
 
-        return $this->render("user/login.twig");
+        return $this->render("front/login.twig");
     }
 
     public function logoutMethod()
@@ -112,7 +112,7 @@ class UserController extends MainController
             $this->redirect("admin");
         }
 
-        return $this->render("user/createUser.twig");
+        return $this->render("back/user/createUser.twig");
     }
 
     private function setUpdatePassword()
@@ -165,7 +165,7 @@ class UserController extends MainController
 
         $user = ModelFactory::getModel("User")->readData($this->getGet()->getGetVar("id"));
 
-        return $this->render("user/updateUser.twig", ["user" => $user]);
+        return $this->render("back/user/updateUser.twig", ["user" => $user]);
     }
 
     public function deleteMethod()

@@ -36,9 +36,7 @@ class AtlasController extends MainController
             }
         }
 
-        return $this->render("atlas/atlas.twig", [
-            "demoMaps" => $demoMaps
-        ]);
+        return $this->render("front/atlas/atlases.twig", ["demoMaps" => $demoMaps]);
     }
 
     private function setAtlasWiki()
@@ -70,7 +68,7 @@ class AtlasController extends MainController
             $this->redirect("map!create");
         }
 
-        return $this->render("atlas/createAtlas.twig");
+        return $this->render("back/atlas/createAtlas.twig");
     }
 
     /**
@@ -84,7 +82,10 @@ class AtlasController extends MainController
         $atlas      = ModelFactory::getModel("Atlas")->readData($this->getGet()->getGetVar("id"));
         $atlasMaps  = ModelFactory::getModel("Map")->listData($this->getGet()->getGetVar("id"), "atlas_id");
 
-        return $this->render("atlas/atlasMaps.twig", ["atlas" => $atlas, "atlasMaps"  => $atlasMaps]);
+        return $this->render("front/atlas/atlasMaps.twig", [
+            "atlas"         => $atlas,
+            "atlasMaps"     => $atlasMaps
+        ]);
     }
 
     /**
@@ -112,7 +113,7 @@ class AtlasController extends MainController
 
         $atlas = ModelFactory::getModel("Atlas")->readData($this->getGet()->getGetVar("id"));
 
-        return $this->render("atlas/updateAtlas.twig", ["atlas" => $atlas]);
+        return $this->render("back/atlas/updateAtlas.twig", ["atlas" => $atlas]);
     }
 
     public function deleteMethod()

@@ -58,6 +58,6 @@ class NeoController extends MainController
 
         ksort($neo);
 
-        return $this->render("neo.twig", ["neo" => $neo]);
+        return $this->render("front/neo.twig", ["neo" => $neo]);
     }
 }

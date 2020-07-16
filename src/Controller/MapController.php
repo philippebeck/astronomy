@@ -96,7 +96,7 @@ class MapController extends MainController
 
         $atlases = ModelFactory::getModel("Atlas")->listData();
 
-        return $this->render("map/createMap.twig", ["atlases" => $atlases]);
+        return $this->render("back/map/createMap.twig", ["atlases" => $atlases]);
     }
 
     /**
@@ -129,7 +129,7 @@ class MapController extends MainController
 
         $atlases = ModelFactory::getModel("Atlas")->listData();
 
-        return $this->render("map/updateMap.twig", [
+        return $this->render("back/map/updateMap.twig", [
             "atlases"   => $atlases,
             "map"       => $map
             ]);

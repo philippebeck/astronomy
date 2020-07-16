@@ -24,7 +24,7 @@ class ConstellationController extends MainController
     {
         $constellations = ModelFactory::getModel("Constellation")->listData();
 
-        return $this->render("constellation/listConstellations.twig", ["constellations" => $constellations]);
+        return $this->render("front/constellation/constellations.twig", ["constellations" => $constellations]);
     }
 
     /**
@@ -37,7 +37,7 @@ class ConstellationController extends MainController
     {
         $constellation = ModelFactory::getModel("Constellation")->readData($this->getGet()->getGetVar("id"));
 
-        return $this->render("constellation/constellation.twig", ["constellation" => $constellation]);
+        return $this->render("front/constellation/constellation.twig", ["constellation" => $constellation]);
     }
 
     /**
@@ -72,6 +72,6 @@ class ConstellationController extends MainController
             $this->redirect("admin");
         }
 
-        return $this->render("constellation/updateConstellation.twig", ["constellation" => $constellation]);
+        return $this->render("back/constellation/updateConstellation.twig", ["constellation" => $constellation]);
     }
 }
