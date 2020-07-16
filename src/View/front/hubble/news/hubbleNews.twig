@@ -1,0 +1,28 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Hubble News{% endblock %}
+
+{% block description %}Hubble List of News Releases{% endblock %}
+
+{% block main %}
+    {% if not news %}
+        {{ redirect('hubble') }}
+    {% endif %}
+
+    <main>
+        {{ include("front/hubble/news/newsPagination.twig") }}
+
+        <ul>
+            {% for release in news %}
+                <li>
+                    <form method="post" action={{ url('hubble!release') }}>
+                        <input name="item" type="hidden" value="{{ release.news_id }}">
+                        <input class="button-navy" type="submit" value="{{ release.name }}" title="Watch the Release {{ release.news_id }}">
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+
+        {{ include("front/hubble/news/newsPagination.twig") }}
+    </main>
+{% endblock %}

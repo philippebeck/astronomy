@@ -1,0 +1,105 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Celestial Atlases{% endblock %}
+
+{% block description %}
+    Aladin Interactive Sky Atlas from CDS,
+    colorful celestial maps covering a period of almost a thousand years,
+    as well as Wikipedia links for some atlases and authors.
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.css">
+{% endblock %}
+
+{% block script %}
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js"></script>
+
+    <script>
+        var aladin = A.aladin("#aladin", {
+            survey: "P/DSS2/color",
+            fov: 5,
+            target: "M31",
+            cooFrame: "galactic",
+            reticleColor: "#00ff00",
+            reticleSize: 30,
+            showShareControl: true,
+            showSimbadPointerControl: true
+        });
+
+        $("input[name=survey]").change(function() {
+            aladin.setImageSurvey($(this).val());
+        });
+    </script>
+{% endblock %}
+
+{% block main %}
+<input id="menu-radio1" class="menu-radio1" type="radio" name="menu" checked>
+<input id="menu-radio2" class="menu-radio2" type="radio" name="menu">
+
+<nav class="menu">
+    <label class="button-red" for="menu-radio1" title="Interactive Sky Atlas">
+        <i class="fab fa-skyatlas color-red-into"></i>
+        <span class="color-red-into">Aladin</span>
+    </label>
+    <label class="button-blue" for="menu-radio2" title="Celestial Atlases Collection">
+        <i class="fas fa-atlas color-blue-into"></i>
+        <span class="color-blue-into">Collection</span>
+    </label>
+</nav>
+
+<main class="menu-relay container-90sm-80lg">
+    <article class="menu-target1">
+        <h2>Interactive Sky Atlas</h2>
+
+        <ul class="row placo-evenly">
+            <li>
+                <input id="DSS" type="radio" name="survey" value="P/DSS2/color">
+                <label for="DSS">DSS color</label>
+            </li>
+            <li>
+                <input id="DSS-blue" type="radio" name="survey" value="P/DSS2/blue">
+                <label for="DSS-blue">DSS blue</label>
+            </li>
+            <li>
+                <input id="2MASS" type="radio" name="survey" value="P/2MASS/color">
+                <label for="2MASS">2MASS</label>
+            </li>
+            <li>
+                <input id="allwise" type="radio" name="survey" value="P/allWISE/color">
+                <label for="allwise">AllWISE</label>
+            </li>
+        </ul>
+
+        <figure class="mar-none mar-bot-lg">
+            <figure class="slider" id="aladin"></figure>
+            <figcaption class="font-monospace">
+                Aladin Sky Atlas, developed at
+                <strong>CDS</strong>,
+                <em>Strasbourg Observatory</em>,
+                France
+            </figcaption>
+        </figure>
+    </article>
+
+    <article class="menu-target2">
+        <h3>Celestial Atlases from 964 to 1869</h3>
+
+        <ul class="fluid-2sm-3lg-4wd">
+            {% for map in demoMaps %}
+                <li>
+                    <a class="btn-navy cursor-cross"
+                       href="{{ url('atlas!read', {'id': map.atlas_id}) }}"
+                       title="Watch the Atlas : {{ map.atlas_name }} made in {{ map.published_year }}">
+                        <figure class="button-navy">
+                            <img src="img/thumbnails/tn_{{ map.map_name }}.jpg" alt="Chart of {{ map.atlas_name }}">
+                            <figcaption>{{ map.atlas_name|replace({'-': ' '})|title }}<br>({{ map.published_year|trim('0', 'left') }})</figcaption>
+                        </figure>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </article>
+</main>
+{% endblock %}

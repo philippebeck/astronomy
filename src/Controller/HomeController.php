@@ -24,6 +24,6 @@ class HomeController extends MainController
         $query  = "https://api.nasa.gov/planetary/apod?concept_tags=True&api_key=" . NASA_API;
         $apod   = $this->getCurl()->getApiData($query);
 
-        return $this->render("home.twig", ["apod" => $apod]);
+        return $this->render("front/home.twig", ["apod" => $apod]);
     }
 }

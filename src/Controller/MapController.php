@@ -19,17 +19,9 @@ class MapController extends MainController
      */
     private $data = [];
 
-    /**
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
     public function defaultMethod()
     {
-        $maps = ModelFactory::getModel("Map")->listData();
-
-        return $this->render("map/maps.twig", ["maps" => $maps]);
+        $this->redirect("atlas");
     }
 
     private function setMapData()
@@ -96,7 +88,7 @@ class MapController extends MainController
 
         $atlases = ModelFactory::getModel("Atlas")->listData();
 
-        return $this->render("map/createMap.twig", ["atlases" => $atlases]);
+        return $this->render("back/map/createMap.twig", ["atlases" => $atlases]);
     }
 
     /**
@@ -129,7 +121,7 @@ class MapController extends MainController
 
         $atlases = ModelFactory::getModel("Atlas")->listData();
 
-        return $this->render("map/updateMap.twig", [
+        return $this->render("back/map/updateMap.twig", [
             "atlases"   => $atlases,
             "map"       => $map
             ]);

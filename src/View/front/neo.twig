@@ -1,0 +1,69 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Neo{% endblock %}
+
+{% block description %}Near Earth Object Web Service{% endblock %}
+
+{% block main %}
+    <main>
+        <h2>Near Earth Object</h2>
+
+        <form class="form" method="post" action={{ url('neo') }}>
+            <fieldset>
+                <legend>
+                    <i class="fas fa-meteor fa-2x"></i>
+                </legend>
+                <ul>
+                    <li>
+                        <label for="start-date">Start Date</label>
+                        <input id="start-date" name="start-date" type="date">
+                    </li>
+                    <li>
+                        <label for="end-date">End Date</label>
+                        <input id="end-date" name="end-date" type="date">
+                    </li>
+                    <li>
+                        <input type="submit" value="Search">
+                    </li>
+                </ul>
+            </fieldset>
+        </form>
+
+        {% for day in neo|keys %}
+            <section>
+                <h3>{{ day }}</h3>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Object Name</th>
+                        <th>Miss Distance (km)</th>
+                        <th>Estimated Diameter (m)</th>
+                        <th>Relative Velocity (km/h)</th>
+                        <th>Absolute Magnitude</th>
+                        <th>Potentially Hazardous</th>
+                        <th>JPL</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for object in neo[day] %}
+                        <tr>
+                            <td>{{ object["name"] }}</td>
+                            <td>{{ object["close_approach_data"][0]["miss_distance"]["kilometers"]|number_format(0, '.', ' ') }}</td>
+                            <td>{{ object["estimated_diameter"]["meters"]["estimated_diameter_min"]|number_format(0, '.', ' ') }} < {{ object["estimated_diameter"]["meters"]["estimated_diameter_max"]|number_format(0, '.', ' ') }}</td>
+                            <td>{{ object["close_approach_data"][0]["relative_velocity"]["kilometers_per_hour"]|number_format(0, '.', ' ') }}</td>
+                            <td>{{ object["absolute_magnitude_h"] }}</td>
+                            <td>{{ object["is_potentially_hazardous_asteroid"]|replace({'1': "Yes"}) }}</td>
+                            <td>
+                                <a class="button-navy cursor-cross" href="{{ object["nasa_jpl_url"] }}" title="Watch the Jet Propulsion Laboratory Small-Body Database Browser">
+                                    <i class="fas fa-database fa-2x"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+        {% endfor %}
+    </main>
+{% endblock %}

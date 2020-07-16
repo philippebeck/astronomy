@@ -48,7 +48,7 @@ class HubbleController extends MainController
 
         $hubble = $this->getCurl()->getApiData($this->query);
 
-        return $this->render("hubble/hubble.twig", ["hubble" => $hubble]);
+        return $this->render("front/hubble/hubble.twig", ["hubble" => $hubble]);
     }
 
     private function setItem()
@@ -89,7 +89,7 @@ class HubbleController extends MainController
 
         $news = $this->getCurl()->getApiData($this->query);
 
-        return $this->render("hubble/news/hubbleNews.twig", ["news" => $news]);
+        return $this->render("front/hubble/news/hubbleNews.twig", ["news" => $news]);
     }
 
     /**
@@ -107,7 +107,7 @@ class HubbleController extends MainController
 
         $release = $this->getCurl()->getApiData($this->query);
 
-        return $this->render("hubble/news/hubbleRelease.twig", ["release" => $release]);
+        return $this->render("front/hubble/news/hubbleRelease.twig", ["release" => $release]);
     }
 
     /**
@@ -125,7 +125,7 @@ class HubbleController extends MainController
 
         $images = $this->getCurl()->getApiData($this->query);
 
-        return $this->render("hubble/images/hubbleImages.twig", ["images" => $images]);
+        return $this->render("front/hubble/images/hubbleImages.twig", ["images" => $images]);
     }
 
     /**
@@ -188,7 +188,7 @@ class HubbleController extends MainController
         $image = $this->getCurl()->getApiData($this->query);
         $image = $this->filterImages($image);
 
-        return $this->render("hubble/images/hubbleImage.twig", ["image" => $image]);
+        return $this->render("front/hubble/images/hubbleImage.twig", ["image" => $image]);
     }
 
     /**
@@ -206,7 +206,7 @@ class HubbleController extends MainController
 
         $videos = $this->getCurl()->getApiData($this->query);
 
-        return $this->render("hubble/videos/hubbleVideos.twig", ["videos" => $videos]);
+        return $this->render("front/hubble/videos/hubbleVideos.twig", ["videos" => $videos]);
     }
 
     /**
@@ -254,24 +254,6 @@ class HubbleController extends MainController
         $video = $this->getCurl()->getApiData($this->query);
         $video = $this->filterVideos($video);
 
-        return $this->render("hubble/videos/hubbleVideo.twig", ["video" => $video]);
-    }
-
-    /**
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    public function glossaryMethod()
-    {
-        $this->type = "glossary";
-        $this->page = "?page=all";
-
-        $this->setQuery();
-
-        $glossary = $this->getCurl()->getApiData($this->query);
-
-        return $this->render("hubble/hubbleGlossary.twig", ["glossary" => $glossary]);
+        return $this->render("front/hubble/videos/hubbleVideo.twig", ["video" => $video]);
     }
 }
