@@ -10,7 +10,7 @@
     {% endif %}
 
     <main>
-        {{ include("hubble/news/newsPagination.twig") }}
+        {{ include("front/hubble/news/newsPagination.twig") }}
 
         <ul>
             {% for release in news %}
@@ -23,6 +23,6 @@
             {% endfor %}
         </ul>
 
-        {{ include("hubble/news/newsPagination.twig") }}
+        {{ include("front/hubble/news/newsPagination.twig") }}
     </main>
 {% endblock %}

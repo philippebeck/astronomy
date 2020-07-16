@@ -10,7 +10,7 @@
     {% endif %}
 
     <main>
-        {{ include("hubble/images/imagesPagination.twig") }}
+        {{ include("front/hubble/images/imagesPagination.twig") }}
 
         <ul>
             {% for image in images %}
@@ -23,6 +23,6 @@
             {% endfor %}
         </ul>
 
-        {{ include("hubble/images/imagesPagination.twig") }}
+        {{ include("front/hubble/images/imagesPagination.twig") }}
     </main>
 {% endblock %}

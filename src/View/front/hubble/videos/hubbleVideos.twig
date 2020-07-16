@@ -10,7 +10,7 @@
     {% endif %}
 
     <main>
-        {{ include("hubble/videos/videosPagination.twig") }}
+        {{ include("front/hubble/videos/videosPagination.twig") }}
 
         <ul>
             {% for video in videos %}
@@ -23,6 +23,6 @@
             {% endfor %}
         </ul>
 
-        {{ include("hubble/videos/videosPagination.twig") }}
+        {{ include("front/hubble/videos/videosPagination.twig") }}
     </main>
 {% endblock %}
