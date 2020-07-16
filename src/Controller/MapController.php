@@ -19,17 +19,9 @@ class MapController extends MainController
      */
     private $data = [];
 
-    /**
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
     public function defaultMethod()
     {
-        $maps = ModelFactory::getModel("Map")->listData();
-
-        return $this->render("map/maps.twig", ["maps" => $maps]);
+        $this->redirect("atlas");
     }
 
     private function setMapData()
