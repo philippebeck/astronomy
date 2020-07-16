@@ -10,9 +10,8 @@
         {% if atlas.atlas_wiki %}
             <a class="button-green cursor-help"
                href="https://en.wikipedia.org/wiki/{{ atlas.atlas_wiki }}"
-               title="Atlas's Wiki : {{ atlas.atlas_name }} made in {{ atlas.published_year }}"
-               rel="noreferrer noopener" target="_blank">
-                <i class="fas fa-atlas fa-lg" aria-hidden="true"></i>
+               title="Atlas's Wiki : {{ atlas.atlas_name }} made in {{ atlas.published_year }}">
+                <i class="fas fa-atlas fa-lg"></i>
                 {{ atlas.atlas_name }}
             </a>
         {% endif %}
@@ -20,9 +19,8 @@
         {% if atlas.author_wiki %}
             <a class="button-purple cursor-help"
                href="https://en.wikipedia.org/wiki/{{ atlas.author_wiki }}"
-               title="Author's Wiki : {{ atlas.author_name }}"
-               rel="noreferrer noopener" target="_blank">
-                <i class="far fa-user fa-lg" aria-hidden="true"></i>
+               title="Author's Wiki : {{ atlas.author_name }}">
+                <i class="far fa-user fa-lg"></i>
                 {{ atlas.author_name }}
             </a>
         {% endif %}
