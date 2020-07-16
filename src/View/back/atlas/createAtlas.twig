@@ -1,42 +1,42 @@
 {% extends 'layout/layout.twig' %}
 
-{% block title %}Edit an Atlas{% endblock %}
+{% block title %}Add a New Atlas{% endblock %}
 
 {% block description %}{% endblock %}
 
 {% block main %}
     <main class="align-center">
-        <form class="form" method="post" action={{ url('atlas!update', {'id': atlas.id}) }}>
+        <form class="form" method="post" action={{ url('atlas!create') }}>
             <fieldset>
                 <legend>
-                    <i class="fas fa-atlas fa-5x" aria-hidden="true"></i>
+                    <i class="fas fa-atlas fa-2x"></i>
                 </legend>
                 <ul>
                     <li>
                         <label for="atlas_name">Atlas Name</label>
-                        <input id="atlas_name" name="atlas_name" type="text" maxlength="50" required value="{{ atlas.atlas_name }}">
+                        <input id="atlas_name" name="atlas_name" type="text" maxlength="50" required placeholder="Type the Atlas Name">
                     </li>
                     <li>
                         <label for="atlas_wiki">Atlas Wiki</label>
-                        <input id="atlas_wiki" name="atlas_wiki" type="text" maxlength="60" value="https://en.wikipedia.org/wiki/{{ atlas.atlas_wiki }}">
+                        <input id="atlas_wiki" name="atlas_wiki" type="text" maxlength="60" value="https://en.wikipedia.org/wiki/">
                     </li>
                     <li>
                         <label for="published_year">Published Year</label>
-                        <input id="published_year" name="published_year" type="number" required value="{{ atlas.year}}">
+                        <input id="published_year" name="published_year" type="number" max="2000" required placeholder="2000">
                     </li>
                     <li>
                         <label for="author_name">Author Name</label>
-                        <input id="author_name" name="author_name" type="text" maxlength="50" required value="{{ atlas.author_name }}">
+                        <input id="author_name" name="author_name" type="text" maxlength="50" required placeholder="Type the Author Name">
                     </li>
                     <li>
                         <label for="author_wiki">Author Wiki</label>
-                        <input id="author_wiki" name="author_wiki" type="text" maxlength="80" value="https://en.wikipedia.org/wiki/{{ atlas.author_wiki}}">
+                        <input id="author_wiki" name="author_wiki" type="text" maxlength="80" value="https://en.wikipedia.org/wiki/">
                     </li>
                 </ul>
                 <ul>
                     <li>
                         <input type="reset" value="Reset">
-                        <input type="submit" value="Update">
+                        <input type="submit" value="Create">
                     </li>
                 </ul>
             </fieldset>
