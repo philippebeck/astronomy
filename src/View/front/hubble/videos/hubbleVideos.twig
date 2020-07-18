@@ -15,7 +15,7 @@
         <ul>
             {% for video in videos %}
                 <li>
-                    <form method="post" action={{ url('hubble!video') }}>
+                    <form method="post" action={{ url('hubble!video', {'id': video.id}) }}>
                         <input name="item" type="hidden" value="{{ video.id }}">
                         <input class="button-navy" type="submit" value="{{ video.name }}" title="Watch the Video {{ video.id }}">
                     </form>

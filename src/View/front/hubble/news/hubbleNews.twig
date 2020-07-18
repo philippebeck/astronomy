@@ -15,7 +15,7 @@
         <ul>
             {% for release in news %}
                 <li>
-                    <form method="post" action={{ url('hubble!release') }}>
+                    <form method="post" action={{ url('hubble!release', {'id': release.news_id}) }}>
                         <input name="item" type="hidden" value="{{ release.news_id }}">
                         <input class="button-navy" type="submit" value="{{ release.name }}" title="Watch the Release {{ release.news_id }}">
                     </form>
