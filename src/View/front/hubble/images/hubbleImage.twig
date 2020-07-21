@@ -1,10 +1,8 @@
 {% extends 'layout/layout.twig' %}
 
-{% block title %}Hubble Image{% endblock %}
+{% block title %}{{ image["name"] }}{% endblock %}
 
-{% block description %}
-    Image {{ image["id"] }} named {{ image["name"] }} from {{ image["mission"]|capitalize }} Mission
-{% endblock %}
+{% block description %}{{ image["name"] }} from {{ image["mission"]|capitalize }} Mission & {{ cleanString(image["collection"]) }} Collection{% endblock %}
 
 {% block main %}
     {% if not image %}

@@ -1,10 +1,8 @@
 {% extends 'layout/layout.twig' %}
 
-{% block title %}Hubble Release{% endblock %}
+{% block title %}{{ release["name"] }}{% endblock %}
 
-{% block description %}
-    Release {{ release["news_id"] }} named {{ release["name"] }} & published {{ release["publication"]|date("D d M Y") }} from {{ release["mission"]|capitalize }} Mission
-{% endblock %}
+{% block description %}{{ release["name"] }} published {{ release["publication"]|date("D d M Y") }} from {{ release["mission"]|capitalize }} Mission{% endblock %}
 
 {% block main %}
     {% if not release %}
