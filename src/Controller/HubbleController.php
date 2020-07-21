@@ -53,11 +53,15 @@ class HubbleController extends MainController
 
     private function setItem()
     {
-        if (empty($this->getPost()->getPostArray())) {
+        if (!empty($this->getPost()->getPostArray())) {
+            $this->item = "/" . (string) $this->getPost()->getPostVar("item");
+
+        } elseif (!empty($this->getGet()->getGetArray())) {
+            $this->item = "/" . (string) $this->getGet()->getGetVar("id");
+
+        } else {
             $this->defaultMethod();
         }
-
-        $this->item = "/" . (string) $this->getPost()->getPostVar("item");
     }
 
     private function setPage()

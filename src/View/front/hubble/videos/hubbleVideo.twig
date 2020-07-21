@@ -1,10 +1,8 @@
 {% extends 'layout/layout.twig' %}
 
-{% block title %}Hubble Video{% endblock %}
+{% block title %}{{ video["name"] }}{% endblock %}
 
-{% block description %}
-    Video {{ video["id"] }} named {{ video["name"] }} from {{ video["mission"]|capitalize }} Mission
-{% endblock %}
+{% block description %}{{ video["name"] }} from {{ video["mission"]|capitalize }} Mission & {{ cleanString(video["collection"]) }} Collection{% endblock %}
 
 {% block main %}
     {% if not video %}
