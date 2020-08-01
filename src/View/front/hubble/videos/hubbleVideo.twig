@@ -28,7 +28,7 @@
 
             <ul>
                 <li itemprop="isPartOf">Collection : {{ cleanString(video["collection"]) }}</li>
-                <li>Mission : {{ video["mission"]|capitalize }}</li>
+                <li>Mission : {{ cleanString(video["mission"]) }}</li>
             </ul>
 
             {% if video["credits"] %}

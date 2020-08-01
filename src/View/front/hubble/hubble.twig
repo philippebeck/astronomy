@@ -57,7 +57,7 @@
                     </a>
                 </li>
                 <li itemprop="datePublished">Publication : {{ hubble["publication"]|date("D d M Y") }}</li>
-                <li>Mission : {{ hubble["mission"]|capitalize }}</li>
+                <li>Mission : {{ cleanString(hubble["mission"]) }}</li>
             </ul>
 
             {% if hubble["credits"] %}

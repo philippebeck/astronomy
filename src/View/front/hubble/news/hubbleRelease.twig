@@ -27,7 +27,7 @@
                     </a>
                 </li>
                 <li itemprop="datePublished">Publication : {{ release["publication"]|date("D d M Y") }}</li>
-                <li>Mission : {{ release["mission"]|capitalize }}</li>
+                <li>Mission : {{ cleanString(release["mission"]) }}</li>
             </ul>
 
             {% if release["credits"] %}

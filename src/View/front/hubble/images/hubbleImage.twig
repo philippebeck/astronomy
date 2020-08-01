@@ -22,7 +22,7 @@
 
             <ul>
                 <li itemprop="isPartOf">Collection : {{ cleanString(image["collection"]) }}</li>
-                <li>Mission : {{ image["mission"]|capitalize }}</li>
+                <li>Mission : {{ cleanString(image["mission"]) }}</li>
             </ul>
 
             {% if image["credits"] %}
