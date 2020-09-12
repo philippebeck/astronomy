@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /src/View/back/
+
+Sitemap: https://astronomy.philippebeck.net/sitemap.xml

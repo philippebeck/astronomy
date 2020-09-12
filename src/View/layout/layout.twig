@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>{{ block('title') }}</title>
+    <title>{% block title %}Astronomy - {{ block('subtitle') }}{% endblock %}</title>
 
     <link rel="canonical" href="{% block canonical %}https://astronomy.philippebeck.net{% endblock %}">
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 
-    <meta name="description"    content="{{ block('description') }}">
+    <meta name="description"    content="{% block description %}Astronomy : NASA, CDS & Hubble APIs Usage - {{ block('subtitle') }} : {{ block('summary') }}{% endblock %}">
     <meta name="author"         content="Philippe Beck">
     <meta name="copyright"      content="MIT">
 
@@ -44,7 +44,7 @@
             <p id="alert" class="container width-md bg-{{ getAlertType() }} color-white bord-sm bord-curve bord-white anima-slideB anima-md anima-bezier anima-altrev">{{ getAlertMessage() }}</p>
         {% endif %}
 
-        <h1>{{ block('title') }}</h1>
+        <h1>{{ block('subtitle') }}</h1>
     </header>
 
     {% block main %}{% endblock %}

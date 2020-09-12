@@ -1,8 +1,8 @@
 {% extends 'layout/layout.twig' %}
 
-{% block title %}Last Release & Tweets from Hubble{% endblock %}
+{% block subtitle %}Hubble{% endblock %}
 
-{% block description %}Last Release from the Hubble Space Telescope & Tweets from the Hubble Teams{% endblock %}
+{% block summary %}Last Release from the Hubble Space Telescope & Tweets from the Hubble Teams{% endblock %}
 
 {% block script %}<script src="https://platform.twitter.com/widgets.js"></script>{% endblock %}
 
@@ -57,7 +57,7 @@
                     </a>
                 </li>
                 <li itemprop="datePublished">Publication : {{ hubble["publication"]|date("D d M Y") }}</li>
-                <li>Mission : {{ hubble["mission"]|capitalize }}</li>
+                <li>Mission : {{ cleanString(hubble["mission"]) }}</li>
             </ul>
 
             {% if hubble["credits"] %}

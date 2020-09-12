@@ -1,8 +1,8 @@
 {% extends 'layout/layout.twig' %}
 
-{% block title %}{{ image["name"] }}{% endblock %}
+{% block subtitle %}{{ image["name"] }}{% endblock %}
 
-{% block description %}{{ image["name"] }} from {{ image["mission"]|capitalize }} Mission & {{ cleanString(image["collection"]) }} Collection{% endblock %}
+{% block summary %}{{ image["name"] }} from {{ image["mission"]|capitalize }} Mission & {{ cleanString(image["collection"]) }} Collection{% endblock %}
 
 {% block main %}
     {% if not image %}
@@ -22,7 +22,7 @@
 
             <ul>
                 <li itemprop="isPartOf">Collection : {{ cleanString(image["collection"]) }}</li>
-                <li>Mission : {{ image["mission"]|capitalize }}</li>
+                <li>Mission : {{ cleanString(image["mission"]) }}</li>
             </ul>
 
             {% if image["credits"] %}

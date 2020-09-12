@@ -1,8 +1,8 @@
 {% extends 'layout/layout.twig' %}
 
-{% block title %}{{ video["name"] }}{% endblock %}
+{% block subtitle %}{{ video["name"] }}{% endblock %}
 
-{% block description %}{{ video["name"] }} from {{ video["mission"]|capitalize }} Mission & {{ cleanString(video["collection"]) }} Collection{% endblock %}
+{% block summary %}{{ video["name"] }} from {{ video["mission"]|capitalize }} Mission & {{ cleanString(video["collection"]) }} Collection{% endblock %}
 
 {% block main %}
     {% if not video %}
@@ -28,7 +28,7 @@
 
             <ul>
                 <li itemprop="isPartOf">Collection : {{ cleanString(video["collection"]) }}</li>
-                <li>Mission : {{ video["mission"]|capitalize }}</li>
+                <li>Mission : {{ cleanString(video["mission"]) }}</li>
             </ul>
 
             {% if video["credits"] %}

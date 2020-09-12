@@ -1,8 +1,8 @@
 {% extends 'layout/layout.twig' %}
 
-{% block title %}{{ constellation.name|replace({'-': ' '})|title }}{% endblock %}
+{% block subtitle %}{{ constellation.name|replace({'-': ' '})|title }}{% endblock %}
 
-{% block description %}Constellation {{ constellation.name|replace({'-': ' '})|title }}{% endblock %}
+{% block summary %}Constellation {{ constellation.name|replace({'-': ' '})|title }}{% endblock %}
 
 {% block main %}
 <main class="container-90tn-80sm-70md-60lg-50wd">

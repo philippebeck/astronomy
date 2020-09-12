@@ -1,8 +1,8 @@
 {% extends 'layout/layout.twig' %}
 
-{% block title %}{{ release["name"] }}{% endblock %}
+{% block subtitle %}{{ release["name"] }}{% endblock %}
 
-{% block description %}{{ release["name"] }} published {{ release["publication"]|date("D d M Y") }} from {{ release["mission"]|capitalize }} Mission{% endblock %}
+{% block summary %}{{ release["name"] }} published {{ release["publication"]|date("D d M Y") }} from {{ release["mission"]|capitalize }} Mission{% endblock %}
 
 {% block main %}
     {% if not release %}
@@ -27,7 +27,7 @@
                     </a>
                 </li>
                 <li itemprop="datePublished">Publication : {{ release["publication"]|date("D d M Y") }}</li>
-                <li>Mission : {{ release["mission"]|capitalize }}</li>
+                <li>Mission : {{ cleanString(release["mission"]) }}</li>
             </ul>
 
             {% if release["credits"] %}
