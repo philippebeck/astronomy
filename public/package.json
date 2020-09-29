@@ -16,7 +16,7 @@
   "repository": "github:philippebeck/astronomy",
   "bugs": "https://github.com/philippebeck/astronomy/issues",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.14.0",
+    "@fortawesome/fontawesome-free": "^5.15.0",
     "animadio": "^2.4.5"
   },
   "author": {
