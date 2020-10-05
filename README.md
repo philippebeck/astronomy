@@ -2,7 +2,7 @@
 
 Website about Astronomy with constellations medias, celestial atlases collection, Hubble pictures, videos & news, Aladin interactive sky atlas, usage of Hubble, APOD, Aladin, Mars Rover & Neo APIs
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/027a08124ff146358a0c0b26fc7b72c4)](https://www.codacy.com/manual/philippebeck/astronomy?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=philippebeck/astronomy&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/1ed5a527084d4fa99330a386536b3aa4)](https://www.codacy.com/gh/philippebeck/astronomy/dashboard)
 [![Maintainability](https://api.codeclimate.com/v1/badges/3de42a33086aa115990a/maintainability)](https://codeclimate.com/github/philippebeck/astronomy/maintainability)
 
 ---
