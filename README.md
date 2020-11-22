@@ -36,7 +36,7 @@ Philippe Beck
 
 [![WebSite Status](https://img.shields.io/website-up-down-green-red/https/philippebeck.net.svg?label=https://philippebeck.net)](https://philippebeck.net)
 [![GitHub Followers](https://img.shields.io/github/followers/philippebeck.svg?label=GitHub+:+philippebeck+|+Followers)](https://github.com/philippebeck)
-[![Twitter Follow](https://badgen.net/twitter/follow/philippepjbeck)](https://twitter.com/philippepjbeck)
+[![Twitter Follow](https://badgen.net/twitter/follow/ph_beck)](https://twitter.com/ph_beck)
 
 ---
 
