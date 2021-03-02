@@ -24,7 +24,3 @@ thead {
 .table {
   --table-row-odd-hover-background-color: var(--sky);
 }
-
-.foot {
-  --foot-visual-padding: 10px 0 2px;
-}
