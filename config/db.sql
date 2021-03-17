@@ -3,48 +3,31 @@ CREATE DATABASE `astronomy` CHARACTER SET utf8;
 
 USE `astronomy`;
 
-CREATE TABLE `User`
-(
-    `id`    SMALLINT      UNSIGNED  PRIMARY KEY AUTO_INCREMENT,
-    `name`  VARCHAR(50)   NOT NULL,
-    `image` VARCHAR(50)   UNIQUE,
-    `email` VARCHAR(100)  NOT NULL  UNIQUE,
-    `pass`  VARCHAR(100)  NOT NULL
-)
-    ENGINE=INNODB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `Constellation`
-(
+CREATE TABLE `Constellation` (
   `id`          SMALLINT        UNSIGNED    PRIMARY KEY     AUTO_INCREMENT,
   `name`        VARCHAR(20)     NOT NULL    UNIQUE,
   `description` TEXT
-)
-ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `Atlas`
-(
+CREATE TABLE `Atlas` (
   `id`              TINYINT         UNSIGNED    PRIMARY KEY AUTO_INCREMENT,
   `atlas_name`      VARCHAR(50)     NOT NULL,
   `atlas_wiki`      VARCHAR(30),
   `published_year`  SMALLINT(4)     ZEROFILL    NOT NULL,
   `author_name`     VARCHAR(50)     NOT NULL,
   `author_wiki`     VARCHAR(50)
-)
-ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `Map`
-(
+CREATE TABLE `Map` (
   `id`          SMALLINT        UNSIGNED    PRIMARY KEY     AUTO_INCREMENT,
   `map_name`    VARCHAR(10)     NOT NULL,
   `description` VARCHAR(120)    NOT NULL,
   `atlas_id`    TINYINT         UNSIGNED    NOT NULL,
   CONSTRAINT    `fk_atlas_id`   FOREIGN KEY (`atlas_id`)    REFERENCES  `Atlas`(`id`)
-)
-ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 INSERT INTO `Constellation`
-(`name`,                `description`)
-VALUES
+(`name`, `description`) VALUES
 ('andromeda',           'Andromeda was the daughter of Cepheus, king of Ethiopia, & Cassiopeia. Her mother claimed that she was more beautiful than all the Nereids, sea deities & granddaughters of the ocean. Jealous, the Nereids asked Poseidon to avenge them. The latter sent the monster Ketus to ravage the kingdom of Cepheus. Warned by an oracle that the only way to appease the god of the sea was to sacrifice their daughter, the king & queen tied her to a rock by the water. Perseus, son of Zeus & Danae, fell in love with the girl & made her parents promise to give her his hand if he delivered them from the monster. Diving from the top of the clouds with his winged sandals, he killed the monster, freed Andromeda & married her.'),
 ('antlia',              'Antlia Pneumatica owes its name to the invention of Robert Boyle, Irish physicist & chemist (1627 - 1691). This name was given to him by Nicolas Louis de la Caille.'),
 ('apus',                'Bird encountered during long journeys during which new constellations were discovered. Apus, which means "without feet" in ancient Greek, comes from the Indian name of the bird of paradise, Apus Indica. We offered, indeed, this magnificent bird after having cut off its legs, because too unsightly.'),
@@ -136,8 +119,7 @@ Arcturus is a Greek word meaning bear keeper. Arcturus is sometimes represented 
 ('vulpecula',           '');
 
 INSERT INTO `Atlas`
-(`atlas_name`,                                  `atlas_wiki`,               `published_year`,   `author_name`,                                      `author_wiki`)
-VALUES
+(`atlas_name`, `atlas_wiki`, `published_year`, `author_name`, `author_wiki`) VALUES
 ('Kitab Suwar al Kawakib',                      'Book_of_Fixed_Stars',      964,                'Abd al-Rahman al-Sufi',                            'Abd_al-Rahman_al-Sufi'),
 ('Kitab Suwar al Kawakib',                      'Book_of_Fixed_Stars',      1417,               'Abd al-Rahman al-Sufi',                            'Abd_al-Rahman_al-Sufi'),
 ('Souwar al-Kawakib al-Thabita',                'Zij-i_Sultani',            1436,               'Zahir al-Din Ulugh Beg Kurakan',                   'Ulugh_Beg'),
@@ -161,8 +143,7 @@ VALUES
 ('Atlas of Astronomy',                          '',                         1869,               'Alexander Keith Johnston',                         'Alexander_Keith_Johnston_(1844–1879)');
 
 INSERT INTO `Map`
-(`map_name`,    `description`,                                                                                                              `atlas_id`)
-VALUES
+(`map_name`, `description`, `atlas_id`) VALUES
 ('0964as01',    'Ursa Minor',                                                                                                               '1'),
 ('0964as02',    'Ursa Major',                                                                                                               '1'),
 ('0964as03',    'Draco',                                                                                                                    '1'),
