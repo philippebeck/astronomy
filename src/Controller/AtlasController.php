@@ -39,12 +39,6 @@ class AtlasController extends MainController
         return $this->render("front/atlas/atlases.twig", ["demoMaps" => $demoMaps]);
     }
 
-    private function setAtlasWiki()
-    {
-        $this->atlas["atlas_wiki"]  = str_replace("https://en.wikipedia.org/wiki/", "", $this->atlas["atlas_wiki"]);
-        $this->atlas["author_wiki"] = str_replace("https://en.wikipedia.org/wiki/", "", $this->atlas["author_wiki"]);
-    }
-
     /**
      * @return string
      * @throws LoaderError
@@ -69,6 +63,15 @@ class AtlasController extends MainController
         }
 
         return $this->render("back/atlas/createAtlas.twig");
+    }
+
+    private function setAtlasWiki()
+    {
+        $this->atlas["atlas_wiki"]  = (string) trim($this->atlas["atlas_wiki"]);
+        $this->atlas["author_wiki"] = (string) trim($this->atlas["author_wiki"]);
+
+        $this->atlas["atlas_wiki"]  = str_replace("https://en.wikipedia.org/wiki/", "", $this->atlas["atlas_wiki"]);
+        $this->atlas["author_wiki"] = str_replace("https://en.wikipedia.org/wiki/", "", $this->atlas["author_wiki"]);
     }
 
     /**

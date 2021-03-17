@@ -115,6 +115,20 @@ class UserController extends MainController
         return $this->render("back/user/createUser.twig");
     }
 
+    private function setUserData()
+    {
+        $this->user["name"]     = (string) trim($this->getPost()->getPostVar("name"));
+        $this->user["email"]    = (string) trim($this->getPost()->getPostVar("email"));
+    }
+
+    private function setUserImage()
+    {
+        $this->user["image"] = $this->getString()->cleanString($this->user["name"]) . $this->getFiles()->setFileExtension();
+
+        $this->getFiles()->uploadFile("img/user/", $this->getString()->cleanString($this->user["name"]));
+        $this->getImage()->makeThumbnail("img/user/" . $this->user["image"], 150);
+    }
+
     private function setUpdatePassword()
     {
         $user = ModelFactory::getModel("User")->readData($this->getGet()->getGetVar("id"));
