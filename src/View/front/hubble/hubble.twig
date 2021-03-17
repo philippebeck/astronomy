@@ -1,99 +1,84 @@
 {% extends 'layout/layout.twig' %}
 
-{% block subtitle %}Hubble{% endblock %}
+{% block title %}Hubble{% endblock %}
 
-{% block summary %}Last Release from the Hubble Space Telescope & Tweets from the Hubble Teams{% endblock %}
-
-{% block script %}<script src="https://platform.twitter.com/widgets.js"></script>{% endblock %}
+{% block description %}Last Release from the Hubble Space Telescope & Tweets from the Hubble Teams{% endblock %}
 
 {% block main %}
-    <input id="menu-radio1" class="menu-radio1" type="radio" name="menu" checked>
-    <input id="menu-radio2" class="menu-radio2" type="radio" name="menu">
+<nav class="menu">
+    <a class="button-red" 
+        href="{{ url('hubble!news', {'page': 1}) }}" 
+        title="Show News">
+        <i class="far fa-newspaper fa-2x onto-color-red"></i> 
+        <span class="onto-color-red">
+            News
+        </span>
+    </a>
+    <a class="button-green" 
+        href="{{ url('hubble!images', {'page': 1}) }}" 
+        title="Show Images">
+        <i class="far fa-image fa-2x onto-color-green"></i> 
+        <span class="onto-color-green">
+            Images
+        </span>
+    </a>
+    <a class="button-blue" 
+        href="{{ url('hubble!videos', {'page': 1}) }}" 
+        title="Show Videos">
+        <i class="fas fa-video fa-2x onto-color-blue"></i> 
+        <span class="onto-color-blue">
+            Videos
+        </span>
+    </a>
+</nav>
 
-    <nav class="menu">
-        <label class="button-green" for="menu-radio1" title="Watch Hubble Photos, News & Videos">
-            <i class="far fa-newspaper color-green-into"></i>
-            <span class="color-green-into">Last News</span>
-        </label>
-        <label class="button-tw" for="menu-radio2" title="Hubble Tweets">
-            <i class="fab fa-twitter color-tw-into"></i>
-            <span class="color-tw-into">Tweets</span>
-        </label>
-    </nav>
+<main class="container-90sm-80md">
+    <article itemscope 
+        itemtype="http://schema.org/ImageObject">
+        <h2 itemprop="name">
+            {{ hubble["name"] }}
+        </h2>
 
-    <ul class="row">
-        <li>
-            <a class="button-red btn-lg" href="{{ url('hubble!images', {'page': 1}) }}" title="Show Images">
-                <i class="far fa-image fa-2x"></i> Images
+        <figure>
+            <a href="https:{{ hubble["keystone_image_2x"] }}" 
+                title="Clic to Watch in Full Size" 
+                itemprop="image">
+                <img class="bord-curve" 
+                    src="https:{{ hubble["thumbnail_2x"] }}" 
+                    alt="Thumbnail of the Release {{ hubble["news_id"] }}" 
+                    itemprop="thumbnail">
             </a>
-        </li>
-        <li>
-            <a class="button-green btn-lg" href="{{ url('hubble!news', {'page': 1}) }}" title="Show News">
-                <i class="far fa-newspaper fa-2x"></i> News
-            </a>
-        </li>
-        <li>
-            <a class="button-blue btn-lg" href="{{ url('hubble!videos', {'page': 1}) }}" title="Show Videos">
-                <i class="fas fa-video fa-2x"></i> Videos
-            </a>
-        </li>
-    </ul>
+            <figcaption class="align-justify mar-lg" 
+                itemprop="description">
+                {{ hubble["abstract"]|raw }}
+            </figcaption>
+        </figure>
 
-    <main class="menu-relay">
-        <article class="menu-target1" itemscope itemtype="http://schema.org/ImageObject">
-            <h2 itemprop="name">{{ hubble["name"] }}</h2>
-
-            <figure>
-                <a href="https:{{ hubble["keystone_image_2x"] }}" title="Clic to Watch in Full Size" itemprop="image">
-                    <img class="bord-curve" src="https:{{ hubble["thumbnail_2x"] }}" alt="Thumbnail of the Release {{ hubble["news_id"] }}" itemprop="thumbnail">
+        <ul>
+            <li>
+                <a href="{{ hubble["url"] }}" 
+                    title="Clic to Watch the Release Page" 
+                    itemprop="contentUrl">
+                    Hubble Release : {{ hubble["news_id"] }}
                 </a>
-                <figcaption class="align-justify" itemprop="description">{{ hubble["abstract"]|raw }}</figcaption>
-            </figure>
+            </li>
+            <li itemprop="datePublished">
+                Publication : 
+                {{ hubble["publication"]|date("D d M Y") }}
+            </li>
+            <li>
+                Mission : 
+                {{ cleanString(hubble["mission"]) }}
+            </li>
+        </ul>
 
-            <ul>
-                <li>
-                    <a href="{{ hubble["url"] }}" target="_blank" rel="noopener noreferrer" title="Clic to Watch the Release Page" itemprop="contentUrl">
-                        Hubble Release : {{ hubble["news_id"] }}
-                    </a>
-                </li>
-                <li itemprop="datePublished">Publication : {{ hubble["publication"]|date("D d M Y") }}</li>
-                <li>Mission : {{ cleanString(hubble["mission"]) }}</li>
-            </ul>
+    {% if hubble["credits"] %}
+        <p itemprop="author">
+            Credits : 
+            {{ hubble["credits"]|raw }}
+        </p>
+    {% endif %}
 
-            {% if hubble["credits"] %}
-                <p itemprop="author">Credits : {{ hubble["credits"]|raw }}</p>
-            {% endif %}
-        </article>
-
-        <article class="menu-target2 relative">
-            <h2>Hubble Tweets</h2>
-
-            <ul class="row">
-                <li>
-                    <a class="twitter-timeline"
-                       href="https://twitter.com/HubbleTelescope"
-                       data-theme="dark"
-                       data-width="300">
-                        Tweets by @HubbleTelescope
-                    </a>
-                </li>
-                <li>
-                    <a class="twitter-timeline"
-                       href="https://twitter.com/NASAHubble"
-                       data-theme="dark"
-                       data-width="300">
-                        Tweets by @NASAHubble
-                    </a>
-                </li>
-                <li>
-                    <a class="twitter-timeline"
-                       href="https://twitter.com/HUBBLE_space"
-                       data-theme="dark"
-                       data-width="300">
-                        Tweets by @HUBBLE_space
-                    </a>
-                </li>
-            </ul>
-        </article>
-    </main>
+    </article>
+</main>
 {% endblock %}
