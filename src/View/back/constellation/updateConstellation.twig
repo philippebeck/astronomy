@@ -1,37 +1,57 @@
 {% extends 'layout/layout.twig' %}
 
-{% block subtitle %}Edit a Constellation{% endblock %}
+{% block title %}Edit a Constellation{% endblock %}
 
-{% block summary %}{% endblock %}
+{% block description %}{% endblock %}
 
 {% block main %}
-    <main class="align-center">
-        <form class="form" method="post" action={{ url('constellation!update', {'id': constellation.id}) }} enctype="multipart/form-data">
-            <input type="hidden" name="MAX_FILE_SIZE" value="5000000">
-            <fieldset>
-                <legend>
-                    <img class="bord-gray bord-sm"
-                         src="img/thumbnails/tn_{{ constellation.name }}.jpg"
-                         alt="Screenshot of the constellation {{ constellation.name|replace({'-': ' '})|title }}">
-                </legend>
-                <ul>
-                    <li>
-                        <label for="file">Picture (max 5Mo)</label>
-                        <input name="file" type="file" accept=".jpg">
-                    </li>
-                    <li>
-                        <label for="description">Description</label>
-                        <textarea id="description" name="description" rows="15" maxlength="30000" required>{{ constellation.description }}</textarea>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <input type="reset" value="Reset">
-                        <input type="submit" value="Update">
-                    </li>
-                </ul>
-            </fieldset>
-        </form>
-        <a class="btn-black btn-lg" href="{{ url('admin') }}">Quit</a>
-    </main>
+<main>
+    <form class="form" 
+        method="post" 
+        action={{ url('constellation!update', {'id': constellation.id}) }} 
+        enctype="multipart/form-data">
+        <input type="hidden" 
+            name="MAX_FILE_SIZE" 
+            value="5000000">
+        <fieldset>
+            <legend>
+                <img class="bord-gray bord-sm"
+                    src="img/thumbnails/tn_{{ constellation.name }}.jpg"
+                    alt="Screenshot of the constellation {{ constellation.name|replace({'-': ' '})|title }}">
+            </legend>
+            <ul>
+                <li>
+                    <label for="file">
+                        Picture (max 5Mo)
+                    </label>
+                    <input name="file" 
+                        type="file" 
+                        accept=".jpg">
+                </li>
+                <li>
+                    <label for="description">
+                        Description
+                    </label>
+                    <textarea id="description" 
+                        name="description" 
+                        rows="15" 
+                        maxlength="30000" 
+                        required>{{ constellation.description }}</textarea>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <input type="reset" 
+                        value="Reset">
+                    <input type="submit" 
+                        value="Update">
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+    <a class="btn-black btn-lg" 
+        href="{{ url('admin') }}">
+        Quit
+    </a>
+</main>
 {% endblock %}

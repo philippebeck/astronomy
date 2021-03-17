@@ -24,10 +24,38 @@ class MapController extends MainController
         $this->redirect("atlas");
     }
 
+    /**
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function createMethod()
+    {
+        if ($this->getSecurity()->checkIsAdmin() !== true) {
+            $this->redirect("home");
+        }
+
+        if (!empty($this->getPost()->getPostArray())) {
+            $this->setMapData();
+            $this->setMapName();
+            $this->setMapImage();
+
+            ModelFactory::getModel("Map")->createData($this->data);
+            $this->getSession()->createAlert("New map created successfully !", "green");
+
+            $this->redirect("admin");
+        }
+
+        $atlases = ModelFactory::getModel("Atlas")->listData();
+
+        return $this->render("back/map/createMap.twig", ["atlases" => $atlases]);
+    }
+
     private function setMapData()
     {
-        $this->data["description"]  = $this->getPost()->getPostVar("description");
-        $this->data["atlas_id"]     = $this->getPost()->getPostVar("atlas_id");
+        $this->data["description"]  = (string) trim($this->getPost()->getPostVar("description"));
+        $this->data["atlas_id"]     = (int) $this->getPost()->getPostVar("atlas_id");
     }
 
     private function setMapName()
@@ -61,34 +89,6 @@ class MapController extends MainController
         $thumbnail  = "img/thumbnails/tn_". $this->data["map_name"] . $this->getFiles()->setFileExtension();
 
         $this->getImage()->makeThumbnail($img, 300, $thumbnail);
-    }
-
-    /**
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    public function createMethod()
-    {
-        if ($this->getSecurity()->checkIsAdmin() !== true) {
-            $this->redirect("home");
-        }
-
-        if (!empty($this->getPost()->getPostArray())) {
-            $this->setMapData();
-            $this->setMapName();
-            $this->setMapImage();
-
-            ModelFactory::getModel("Map")->createData($this->data);
-            $this->getSession()->createAlert("New map created successfully !", "green");
-
-            $this->redirect("admin");
-        }
-
-        $atlases = ModelFactory::getModel("Atlas")->listData();
-
-        return $this->render("back/map/createMap.twig", ["atlases" => $atlases]);
     }
 
     /**

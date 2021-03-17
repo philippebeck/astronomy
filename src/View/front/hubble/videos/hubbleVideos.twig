@@ -1,28 +1,34 @@
 {% extends 'layout/layout.twig' %}
 
-{% block subtitle %}Hubble Videos List{% endblock %}
+{% block title %}Hubble Videos List{% endblock %}
 
-{% block summary %}List of Videos from Hubble Space Telescope{% endblock %}
+{% block description %}List of Videos from Hubble Space Telescope{% endblock %}
 
 {% block main %}
-    {% if not videos %}
-        {{ redirect('hubble') }}
-    {% endif %}
+{% if not videos %}
+    {{ redirect('hubble') }}
+{% endif %}
 
-    <main>
-        {{ include("front/hubble/videos/videosPagination.twig") }}
+<main>
+    {{ include("front/hubble/videos/videosPagination.twig") }}
 
-        <ul>
-            {% for video in videos %}
-                <li>
-                    <form method="post" action={{ url('hubble!video', {'id': video.id}) }}>
-                        <input name="item" type="hidden" value="{{ video.id }}">
-                        <input class="button-navy" type="submit" value="{{ video.name }}" title="Watch the Video {{ video.id }}">
-                    </form>
-                </li>
-            {% endfor %}
-        </ul>
+    <ul>
+        {% for video in videos %}
+            <li>
+                <form method="post" 
+                    action={{ url('hubble!video', {'id': video.id}) }}>
+                    <input name="item" 
+                        type="hidden" 
+                        value="{{ video.id }}">
+                    <input class="button-brown" 
+                        type="submit" 
+                        value="{{ video.name }}" 
+                        title="Watch the Video {{ video.id }}">
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
 
-        {{ include("front/hubble/videos/videosPagination.twig") }}
-    </main>
+    {{ include("front/hubble/videos/videosPagination.twig") }}
+</main>
 {% endblock %}

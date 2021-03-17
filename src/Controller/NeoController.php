@@ -27,7 +27,7 @@ class NeoController extends MainController
     {
         if ($this->startDate === null || $this->endDate === null) {
             $this->startDate    = date("Y-m-d");
-            $this->endDate      = date("Y-m-d", strtotime("+2 day"));
+            $this->endDate      = date("Y-m-d", strtotime("+1 day"));
         }
 
         if (!empty($this->getPost()->getPostArray())) {

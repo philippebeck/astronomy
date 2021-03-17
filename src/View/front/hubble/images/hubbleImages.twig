@@ -1,28 +1,36 @@
 {% extends 'layout/layout.twig' %}
 
-{% block subtitle %}Hubble Images List{% endblock %}
+{% block title %}Hubble Images List{% endblock %}
 
-{% block summary %}List of Images from Hubble Space Telescope{% endblock %}
+{% block description %}List of Images from Hubble Space Telescope{% endblock %}
 
 {% block main %}
-    {% if not images %}
-        {{ redirect('hubble') }}
-    {% endif %}
+{% if not images %}
+    {{ redirect('hubble') }}
+{% endif %}
 
-    <main>
-        {{ include("front/hubble/images/imagesPagination.twig") }}
+<main>
+    {{ include("front/hubble/images/imagesPagination.twig") }}
 
-        <ul>
-            {% for image in images %}
-                <li>
-                    <form method="post" action={{ url('hubble!image', {'id': image.id}) }}>
-                        <input name="item" type="hidden" value="{{ image.id }}">
-                        <input class="button-navy" type="submit" value="{{ image.name }}" title="Watch the Image {{ image.id }}">
-                    </form>
-                </li>
-            {% endfor %}
-        </ul>
+    <ul>
 
-        {{ include("front/hubble/images/imagesPagination.twig") }}
-    </main>
+    {% for image in images %}
+        <li>
+            <form method="post" 
+                action={{ url('hubble!image', {'id': image.id}) }}>
+                <input name="item" 
+                    type="hidden" 
+                    value="{{ image.id }}">
+                <input class="button-brown" 
+                    type="submit" 
+                    value="{{ image.name }}" 
+                    title="Watch the Image {{ image.id }}">
+            </form>
+        </li>
+    {% endfor %}
+
+    </ul>
+
+    {{ include("front/hubble/images/imagesPagination.twig") }}
+</main>
 {% endblock %}

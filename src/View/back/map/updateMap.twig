@@ -1,49 +1,87 @@
 {% extends 'layout/layout.twig' %}
 
-{% block subtitle %}Edit a Map{% endblock %}
+{% block title %}Edit a Map{% endblock %}
 
-{% block summary %}{% endblock %}
+{% block description %}{% endblock %}
 
 {% block main %}
-    <main class="align-center">
-        <form class="form" method="post" action={{ url('map!update', {'id': map.id}) }} enctype="multipart/form-data">
-            <input type="hidden" name="MAX_FILE_SIZE" value="50000000">
-            <fieldset>
-                <legend>
-                    <img class="bord-green"
-                         src="img/thumbnails/tn_{{ map.map_name }}.jpg"
-                         alt="Screenshot of the map {{ map.map_name }}">
-                </legend>
-                <ul>
-                    <li>
-                        <label for="file">Picture (max 50Mo)</label>
-                        <input name="file" type="file" accept=".jpg">
-                    </li>
-                    <li>
-                        <label for="description">Description</label>
-                        <textarea id="description" name="description" rows="3" maxlength="120" required>{{ map.description }}</textarea>
-                    </li>
-                    <li>
-                        <label for="atlas_id">Atlas</label>
-                        <select id="atlas_id" name="atlas_id">
-                        {% for atlas in atlases %}
-                            {% if atlas.id is same as(map.atlas_id) %}
-                            <option value="{{ atlas.id }}" title="Made by {{ atlas.author_name }}" selected>{{ atlas.published_year|trim('0', 'left') }} : {{ atlas.atlas_name }} (Registred)</option>
-                            {% else %}
-                            <option value="{{ atlas.id }}" title="Made by {{ atlas.author_name }}">{{ atlas.published_year|trim('0', 'left') }} : {{ atlas.atlas_name }}</option>
-                            {% endif %}
-                        {% endfor %}
-                        </select>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <input type="reset" value="Reset">
-                        <input type="submit" value="Update">
-                    </li>
-                </ul>
-            </fieldset>
-        </form>
-        <a class="btn-black btn-lg" href="{{ url('admin') }}">Quit</a>
-    </main>
+<main class="align-center">
+    <form class="form" 
+        method="post" 
+        action={{ url('map!update', {'id': map.id}) }} 
+        enctype="multipart/form-data">
+        <input type="hidden" 
+            name="MAX_FILE_SIZE" 
+            value="50000000">
+        <fieldset>
+            <legend>
+                <img class="bord-green"
+                    src="img/thumbnails/tn_{{ map.map_name }}.jpg"
+                    alt="Screenshot of the map {{ map.map_name }}">
+            </legend>
+            <ul>
+                <li>
+                    <label for="file">
+                        Picture (max 50Mo)
+                    </label>
+                    <input name="file" 
+                        type="file" 
+                        accept=".jpg">
+                </li>
+                <li>
+                    <label for="description">
+                        Description
+                    </label>
+                    <textarea id="description" 
+                        name="description" 
+                        rows="3" 
+                        maxlength="120" 
+                        required>{{ map.description }}</textarea>
+                </li>
+                <li>
+                    <label for="atlas_id">
+                        Atlas
+                    </label>
+                    <select id="atlas_id" 
+                        name="atlas_id"
+                        required>
+
+                    {% for atlas in atlases %}
+
+                        {% if atlas.id is same as(map.atlas_id) %}
+                        <option value="{{ atlas.id }}" 
+                            title="Made by {{ atlas.author_name }}" 
+                            selected>
+                            {{ atlas.published_year|trim('0', 'left') }} : 
+                            {{ atlas.atlas_name }} (Registred)
+                        </option>
+                        
+                        {% else %}
+                        <option value="{{ atlas.id }}" 
+                            title="Made by {{ atlas.author_name }}">
+                            {{ atlas.published_year|trim('0', 'left') }} : 
+                            {{ atlas.atlas_name }}
+                        </option>
+                        {% endif %}
+
+                    {% endfor %}
+
+                    </select>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <input type="reset" 
+                        value="Reset">
+                    <input type="submit" 
+                        value="Update">
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+    <a class="btn-black btn-lg" 
+        href="{{ url('admin') }}">
+        Quit
+    </a>
+</main>
 {% endblock %}

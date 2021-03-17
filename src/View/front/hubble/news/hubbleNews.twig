@@ -1,28 +1,36 @@
 {% extends 'layout/layout.twig' %}
 
-{% block subtitle %}Hubble News List{% endblock %}
+{% block title %}Hubble News List{% endblock %}
 
-{% block summary %}List of Releases from Hubble Space Telescope{% endblock %}
+{% block description %}List of Releases from Hubble Space Telescope{% endblock %}
 
 {% block main %}
-    {% if not news %}
-        {{ redirect('hubble') }}
-    {% endif %}
+{% if not news %}
+    {{ redirect('hubble') }}
+{% endif %}
 
-    <main>
-        {{ include("front/hubble/news/newsPagination.twig") }}
+<main>
+    {{ include("front/hubble/news/newsPagination.twig") }}
 
-        <ul>
-            {% for release in news %}
-                <li>
-                    <form method="post" action={{ url('hubble!release', {'id': release.news_id}) }}>
-                        <input name="item" type="hidden" value="{{ release.news_id }}">
-                        <input class="button-navy" type="submit" value="{{ release.name }}" title="Watch the Release {{ release.news_id }}">
-                    </form>
-                </li>
-            {% endfor %}
-        </ul>
+    <ul>
 
-        {{ include("front/hubble/news/newsPagination.twig") }}
-    </main>
+    {% for release in news %}
+        <li>
+            <form method="post" 
+                action={{ url('hubble!release', {'id': release.news_id}) }}>
+                <input name="item" 
+                    type="hidden" 
+                    value="{{ release.news_id }}">
+                <input class="button-brown" 
+                    type="submit" 
+                    value="{{ release.name }}" 
+                    title="Watch the Release {{ release.news_id }}">
+            </form>
+        </li>
+    {% endfor %}
+
+    </ul>
+
+    {{ include("front/hubble/news/newsPagination.twig") }}
+</main>
 {% endblock %}

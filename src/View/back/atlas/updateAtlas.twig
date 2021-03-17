@@ -1,46 +1,85 @@
 {% extends 'layout/layout.twig' %}
 
-{% block subtitle %}Edit an Atlas{% endblock %}
+{% block title %}Edit an Atlas{% endblock %}
 
-{% block summary %}{% endblock %}
+{% block description %}{% endblock %}
 
 {% block main %}
-    <main class="align-center">
-        <form class="form" method="post" action={{ url('atlas!update', {'id': atlas.id}) }}>
-            <fieldset>
-                <legend>
-                    <i class="fas fa-atlas fa-5x"></i>
-                </legend>
-                <ul>
-                    <li>
-                        <label for="atlas_name">Atlas Name</label>
-                        <input id="atlas_name" name="atlas_name" type="text" maxlength="50" required value="{{ atlas.atlas_name }}">
-                    </li>
-                    <li>
-                        <label for="atlas_wiki">Atlas Wiki</label>
-                        <input id="atlas_wiki" name="atlas_wiki" type="text" maxlength="60" value="https://en.wikipedia.org/wiki/{{ atlas.atlas_wiki }}">
-                    </li>
-                    <li>
-                        <label for="published_year">Published Year</label>
-                        <input id="published_year" name="published_year" type="number" required value="{{ atlas.year}}">
-                    </li>
-                    <li>
-                        <label for="author_name">Author Name</label>
-                        <input id="author_name" name="author_name" type="text" maxlength="50" required value="{{ atlas.author_name }}">
-                    </li>
-                    <li>
-                        <label for="author_wiki">Author Wiki</label>
-                        <input id="author_wiki" name="author_wiki" type="text" maxlength="80" value="https://en.wikipedia.org/wiki/{{ atlas.author_wiki}}">
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <input type="reset" value="Reset">
-                        <input type="submit" value="Update">
-                    </li>
-                </ul>
-            </fieldset>
-        </form>
-        <a class="btn-black btn-lg" href="{{ url('admin') }}">Quit</a>
-    </main>
+<main>
+    <form class="form" 
+        method="post" 
+        action={{ url('atlas!update', {'id': atlas.id}) }}>
+        <fieldset>
+            <legend>
+                <i class="fas fa-atlas fa-5x"></i>
+            </legend>
+            <ul>
+                <li>
+                    <label for="atlas_name">
+                        Atlas Name
+                    </label>
+                    <input id="atlas_name" 
+                        name="atlas_name" 
+                        type="text" 
+                        maxlength="50" 
+                        value="{{ atlas.atlas_name }}"
+                        required>
+                </li>
+                <li>
+                    <label for="atlas_wiki">
+                        Atlas Wiki
+                    </label>
+                    <input id="atlas_wiki" 
+                        name="atlas_wiki" 
+                        type="text" 
+                        maxlength="60" 
+                        value="https://en.wikipedia.org/wiki/{{ atlas.atlas_wiki }}">
+                </li>
+                <li>
+                    <label for="published_year">
+                        Published Year
+                    </label>
+                    <input id="published_year" 
+                        name="published_year" 
+                        type="number" 
+                        value="{{ atlas.year}}"
+                        required>
+                </li>
+                <li>
+                    <label for="author_name">
+                        Author Name
+                    </label>
+                    <input id="author_name" 
+                        name="author_name" 
+                        type="text" 
+                        maxlength="50" 
+                        value="{{ atlas.author_name }}"
+                        required>
+                </li>
+                <li>
+                    <label for="author_wiki">
+                        Author Wiki
+                    </label>
+                    <input id="author_wiki" 
+                        name="author_wiki" 
+                        type="text" 
+                        maxlength="80" 
+                        value="https://en.wikipedia.org/wiki/{{ atlas.author_wiki}}">
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <input type="reset" 
+                        value="Reset">
+                    <input type="submit" 
+                        value="Update">
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+    <a class="btn-black btn-lg" 
+        href="{{ url('admin') }}">
+        Quit
+    </a>
+</main>
 {% endblock %}

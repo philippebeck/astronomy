@@ -55,7 +55,7 @@ class ConstellationController extends MainController
         $constellation = ModelFactory::getModel("Constellation")->readData($this->getGet()->getGetVar("id"));
 
         if (!empty($this->getPost()->getPostArray())) {
-            $data["description"] = $this->getPost()->getPostVar("description");
+            $data["description"] = (string) trim($this->getPost()->getPostVar("description"));
 
             if (!empty($this->getFiles()->getFileVar("name"))) {
                 $this->getFiles()->uploadFile("img/constellation/", $constellation["name"]);

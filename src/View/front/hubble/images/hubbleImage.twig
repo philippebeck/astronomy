@@ -1,33 +1,54 @@
 {% extends 'layout/layout.twig' %}
 
-{% block subtitle %}{{ image["name"] }}{% endblock %}
+{% block title %}{{ image["name"] }}{% endblock %}
 
-{% block summary %}{{ image["name"] }} from {{ image["mission"]|capitalize }} Mission & {{ cleanString(image["collection"]) }} Collection{% endblock %}
+{% block description %}
+{{ image["name"] }} from 
+{{ image["mission"]|capitalize }} Mission & 
+{{ cleanString(image["collection"]) }} Collection
+{% endblock %}
 
 {% block main %}
-    {% if not image %}
-        {{ redirect('hubble') }}
-    {% endif %}
+{% if not image %}
+    {{ redirect('hubble') }}
+{% endif %}
 
-    <main>
-        <article itemscope itemtype="http://schema.org/ImageObject">
-            <h2 itemprop="name">{{ image["name"] }}</h2>
+<main class="container-90sm-80md"
+    itemscope 
+    itemtype="http://schema.org/ImageObject">
 
-            <figure>
-                <a href="https:{{ image["image_files"]|last }}" title="Clic to Watch in Full Size" itemprop="contentUrl">
-                    <img class="bord-curve" src="https:{{ image["image_files"]|first }}" alt="Thumbnail of the Image {{ image["id"] }}" itemprop="thumbnail">
-                </a>
-                <figcaption class="align-justify" itemprop="description">{{ image["description"]|raw }}</figcaption>
-            </figure>
+    <figure>
+        <a href="https:{{ image["image_files"]|last }}" 
+            title="Clic to Watch in Full Size" 
+            itemprop="contentUrl">
+            <img class="bord-curve" 
+                src="https:{{ image["image_files"]|first }}" 
+                alt="Thumbnail of the Image {{ image["id"] }}" 
+                itemprop="thumbnail">
+        </a>
+        <figcaption class="align-justify mar-lg" 
+            itemprop="description">
+            {{ image["description"]|raw }}
+        </figcaption>
+    </figure>
 
-            <ul>
-                <li itemprop="isPartOf">Collection : {{ cleanString(image["collection"]) }}</li>
-                <li>Mission : {{ cleanString(image["mission"]) }}</li>
-            </ul>
+    <ul>
+        <li itemprop="isPartOf">
+            Collection : 
+            {{ cleanString(image["collection"]) }}
+        </li>
+        <li>
+            Mission : 
+            {{ cleanString(image["mission"]) }}
+        </li>
+    </ul>
 
-            {% if image["credits"] %}
-                <p itemprop="author">Credits : {{ image["credits"]|raw }}</p>
-            {% endif %}
-        </article>
-    </main>
+{% if image["credits"] %}
+    <p itemprop="author">
+        Credits : 
+        {{ image["credits"]|raw }}
+    </p>
+{% endif %}
+
+</main>
 {% endblock %}

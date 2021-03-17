@@ -1,7 +1,7 @@
 :root {
-  --sans-serif-font-family: 'Text Me One', sans-serif;
-  --serif-font-family: 'Cinzel', serif;
-  --monospace-font-family: 'Share Tech Mono', monospace;
+  --sans-serif: 'Tomorrow', sans-serif;
+  --serif: 'Almendra', serif;
+  --monospace: 'VT323', monospace;
 }
 
 body {
@@ -9,18 +9,10 @@ body {
   --body-background-color: var(--black);
 }
 
-main [src*="img/user/"] {
-  width: 200px;
-}
-
-thead {
-  font-size: 90%;
-}
-
 .navbar {
-  --navbar-background-color: var(--navy-dark);
+  --navbar-background-color: var(--black-dark);
 }
 
 .table {
-  --table-row-odd-hover-background-color: var(--sky);
+  --table-row-odd-hover-background-color: var(--blue);
 }
