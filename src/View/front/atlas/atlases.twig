@@ -1,6 +1,6 @@
 {% extends 'layout/layout.twig' %}
 
-{% block title %}Celestial Atlases{% endblock %}
+{% block title %}Atlases{% endblock %}
 
 {% block description %}
 Aladin Interactive Sky Atlas from CDS,
@@ -8,67 +8,10 @@ colorful celestial maps covering a period of almost a thousand years,
 as well as Wikipedia links for some atlases and authors.
 {% endblock %}
 
-{% block link %}
-<link rel="stylesheet" 
-    href="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.css">
-{% endblock %}
-
-{% block script %}
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js"></script>
-
-<script>
-    var aladin = A.aladin("#aladin", {
-        survey: "P/DSS2/color",
-        fov: 5,
-        target: "M31",
-        cooFrame: "galactic",
-        reticleColor: "#00ff00",
-        reticleSize: 30,
-        showShareControl: true,
-        showSimbadPointerControl: true
-    });
-
-    $("input[name=survey]").change(function() {
-        aladin.setImageSurvey($(this).val());
-    });
-</script>
-{% endblock %}
-
 {% block main %}
-<input id="menu-radio1" 
-    class="menu-radio1" 
-    type="radio" 
-    name="menu" 
-    checked>
-<input id="menu-radio2" 
-    class="menu-radio2" 
-    type="radio" 
-    name="menu">
-
-<nav class="menu">
-    <label class="button-blue" 
-        for="menu-radio1" 
-        title="Celestial Atlases Collection">
-        <i class="fas fa-atlas onto-color-blue"></i>
-        <span class="onto-color-blue">
-            Collection
-        </span>
-    </label>
-    <label class="button-red" 
-        for="menu-radio2" 
-        title="Interactive Sky Atlas">
-        <i class="fab fa-skyatlas onto-color-red"></i>
-        <span class="onto-color-red">
-            Aladin
-        </span>
-    </label>
-</nav>
-
-<main class="menu-relay container-90sm-80lg">
-
-    <article class="menu-target1">
-        <h3>Celestial Atlases from 964 to 1869</h3>
+<main class="container-90sm-80lg">
+    <article>
+        <h2>Celestial Atlases from 964 to 1869</h2>
 
         <ul class="grid-2sm-3lg-4wd">
 
@@ -91,61 +34,6 @@ as well as Wikipedia links for some atlases and authors.
             {% endfor %}
 
         </ul>
-    </article>
-
-    <article class="menu-target2">
-        <h2>Interactive Sky Atlas</h2>
-
-        <ul class="row placo-evenly">
-            <li>
-                <input id="DSS" 
-                    type="radio" 
-                    name="survey" 
-                    value="P/DSS2/color">
-                <label for="DSS">
-                    DSS color
-                </label>
-            </li>
-            <li>
-                <input id="DSS-blue" 
-                    type="radio" 
-                    name="survey" 
-                    value="P/DSS2/blue">
-                <label for="DSS-blue">
-                    DSS blue
-                </label>
-            </li>
-            <li>
-                <input id="2MASS" 
-                    type="radio" 
-                    name="survey" 
-                    value="P/2MASS/color">
-                <label for="2MASS">
-                    2MASS
-                </label>
-            </li>
-            <li>
-                <input id="allwise" 
-                    type="radio" 
-                    name="survey" 
-                    value="P/allWISE/color">
-                <label for="allwise">
-                    AllWISE
-                </label>
-            </li>
-        </ul>
-
-        <figure class="mar-none mar-bot-lg">
-            <figure class="slider" 
-                id="aladin">
-            </figure>
-            <figcaption class="font-monospace">
-                Aladin Sky Atlas, developed at
-                <strong>CDS</strong>,
-                <em>Strasbourg Observatory</em>,
-                France
-            </figcaption>
-        </figure>
     </article>
 </main>
 {% endblock %}
