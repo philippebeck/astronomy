@@ -9,7 +9,7 @@
     {{ redirect('hubble') }}
 {% endif %}
 
-<main>
+<main class="container-90tn-80sm">
     {{ include("front/hubble/news/newsPagination.twig") }}
 
     <ul>
@@ -18,15 +18,21 @@
         <li>
             <form method="post" 
                 action={{ url('hubble!release', {'id': release.news_id}) }}>
+                <label for="item">
+                    {{ release.name }}
+                </label>
                 <input name="item" 
                     type="hidden" 
                     value="{{ release.news_id }}">
+                <br>
                 <input class="button-brown" 
                     type="submit" 
-                    value="{{ release.name }}" 
-                    title="Watch the Release {{ release.news_id }}">
+                    value="{{ release.news_id }}" 
+                    title="Watch the Release {{ release.name }} ({{ release.news_id }})">
             </form>
+            <i class="fas fa-minus fa-lg"></i>
         </li>
+
     {% endfor %}
 
     </ul>

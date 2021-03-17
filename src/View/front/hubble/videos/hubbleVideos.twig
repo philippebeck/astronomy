@@ -9,7 +9,7 @@
     {{ redirect('hubble') }}
 {% endif %}
 
-<main>
+<main class="container-90tn-80sm">
     {{ include("front/hubble/videos/videosPagination.twig") }}
 
     <ul>
@@ -17,14 +17,19 @@
             <li>
                 <form method="post" 
                     action={{ url('hubble!video', {'id': video.id}) }}>
+                    <label for="item">
+                        {{ video.name }}
+                    </label>
                     <input name="item" 
                         type="hidden" 
                         value="{{ video.id }}">
+                    <br>
                     <input class="button-brown" 
                         type="submit" 
-                        value="{{ video.name }}" 
-                        title="Watch the Video {{ video.id }}">
+                        value="{{ video.id }}" 
+                        title="Watch the Video {{ video.name }} ({{ video.id }})">
                 </form>
+                <i class="fas fa-minus fa-lg"></i>
             </li>
         {% endfor %}
     </ul>
