@@ -46,7 +46,7 @@ class AuthController extends MainController
 
         $this->getSession()->createAlert("Check the reCAPTCHA !", "red");
 
-        $this->redirect("user");
+        $this->redirect("auth");
     }
 
     private function checkLogin()
@@ -56,7 +56,7 @@ class AuthController extends MainController
         if (!password_verify($this->user["pass"], $user["pass"])) {
             $this->getSession()->createAlert("Failed authentication !", "black");
 
-            $this->redirect("user");
+            $this->redirect("auth");
         }
 
         $this->getSession()->createSession($user);
