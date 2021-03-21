@@ -2,11 +2,16 @@
   --sans-serif: 'Tomorrow', sans-serif;
   --serif: 'Almendra', serif;
   --monospace: 'VT323', monospace;
+  --blue: Navy;
 }
 
 body {
   --body-color: var(--white);
   --body-background-color: var(--black);
+}
+
+a {
+  --link-color: var(--green);
 }
 
 .navbar {
