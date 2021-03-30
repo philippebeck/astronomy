@@ -6,27 +6,24 @@
 
 {% block main %}
 <nav class="menu">
-    <a class="button-red" 
-        href="{{ url('hubble!news', {'page': 1}) }}" 
+    <a href="{{ url('hubble!news', {'page': 1}) }}" 
         title="Show News">
-        <i class="far fa-newspaper fa-2x onto-color-red"></i> 
-        <span class="onto-color-red">
+        <i class="far fa-newspaper fa-2x"></i> 
+        <span>
             News
         </span>
     </a>
-    <a class="button-green" 
-        href="{{ url('hubble!images', {'page': 1}) }}" 
+    <a href="{{ url('hubble!images', {'page': 1}) }}" 
         title="Show Images">
-        <i class="far fa-image fa-2x onto-color-green"></i> 
-        <span class="onto-color-green">
+        <i class="far fa-image fa-2x"></i> 
+        <span>
             Images
         </span>
     </a>
-    <a class="button-blue" 
-        href="{{ url('hubble!videos', {'page': 1}) }}" 
+    <a href="{{ url('hubble!videos', {'page': 1}) }}" 
         title="Show Videos">
-        <i class="fas fa-video fa-2x onto-color-blue"></i> 
-        <span class="onto-color-blue">
+        <i class="fas fa-video fa-2x"></i> 
+        <span>
             Videos
         </span>
     </a>
