@@ -24,260 +24,42 @@
     name="menu">
 
 <nav class="menu">
-    <label class="button-red" 
-        for="menu-radio1" 
+    <label for="menu-radio1" 
         title="Show Constellations">
-        <i class="far fa-star onto-color-red"></i>
-        <span class="onto-color-red">
+        <i class="far fa-star"></i>
+        <span>
             Constellation
         </span>
     </label>
-    <label class="button-green" 
-        for="menu-radio2" 
+    <label for="menu-radio2" 
         title="Show Atlases">
-        <i class="fas fa-atlas onto-color-green"></i>
-        <span class="onto-color-green">
+        <i class="fas fa-atlas"></i>
+        <span>
             Atlas
         </span>
     </label>
-    <label class="button-blue" 
-        for="menu-radio3" 
+    <label for="menu-radio3" 
         title="Show Maps">
-        <i class="far fa-map onto-color-blue"></i>
-        <span class="onto-color-blue">
+        <i class="far fa-map "></i>
+        <span>
             Map
         </span>
     </label>
-    <label class="button-violet" 
-        for="menu-radio4" 
+    <label for="menu-radio4" 
         title="Show the User">
-        <i class="far fa-user onto-color-violet"></i>
-        <span class="onto-color-violet">
+        <i class="fas fa-users"></i>
+        <span>
             User
         </span>
     </label>
 </nav>
 
-<main class="menu-relay">
-    <section class="menu-target1">
-        <h2>
-            <i class="far fa-star"></i> 
-            Constellations
-        </h2>
+<main class="menu-relay container-90lg-80xl-70wd">
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Constellation</th>
-                    <th>Description</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
+    {{ include("back/admin/listConstellations.twig") }}
+    {{ include("back/admin/listAtlases.twig") }}
+    {{ include("back/admin/listMaps.twig") }}
+    {{ include("back/admin/listUsers.twig") }}
 
-            {% for constellation in constellations %}
-                <tr>
-                    <td>
-                        <a href="img/constellation/{{ constellation.name}}.jpg" 
-                            title="Clic to Watch">
-                            <figure>
-                                <img class="bord-gray bord-sm"
-                                    src="img/thumbnails/tn_{{ constellation.name }}.jpg"
-                                    alt="Screenshot of the constellation 
-                                        {{ constellation.name|replace({'-': ' '})|title }}">
-                                <figcaption>
-                                    {{ constellation.name|replace({'-': ' '})|title }}
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </td>
-                    <td>{{ constellation.description }}</td>
-                    <td>
-                        <a class="btn-blue" 
-                            href="{{ url('constellation!update', {'id': constellation.id}) }}">
-                            <i class="fas fa-pen-square fa-fw fa-lg"></i>
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
-
-            </tbody>
-        </table>
-    </section>
-
-    <section class="menu-target2">
-        <h2>
-            <i class="fas fa-atlas"></i> 
-            Atlas
-        </h2>
-
-        <a class="btn-green btn-lg" 
-            href="{{ url('atlas!create') }}">
-            New Atlas
-        </a>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Atlas</th>
-                    <th>Author</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-
-            {% for atlas in atlases %}
-                <tr>
-                    <td>
-
-                    {% if atlas.atlas_wiki %}
-                        <a class="button-green"
-                            href="https://en.wikipedia.org/wiki/{{ atlas.atlas_wiki }}"
-                            title="Wikipedia Atlas Page">
-                            {{ atlas.atlas_name }} 
-                            ({{ atlas.published_year|trim('0', 'left') }})
-                        </a>
-
-                    {% else %}
-                        {{ atlas.atlas_name }} 
-                        ({{ atlas.published_year|trim('0', 'left') }})
-                    {% endif %}
-
-                    </td>
-                    <td>
-
-                    {% if atlas.author_wiki %}
-                        <a class="button-violet"
-                            href="https://en.wikipedia.org/wiki/{{ atlas.author_wiki }}"
-                            title="Wikipedia Author Page">
-                            {{ atlas.author_name }}
-                        </a>
-
-                    {% else %}
-                        {{ atlas.author_name }}
-                    {% endif %}
-
-                    </td>
-                    <td>
-                        <a class="btn-blue" 
-                            href="{{ url('atlas!update', {'id': atlas.id}) }}">
-                            <i class="fas fa-pen-square fa-fw fa-lg"></i>
-                        </a>
-                        <a class="btn-red" 
-                            href="{{ url('atlas!delete', {'id': atlas.id}) }}">
-                            <i class="fas fa-times-circle fa-fw fa-lg"></i>
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
-
-            </tbody>
-        </table>
-    </section>
-
-    <section class="menu-target3">
-        <h2>
-            <i class="far fa-map"></i> 
-            Maps
-        </h2>
-
-        <a class="btn-green btn-lg" 
-            href="{{ url('map!create') }}">
-            New Map
-        </a>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Map</th>
-                    <th>Description</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-
-            {% for map in maps %}
-                <tr>
-                    <td>
-                        <a class="button-blue" 
-                            href="img/atlas/{{ map.map_name}}.jpg" 
-                            title="Clic to Watch the Map">
-                            {{ map.map_name }}
-                        </a>
-                    </td>
-                    <td>
-                        <a class="button-violet"
-                            href="{{ url('atlas!read', {'id': map.atlas_id}) }}"
-                            title="Clic to Watch the Atlas #{{ map.atlas_id }}">
-                            {{ map.description }}
-                        </a>
-                    </td>
-                    <td>
-                        <a class="btn-blue" 
-                            href="{{ url('map!update', {'id': map.id}) }}">
-                            <i class="fas fa-pen-square fa-fw fa-lg"></i>
-                        </a>
-                        <a class="btn-red" 
-                            href="{{ url('map!delete', {'id': map.id}) }}">
-                            <i class="fas fa-times-circle fa-fw fa-lg"></i>
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
-
-            </tbody>
-        </table>
-    </section>
-
-    <section class="menu-target4">
-        <h2>
-            <i class="far fa-user"></i> 
-            User
-        </h2>
-
-        <a class="btn-green btn-lg" 
-            href="{{ url('user!create') }}">
-            New User
-        </a>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>User</th>
-                    <th>Email</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-
-            {% for user in users %}
-                <tr>
-                    <td>
-                        <figure>
-                            <img class="bord-violet" 
-                                src="img/user/{{ user.image }}" 
-                                alt="Screenshot of {{ user.name }}">
-                            <figcaption>
-                                {{ user.name }}
-                            </figcaption>
-                        </figure>
-                    </td>
-                    <td>{{ user.email }}</td>
-                    <td>
-                        <a class="btn-blue" 
-                            href="{{ url('user!update', {'id': user.id}) }}">
-                            <i class="fas fa-pen-square fa-fw fa-lg"></i>
-                        </a>
-                        <a class="btn-red" 
-                            href="{{ url('user!delete', {'id': user.id}) }}">
-                            <i class="fas fa-times-circle fa-fw fa-lg"></i>
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
-
-            </tbody>
-        </table>
-    </section>
 </main>
 {% endblock %}
