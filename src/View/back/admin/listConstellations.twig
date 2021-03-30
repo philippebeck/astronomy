@@ -1,0 +1,45 @@
+<section class="menu-target1">
+    <h2>
+        <i class="far fa-star"></i> 
+        Constellations
+    </h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Constellation</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for constellation in constellations %}
+            <tr>
+                <td>
+                    <a href="img/constellation/{{ constellation.name}}.jpg" 
+                        title="Clic to Watch">
+                        <figure>
+                            <img class="bord-gray bord-sm"
+                                src="img/thumbnails/tn_{{ constellation.name }}.jpg"
+                                alt="Screenshot of the constellation 
+                                    {{ constellation.name|replace({'-': ' '})|title }}">
+                            <figcaption>
+                                {{ constellation.name|replace({'-': ' '})|title }}
+                            </figcaption>
+                        </figure>
+                    </a>
+                </td>
+                <td>{{ constellation.description }}</td>
+                <td>
+                    <a class="btn-blue" 
+                        href="{{ url('constellation!update', {'id': constellation.id}) }}">
+                        <i class="fas fa-pen-square fa-fw fa-lg"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</section>
