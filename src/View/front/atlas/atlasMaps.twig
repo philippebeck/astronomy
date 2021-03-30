@@ -5,7 +5,7 @@
 {% block description %}Gallery of {{ atlas.atlas_name }} made by {{ atlas.author_name }}{% endblock %}
 
 {% block main %}
-<main class="container-90sm-80lg">
+<main>
     <header>
 
     {% if atlas.atlas_wiki %}
@@ -34,11 +34,11 @@
             ({{ atlas.published_year|trim('0', 'left') }})
         </h2>
 
-        <ul class="grid-2sm-3lg-4wd pad-top-lg" itemscope itemtype="https://schema.org/CreativeWork">
+        <ul class="grid-2sm-3md-4lg-5xl-6wd pad-top-lg" itemscope itemtype="https://schema.org/CreativeWork">
             
             {% for key, map in atlasMaps %}
                 <li>
-                    <a class="cursor-cross button-blue"
+                    <a class="cursor-cross button-primary"
                        href="img/atlas/{{ map.map_name}}.jpg"
                        title="Clic to Watch {{ map.description}} in Full Page"
                        itemprop="image">

@@ -16,25 +16,23 @@
     name="menu">
 
 <nav class="menu">
-    <label class="button-green" 
-        for="menu-radio1" 
+    <label for="menu-radio1" 
         title="The 88 Modern Constellations">
-        <i class="far fa-star onto-color-red"></i>
-        <span class="onto-color-red">
+        <i class="far fa-star"></i>
+        <span>
             Constellations
         </span>
     </label>
-    <label class="button-blue" 
-        for="menu-radio2" 
+    <label for="menu-radio2" 
         title="IAU, Eugène Delporte & License">
-        <i class="far fa-id-badge onto-color-blue"></i>
-        <span class="onto-color-blue">
+        <i class="far fa-id-badge"></i>
+        <span>
             IAU & License
         </span>
     </label>
 </nav>
 
-<main class="container-90sm-80md-70lg-60wd menu-relay">
+<main class="menu-relay">
     <section class="menu-target1">
         <h2>The 88 Modern Constellations</h2>
 
@@ -44,11 +42,11 @@
                     alt="Legend of the Constellations Maps">
         </figure>
 
-        <ul class="grid-2sm-3lg">
+        <ul class="grid-2sm-3md-4lg-5xl-6wd">
 
             {% for constellation in constellations %}
                 <li>
-                    <a class="cursor-cross" 
+                    <a class="cursor-cross button-blue" 
                         href="{{ url('constellation!read', {'id': constellation.id}) }}" 
                         title="Clic to Watch">
                         <figure class="button-navy">
@@ -82,7 +80,7 @@
             so it's important to agree on the end of one constellation and the start of the next.
         </header>
 
-        <section>
+        <section class="container-90sm-80md-70lg-60xl-50wd">
             <h2>IAU & Eugène Delporte</h2>
 
             <p>
@@ -116,7 +114,7 @@
             </figure>
         </section>
 
-        <section class="mar-bot-lg">
+        <section class="mar-bot-lg container-90sm-80md-70lg-60xl-50wd">
             <h2>License</h2>
 
             <p>

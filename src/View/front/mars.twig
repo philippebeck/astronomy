@@ -2,12 +2,12 @@
 
 {% block title %}Mars{% endblock %}
 
-{% block description %}Mars Rovers Photos{% endblock %}
+{% block description %}Mars Rovers Photos : Perseverance, Curiosity, Opportunity, Spirit{% endblock %}
 
 {% block main %}
-<main class="container-90sm-80lg mar-bot-lg">
+<main class="mar-bot-lg">
     <article>
-        <h2>Mars Rovers Photos</h2>
+        <h2>Rovers Photos</h2>
 
         <form class="form" 
             method="post" 
@@ -23,9 +23,14 @@
                         </label>
                         <select id="rover" 
                             name="rover">
-                            <option value="{{ params.rover }}">
-                                -- Select a Rover 
-                                ({{ params.rover|capitalize }} selected)
+                            <option value="{{ params.rover }}"> 
+                                {{ params.rover|capitalize }} (selected)
+                            </option>
+                            <option value="">
+                                -- Select a Rover
+                            </option>
+                            <option value="perseverance">
+                                Perseverance : 2021 - XXXX
                             </option>
                             <option value="curiosity">
                                 Curiosity : 2012 - 2026 (estimated)
@@ -36,51 +41,6 @@
                             <option value="spirit">
                                 Spirit : 2004 - 2010
                             </option>
-                        </select>
-                    </li>
-                    <li>
-                        <label for="camera">
-                            Camera
-                        </label>
-                        <select id="camera" 
-                            name="camera">
-                            <option value="{{ params.camera }}">
-                                -- Select the Camera 
-                                ({{ params.camera|upper }} selected)
-                            </option>
-                            <optgroup label="All Rovers">
-                                <option value="fhaz">
-                                    Front Hazard Avoidance Camera
-                                </option>
-                                <option value="rhaz">
-                                    Rear Hazard Avoidance Camera
-                                </option>
-                                <option value="navcam">
-                                    Navigation Camera
-                                </option>
-                            </optgroup>
-                            <optgroup label="Curiosity Only">
-                                <option value="mast">
-                                    Mast Camera
-                                </option>
-                                <option value="chemcam">
-                                    Chemistry & Camera Complex
-                                </option>
-                                <option value="mahli">
-                                    Mars Hand Lens Imager
-                                </option>
-                                <option value="mardi">
-                                    Mars Descent Imager
-                                </option>
-                            </optgroup>
-                            <optgroup label="Opportunity & Spirit Only">
-                                <option value="pancam">
-                                    Panoramic Camera
-                                </option>
-                                <option value="minites">
-                                    Miniature Thermal Emission Spectrometer
-                                </option>
-                            </optgroup>
                         </select>
                     </li>
                     <li>
@@ -95,18 +55,6 @@
                             required>
                     </li>
                     <li>
-                        <label for="page">
-                            Page
-                        </label>
-                        <input id="page" 
-                            name="page" 
-                            type="number" 
-                            min="1" 
-                            value="{{ params.page }}" 
-                            placeholder="Type the Page Required" 
-                            required>
-                    </li>
-                    <li>
                         <input type="submit" 
                             value="Search">
                     </li>
@@ -114,10 +62,9 @@
             </fieldset>
         </form>
 
-        <section class="container">
+        <section>
             <h3>
-                {{ mars[0]["rover"]["name"] }} : 
-                {{ mars[0]["camera"]["name"] }} 
+                {{ mars[0]["rover"]["name"] }} 
                 ({{ mars[0]["earth_date"] }})
             </h3>
 
@@ -129,6 +76,9 @@
                             title="Clic to Enlarge">
                             <img src="{{ photo["img_src"] }}" 
                                 alt="Mars Rover Photo #{{ photo["id"] }}">
+                            <figcaption>
+                                {{ photo["camera"]["name"] }}
+                            </figcaption>
                         </a>
                     </figure>
                 {% endfor %}

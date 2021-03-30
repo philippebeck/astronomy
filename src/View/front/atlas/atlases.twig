@@ -9,15 +9,15 @@ as well as Wikipedia links for some atlases and authors.
 {% endblock %}
 
 {% block main %}
-<main class="container-90sm-80lg">
+<main>
     <article>
         <h2>Celestial Atlases from 964 to 1869</h2>
 
-        <ul class="grid-2sm-3lg-4wd">
+        <ul class="flex">
 
             {% for map in demoMaps %}
                 <li>
-                    <a class="button-blue cursor-cross"
+                    <a class="button-primary cursor-cross"
                        href="{{ url('atlas!read', {'id': map.atlas_id}) }}"
                        title="Watch the Atlas : {{ map.atlas_name }} made in {{ map.published_year }}">
                         <figure>

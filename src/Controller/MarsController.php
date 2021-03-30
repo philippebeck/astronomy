@@ -16,27 +16,17 @@ class MarsController extends MainController
     /**
      * @var null
      */
-    private $rover = "curiosity";
-
-    /**
-     * @var null
-     */
-    private $camera = "navcam";
+    private $rover = "perseverance";
 
     /**
      * @var null
      */
     private $date = null;
 
-    /**
-     * @var null
-     */
-    private $page = 1;
-
     private function setDate()
     {
         if ($this->date === null) {
-            $this->date = date("Y-m-d", strtotime("-1 week"));
+            $this->date = date("Y-m-d", strtotime("-1 day"));
         }
     }
 
@@ -44,9 +34,7 @@ class MarsController extends MainController
     {
         if (!empty($this->getPost()->getPostArray())) {
             $this->rover    = (string) $this->getPost()->getPostVar("rover");
-            $this->camera   = (string) $this->getPost()->getPostVar("camera");
             $this->date     = (string) $this->getPost()->getPostVar("date");
-            $this->page     = (string) $this->getPost()->getPostVar("page");
         }
     }
 
@@ -63,12 +51,8 @@ class MarsController extends MainController
 
         $query = "https://api.nasa.gov/mars-photos/api/v1/rovers/"
             . $this->rover
-            . "/photos?earth_date="
+            . "/photos?earth_date=" 
             . $this->date
-            . "&camera="
-            . $this->camera
-            . "&page="
-            . $this->page
             . "&api_key="
             . NASA_API;
 
@@ -76,11 +60,8 @@ class MarsController extends MainController
         $mars = $mars["photos"];
 
         $params = [
-            "rover"     => $this->rover,
-            "date"      => $this->date,
-            "camera"    => $this->camera,
-            "page"      => $this->page,
-
+            "rover" => $this->rover,
+            "date"  => $this->date
         ];
 
         return $this->render("front/mars.twig", [
