@@ -16,3 +16,9 @@
     RewriteCond %{REQUEST_URI} !/public/ [NC]
     RewriteRule ^(.*?)/?$ public/$1 [L]
 </IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch ".+\.(ico|jpg|jpeg|png|svg|gif|xml|html|htm|css|js|woff|woff2)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+</IfModule>
