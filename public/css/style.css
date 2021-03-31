@@ -30,8 +30,8 @@ a {
 }
 
 .table {
-  --table-row-odd-hover-background-color: var(--primary);
-  --table-row-even-hover-background-color: var(--primary);
+  --table-odd-hover-background-color: var(--primary);
+  --table-even-hover-background-color: var(--primary);
 }
 
 .foot {
