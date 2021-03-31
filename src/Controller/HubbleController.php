@@ -31,7 +31,7 @@ class HubbleController extends MainController
     /**
      * @var null
      */
-    private $query = null;
+    private $query = "";
 
     /**
      * @return string
