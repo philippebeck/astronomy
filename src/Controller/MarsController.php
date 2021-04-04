@@ -16,7 +16,7 @@ class MarsController extends MainController
     /**
      * @var null
      */
-    private $rover = "perseverance";
+    private $rover = "curiosity";
 
     /**
      * @var null
