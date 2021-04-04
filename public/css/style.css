@@ -5,9 +5,9 @@
   --serif: 'Almendra', serif;
   --monospace: 'VT323', monospace;
 
-  --primary: rgb(0, 0, 80);
-  --primary-dark: rgba(0, 0, 80, var(--opacity-dark));
-  --primary-light: rgba(0, 0, 80, var(--opacity-light));
+  --secondary: var(--yellow);
+  --secondary-dark: var(--yellow-dark);
+  --secondary-light: var(--yellow-light);
 }
 
 body {
@@ -15,25 +15,10 @@ body {
   --body-background-color: var(--black);
 }
 
-a {
-  --link-color: var(--green);
-}
-
 .navbar {
   --navbar-background-color: var(--black-dark);
 }
 
-.menu {
-  --menu-child-background-color: var(--primary-dark);
-  --menu-checked-child-color: var(--primary);
-  --menu-child-hover-color: var(--primary);
-}
-
-.table {
-  --table-row-odd-hover-background-color: var(--primary);
-  --table-row-even-hover-background-color: var(--primary);
-}
-
-.foot {
-  --foot-list-background-color: var(--blue-dark);
+.form {
+  --form-background-color: var(--white-light);
 }
