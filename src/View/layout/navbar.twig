@@ -9,7 +9,7 @@
         type="radio" 
         name="navbar">
 
-    <a class="anima-slideR-this" 
+    <a class="anima-slideB-this" 
         href="./" 
         title="Accueil">
         <img src="img/phi.svg" 
@@ -20,17 +20,17 @@
 
     <ul>
         <li>
-            <a href="{{ url('constellation') }}" 
-                title="The Constellations">
-                <i class="far fa-star fa-lg fa-fw"></i>
-                <span>Constellation</span>
-            </a>
-        </li>
-        <li>
             <a href="{{ url('atlas') }}" 
                 title="Celestial Atlases">
                 <i class="fas fa-atlas fa-lg fa-fw"></i>
                 <span>Atlas</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('constellation') }}" 
+                title="The Constellations">
+                <i class="fas fa-star fa-lg fa-fw"></i>
+                <span>Constellation</span>
             </a>
         </li>
         <li>
@@ -56,7 +56,7 @@
         </li>
     </ul>
 
-    <ul class="anima-slideL-this">
+    <ul>
     
     {% if (isLogged()) %}
         <li>
