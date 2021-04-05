@@ -21,4 +21,5 @@ body {
 
 .form {
   --form-background-color: var(--white-light);
+  --form-field-placeholder-color: var(--black);
 }

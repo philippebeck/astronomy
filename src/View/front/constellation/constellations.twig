@@ -42,14 +42,14 @@
                     alt="Legend of the Constellations Maps">
         </figure>
 
-        <ul class="grid-2sm-3md-4lg-5xl-6wd">
+        <ul class="grid-2sm-3md-4lg-5xl-6wd cursor-cross">
 
             {% for constellation in constellations %}
                 <li>
-                    <a class="cursor-cross button-blue" 
+                    <a class="button-blue" 
                         href="{{ url('constellation!read', {'id': constellation.id}) }}" 
                         title="Clic to Watch">
-                        <figure class="button-navy">
+                        <figure>
                             <img src="img/thumbnails/tn_{{ constellation.name }}.jpg"
                                 alt="Chart of {{ constellation.name }}">
                             <figcaption>
