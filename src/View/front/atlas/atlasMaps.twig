@@ -11,7 +11,7 @@
     {% if atlas.atlas_wiki %}
         <a class="button-green cursor-help"
             href="https://en.wikipedia.org/wiki/{{ atlas.atlas_wiki }}"
-            title="Atlas's Wiki : {{ atlas.atlas_name }} made in {{ atlas.published_year }}">
+            title="{{ atlas.atlas_name }} Wiki">
             <i class="fas fa-atlas fa-lg"></i>
             {{ atlas.atlas_name }}
         </a>
@@ -20,7 +20,7 @@
     {% if atlas.author_wiki %}
         <a class="button-violet cursor-help"
             href="https://en.wikipedia.org/wiki/{{ atlas.author_wiki }}"
-            title="Author's Wiki : {{ atlas.author_name }}">
+            title="{{ atlas.author_name }} Wiki">
             <i class="far fa-user fa-lg"></i>
             {{ atlas.author_name }}
         </a>
@@ -34,11 +34,13 @@
             ({{ atlas.published_year|trim('0', 'left') }})
         </h2>
 
-        <ul class="grid-2sm-3md-4lg-5xl-6wd pad-top-lg" itemscope itemtype="https://schema.org/CreativeWork">
+        <ul class="grid-2sm-3md-4lg-5xl-6wd cursor-cross" 
+            itemscope 
+            itemtype="https://schema.org/CreativeWork">
             
             {% for key, map in atlasMaps %}
                 <li>
-                    <a class="cursor-cross button-primary"
+                    <a class="button-primary"
                        href="img/atlas/{{ map.map_name}}.jpg"
                        title="Clic to Watch {{ map.description}} in Full Page"
                        itemprop="image">
@@ -46,7 +48,9 @@
                             <img src="img/thumbnails/tn_{{ map.map_name }}.jpg"
                                  alt="{{ atlas.atlas_name }} board n°{{ key + 1 }}"
                                  itemprop="thumbnailUrl">
-                            <figcaption itemprop="description">{{ map.description }}</figcaption>
+                            <figcaption itemprop="description">
+                                {{ map.description }}
+                            </figcaption>
                         </figure>
                     </a>
                 </li>
