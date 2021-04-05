@@ -5,9 +5,12 @@
   --serif: 'Almendra', serif;
   --monospace: 'VT323', monospace;
 
-  --secondary: var(--yellow);
-  --secondary-dark: var(--yellow-dark);
-  --secondary-light: var(--yellow-light);
+  --primary: rgb(11, 61, 145);
+  --primary-dark: rgba(11, 61, 145, var(--opacity-dark));
+  --primary-light: rgba(11, 61, 145, var(--opacity-light));
+  --secondary: rgb(252, 61, 33);
+  --secondary-dark: rgb(252, 61, 33, var(--opacity-dark));
+  --secondary-light: rgb(252, 61, 33, var(--opacity-light));
 }
 
 body {
@@ -15,11 +18,17 @@ body {
   --body-background-color: var(--black);
 }
 
-.navbar {
-  --navbar-background-color: var(--black-dark);
+h1,
+h2,
+h3 {
+  --title-color: var(--white);
 }
 
 .form {
   --form-background-color: var(--white-light);
   --form-field-placeholder-color: var(--black);
+}
+
+.foot {
+  --foot-title-color: var(--white);
 }
