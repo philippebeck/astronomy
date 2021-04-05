@@ -5,10 +5,10 @@
 {% block description %}Constellation {{ constellation.name|replace({'-': ' '})|title }}{% endblock %}
 
 {% block main %}
-<main class="container-90tn-80sm-70md-60lg-50wd">
+<main>
 
     {% if constellation.description %}
-    <section class="bg-white color-pp bord-rounded mar-lg">
+    <header class="head">
         <h2 class="mar-sm">
             History of 
             {{ constellation.name|replace({'-': ' '})|title }}
@@ -16,7 +16,7 @@
         <p class="pad-md align-justify">
             {{ constellation.description }}
         </p>
-    </section>
+    </header>
     {% endif %}
 
     <figure class="mar-lg">
