@@ -13,11 +13,11 @@ as well as Wikipedia links for some atlases and authors.
     <article>
         <h2>Celestial Atlases from 964 to 1869</h2>
 
-        <ul class="flex">
+        <ul class="flex cursor-cross">
 
             {% for map in demoMaps %}
                 <li>
-                    <a class="button-primary cursor-cross"
+                    <a class="button-primary"
                        href="{{ url('atlas!read', {'id': map.atlas_id}) }}"
                        title="Watch the Atlas : {{ map.atlas_name }} made in {{ map.published_year }}">
                         <figure>
