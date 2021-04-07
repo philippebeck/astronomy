@@ -16,7 +16,7 @@ class MarsController extends MainController
     /**
      * @var null
      */
-    private $rover = "curiosity";
+    private $rover = "perseverance";
 
     /**
      * @var null
@@ -26,7 +26,7 @@ class MarsController extends MainController
     private function setDate()
     {
         if ($this->date === null) {
-            $this->date = date("Y-m-d", strtotime("-1 day"));
+            $this->date = date("Y-m-d", strtotime("-2 days"));
         }
     }
 
