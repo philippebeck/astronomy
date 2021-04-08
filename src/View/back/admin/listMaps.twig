@@ -14,7 +14,6 @@
             <tr>
                 <th>Map</th>
                 <th>Description</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -34,8 +33,7 @@
                         title="Clic to Watch the Atlas #{{ map.atlas_id }}">
                         {{ map.description }}
                     </a>
-                </td>
-                <td>
+                    <br>
                     <a class="btn-blue" 
                         href="{{ url('map!update', {'id': map.id}) }}">
                         <i class="fas fa-pen-square fa-fw fa-lg"></i>

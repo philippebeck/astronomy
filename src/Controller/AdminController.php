@@ -31,7 +31,7 @@ class AdminController extends MainController
         $maps           = ModelFactory::getModel("Map")->listData();
         $users          = ModelFactory::getModel("User")->listData();
 
-        return $this->render("back/admin.twig", [
+        return $this->render("back/admin/admin.twig", [
             "constellations"    => $constellations,
             "atlases"           => $atlases,
             "maps"              => $maps,

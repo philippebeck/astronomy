@@ -14,7 +14,6 @@
             <tr>
                 <th>Atlas</th>
                 <th>Author</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -22,23 +21,20 @@
         {% for atlas in atlases %}
             <tr>
                 <td>
-
                 {% if atlas.atlas_wiki %}
                     <a class="button-green"
                         href="https://en.wikipedia.org/wiki/{{ atlas.atlas_wiki }}"
                         title="Wikipedia Atlas Page">
                         {{ atlas.atlas_name }} 
                         ({{ atlas.published_year|trim('0', 'left') }})
-                    </a>
+                    </a>                  
 
                 {% else %}
                     {{ atlas.atlas_name }} 
                     ({{ atlas.published_year|trim('0', 'left') }})
                 {% endif %}
-
                 </td>
                 <td>
-
                 {% if atlas.author_wiki %}
                     <a class="button-violet"
                         href="https://en.wikipedia.org/wiki/{{ atlas.author_wiki }}"
@@ -50,8 +46,7 @@
                     {{ atlas.author_name }}
                 {% endif %}
 
-                </td>
-                <td>
+                    <br>
                     <a class="btn-blue" 
                         href="{{ url('atlas!update', {'id': atlas.id}) }}">
                         <i class="fas fa-pen-square fa-fw fa-lg"></i>
