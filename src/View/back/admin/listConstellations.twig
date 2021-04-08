@@ -9,7 +9,6 @@
             <tr>
                 <th>Constellation</th>
                 <th>Description</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -24,14 +23,13 @@
                                 src="img/thumbnails/tn_{{ constellation.name }}.jpg"
                                 alt="Screenshot of the constellation 
                                     {{ constellation.name|replace({'-': ' '})|title }}">
-                            <figcaption>
-                                {{ constellation.name|replace({'-': ' '})|title }}
-                            </figcaption>
                         </figure>
                     </a>
+                    {{ constellation.name|replace({'-': ' '})|title }}
                 </td>
-                <td>{{ constellation.description }}</td>
                 <td>
+                    {{ constellation.description }}
+                    <br>
                     <a class="btn-blue" 
                         href="{{ url('constellation!update', {'id': constellation.id}) }}">
                         <i class="fas fa-pen-square fa-fw fa-lg"></i>

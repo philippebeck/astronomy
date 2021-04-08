@@ -14,7 +14,6 @@
             <tr>
                 <th>User</th>
                 <th>Email</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -31,8 +30,9 @@
                         </figcaption>
                     </figure>
                 </td>
-                <td>{{ user.email }}</td>
                 <td>
+                    {{ user.email }}
+                    <br>
                     <a class="btn-blue" 
                         href="{{ url('user!update', {'id': user.id}) }}">
                         <i class="fas fa-pen-square fa-fw fa-lg"></i>
