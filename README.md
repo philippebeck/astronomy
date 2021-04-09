@@ -19,7 +19,6 @@ Website about Astronomy with constellations medias, celestial atlases collection
 
 Astronomy has continuous support !
 
-[![Project Maintained](https://img.shields.io/maintenance/yes/2020.svg?label=Maintained)](https://github.com/philippebeck/astronomy)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/philippebeck/astronomy.svg?label=Last+Commit)](https://github.com/philippebeck/astronomy/commits/master)
 
 ---
