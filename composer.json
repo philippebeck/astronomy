@@ -36,7 +36,7 @@
   },
   "require": {
     "php": "7.3",
-    "devsagency/pam": "^4.6.1",
+    "devsagency/pam": "^4.7.1",
     "ext-gd": "*",
     "ext-exif": "*",
     "ext-curl": "*",
