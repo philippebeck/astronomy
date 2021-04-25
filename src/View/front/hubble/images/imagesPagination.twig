@@ -1,17 +1,17 @@
 <ul class="row placo-evenly plait-center">
     <li>
         <a class="btn-blue"
-            href="{{ url('hubble!images', {'page': getGetVar('page') - 1}) }}" 
+            href="{{ url('hubble!images', {'page': getGet('page') - 1}) }}" 
             title="Go to the Previous Page">
             <i class="far fa-arrow-alt-circle-left fa-2x"></i>
         </a>
     </li>
     <li class="deco">
-        Page {{ getGetVar('page') }}
+        Page {{ getGet('page') }}
     </li>
     <li>
         <a class="btn-blue" 
-            href="{{ url('hubble!images', {'page': getGetVar('page') + 1}) }}" 
+            href="{{ url('hubble!images', {'page': getGet('page') + 1}) }}" 
             title="Go to the Next Page">
             <i class="far fa-arrow-alt-circle-right fa-2x"></i>
         </a>
