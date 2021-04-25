@@ -30,9 +30,9 @@ class NeoController extends MainController
             $this->endDate      = date("Y-m-d", strtotime("+1 day"));
         }
 
-        if (!empty($this->getPost()->getPostArray())) {
-            $this->startDate    = $this->getPost()->getPostVar("start-date");
-            $this->endDate      = $this->getPost()->getPostVar("end-date");
+        if ($this->checkArray($this->getPost())) {
+            $this->startDate    = $this->getPost("start-date");
+            $this->endDate      = $this->getPost("end-date");
         }
     }
 
@@ -53,7 +53,7 @@ class NeoController extends MainController
             . "&api_key="
             . NASA_API;
 
-        $neo = $this->getCurl()->getApiData($query);
+        $neo = $this->getApiData($query);
         $neo = $neo["near_earth_objects"];
 
         ksort($neo);

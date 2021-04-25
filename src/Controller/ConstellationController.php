@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use Pam\Controller\MainController;
-use Pam\Model\Factory\ModelFactory;
+use Pam\Model\ModelFactory;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -35,7 +35,7 @@ class ConstellationController extends MainController
      */
     public function readMethod()
     {
-        $constellation = ModelFactory::getModel("Constellation")->readData($this->getGet()->getGetVar("id"));
+        $constellation = ModelFactory::getModel("Constellation")->readData($this->getGet("id"));
 
         return $this->render("front/constellation/constellation.twig", ["constellation" => $constellation]);
     }
@@ -48,26 +48,33 @@ class ConstellationController extends MainController
      */
     public function updateMethod()
     {
-        if ($this->getSecurity()->checkIsAdmin() !== true) {
+        if ($this->checkAdmin() !== true) {
             $this->redirect("home");
         }
 
-        $constellation = ModelFactory::getModel("Constellation")->readData($this->getGet()->getGetVar("id"));
+        $constellation = ModelFactory::getModel("Constellation")->readData($this->getGet("id"));
 
-        if (!empty($this->getPost()->getPostArray())) {
-            $data["description"] = (string) trim($this->getPost()->getPostVar("description"));
+        if ($this->checkArray($this->getPost())) {
+            $data["description"] = (string) trim($this->getPost("description"));
 
-            if (!empty($this->getFiles()->getFileVar("name"))) {
-                $this->getFiles()->uploadFile("img/constellation/", $constellation["name"]);
+            if (!empty($this->getFiles("name"))) {
+                $this->getUploadedFile("img/constellation/", $constellation["name"]);
 
-                $img        = "img/constellation/" . $constellation["name"] . $this->getFiles()->setFileExtension();
-                $thumbnail  = "img/thumbnails/tn_" . $constellation["name"] . $this->getFiles()->setFileExtension();
+                $img        = "img/constellation/" . $constellation["name"] . $this->getExtension();
+                $thumbnail  = "img/thumbnails/tn_" . $constellation["name"] . $this->getExtension();
 
-                $this->getImage()->makeThumbnail($img, 300, $thumbnail);
+                $this->getThumbnail($img, 300, $thumbnail);
             }
 
-            ModelFactory::getModel("Constellation")->updateData($this->getGet()->getGetVar("id"), $data);
-            $this->getSession()->createAlert("Successful modification of the selected constellation !", "blue");
+            ModelFactory::getModel("Constellation")->updateData(
+                $this->getGet("id"), 
+                $data
+            );
+            
+            $this->setSession([
+                "Successful modification of the selected constellation !", 
+                "blue"
+            ]);
 
             $this->redirect("admin");
         }
