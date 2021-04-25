@@ -36,8 +36,10 @@ class AtlasController extends MainController
             }
         }
 
-        return $this->render("front/atlas/atlases.twig", ["demoMaps" => $demoMaps]);
+        return $this->render("front/atlases.twig", ["demoMaps" => $demoMaps]);
     }
+
+    // ******************** SETTER ******************** \\
 
     private function setAtlasData()
     {
@@ -47,6 +49,8 @@ class AtlasController extends MainController
         $this->atlas["atlas_wiki"]  = str_replace("https://en.wikipedia.org/wiki/", "", $this->atlas["atlas_wiki"]);
         $this->atlas["author_wiki"] = str_replace("https://en.wikipedia.org/wiki/", "", $this->atlas["author_wiki"]);
     }
+
+    // ******************** CRUD ******************** \\
 
     /**
      * @return string
@@ -66,14 +70,14 @@ class AtlasController extends MainController
             ModelFactory::getModel("Atlas")->createData($this->atlas);
 
             $this->setSession([
-                "New atlas successfully created !", 
-                "green"
+                "message"   => "New atlas successfully created !", 
+                "type"   => "green"
             ]);
 
             $this->redirect("map!create");
         }
 
-        return $this->render("back/atlas/createAtlas.twig");
+        return $this->render("back/createAtlas.twig");
     }
 
     /**
@@ -87,7 +91,7 @@ class AtlasController extends MainController
         $atlas      = ModelFactory::getModel("Atlas")->readData($this->getGet("id"));
         $atlasMaps  = ModelFactory::getModel("Map")->listData($this->getGet("id"), "atlas_id");
 
-        return $this->render("front/atlas/atlasMaps.twig", [
+        return $this->render("front/atlasMaps.twig", [
             "atlas"         => $atlas,
             "atlasMaps"     => $atlasMaps
         ]);
@@ -116,8 +120,8 @@ class AtlasController extends MainController
             );
 
             $this->setSession([
-                "Successful modification of the selected atlas !", 
-                "blue"
+                "message"   => "Successful modification of the selected atlas !", 
+                "type"      => "blue"
             ]);
 
             $this->redirect("admin");
@@ -125,7 +129,7 @@ class AtlasController extends MainController
 
         $atlas = ModelFactory::getModel("Atlas")->readData($this->getGet("id"));
 
-        return $this->render("back/atlas/updateAtlas.twig", ["atlas" => $atlas]);
+        return $this->render("back/updateAtlas.twig", ["atlas" => $atlas]);
     }
 
     public function deleteMethod()
@@ -146,8 +150,8 @@ class AtlasController extends MainController
         ModelFactory::getModel("Atlas")->deleteData($this->getGet("id"));
 
         $this->setSession([
-            "Atlas permanently deleted !", 
-            "red"
+            "message"   => "Atlas permanently deleted !", 
+            "type"      => "red"
         ]);
 
         $this->redirect("admin");

@@ -48,7 +48,7 @@ class HubbleController extends MainController
 
         $hubble = $this->getApiData($this->query);
 
-        return $this->render("front/hubble/hubble.twig", ["hubble" => $hubble]);
+        return $this->render("front/hubble.twig", ["hubble" => $hubble]);
     }
 
     // ******************** SETTERS ******************** \\
@@ -172,7 +172,7 @@ class HubbleController extends MainController
 
         $news = $this->getApiData($this->query);
 
-        return $this->render("front/hubble/news/hubbleNews.twig", ["news" => $news]);
+        return $this->render("front/hubbleNews.twig", ["news" => $news]);
     }
 
     /**
@@ -190,7 +190,7 @@ class HubbleController extends MainController
 
         $release = $this->getApiData($this->query);
 
-        return $this->render("front/hubble/news/hubbleRelease.twig", ["release" => $release]);
+        return $this->render("front/hubbleRelease.twig", ["release" => $release]);
     }
 
     // ******************** IMAGES ******************** \\
@@ -210,7 +210,7 @@ class HubbleController extends MainController
 
         $images = $this->getApiData($this->query);
 
-        return $this->render("front/hubble/images/hubbleImages.twig", ["images" => $images]);
+        return $this->render("front/hubbleImages.twig", ["images" => $images]);
     }
 
     /**
@@ -229,7 +229,7 @@ class HubbleController extends MainController
         $image = $this->getApiData($this->query);
         $image = $this->getFilteredImages($image);
 
-        return $this->render("front/hubble/images/hubbleImage.twig", ["image" => $image]);
+        return $this->render("front/hubbleImage.twig", ["image" => $image]);
     }
 
     // ******************** VIDEOS ******************** \\
@@ -249,7 +249,7 @@ class HubbleController extends MainController
 
         $videos = $this->getApiData($this->query);
 
-        return $this->render("front/hubble/videos/hubbleVideos.twig", ["videos" => $videos]);
+        return $this->render("front/hubbleVideos.twig", ["videos" => $videos]);
     }
 
     /**
@@ -268,6 +268,6 @@ class HubbleController extends MainController
         $video = $this->getApiData($this->query);
         $video = $this->getFilteredVideos($video);
 
-        return $this->render("front/hubble/videos/hubbleVideo.twig", ["video" => $video]);
+        return $this->render("front/hubbleVideo.twig", ["video" => $video]);
     }
 }

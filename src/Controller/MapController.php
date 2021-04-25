@@ -24,6 +24,8 @@ class MapController extends MainController
         $this->redirect("atlas");
     }
 
+    // ******************** SETTERS ******************** \\
+
     private function setMapData()
     {
         $this->data["description"]  = (string) trim($this->getPost("description"));
@@ -63,6 +65,8 @@ class MapController extends MainController
         $this->getThumbnail($img, 300, $thumbnail);
     }
 
+    // ******************** CRUD ******************** \\
+
     /**
      * @return string
      * @throws LoaderError
@@ -84,8 +88,8 @@ class MapController extends MainController
             ModelFactory::getModel("Map")->createData($this->data);
 
             $this->setSession([
-                "New map created successfully !", 
-                "green"
+                "message"   => "New map created successfully !", 
+                "type"      => "green"
             ]);
 
             $this->redirect("admin");
@@ -93,7 +97,7 @@ class MapController extends MainController
 
         $atlases = ModelFactory::getModel("Atlas")->listData();
 
-        return $this->render("back/map/createMap.twig", ["atlases" => $atlases]);
+        return $this->render("back/createMap.twig", ["atlases" => $atlases]);
     }
 
     /**
@@ -125,8 +129,8 @@ class MapController extends MainController
             );
 
             $this->setSession([
-                "Successful modification of the selected map !", 
-                "blue"
+                "message"   => "Successful modification of the selected map !", 
+                "type"      => "blue"
             ]);
 
             $this->redirect("admin");
@@ -134,7 +138,7 @@ class MapController extends MainController
 
         $atlases = ModelFactory::getModel("Atlas")->listData();
 
-        return $this->render("back/map/updateMap.twig", [
+        return $this->render("back/updateMap.twig", [
             "atlases"   => $atlases,
             "map"       => $map
         ]);
@@ -149,8 +153,8 @@ class MapController extends MainController
         ModelFactory::getModel("Map")->deleteData($this->getGet("id"));
 
         $this->setSession([
-            "Map actually deleted !", 
-            "red"
+            "message"   => "Map actually deleted !", 
+            "type"      => "red"
         ]);
 
         $this->redirect("admin");
