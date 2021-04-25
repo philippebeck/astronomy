@@ -47,7 +47,7 @@
     </label>
     <label for="menu-radio4" 
         title="Show the User">
-        <i class="fas fa-users"></i>
+        <i class="fas fa-user-ninja"></i>
         <span>
             User
         </span>
@@ -56,10 +56,10 @@
 
 <main class="menu-relay container-90lg-80xl-70wd">
 
-    {{ include("back/admin/listConstellations.twig") }}
-    {{ include("back/admin/listAtlases.twig") }}
-    {{ include("back/admin/listMaps.twig") }}
-    {{ include("back/admin/listUsers.twig") }}
+    {{ include("back/adminConstellations.twig") }}
+    {{ include("back/adminAtlases.twig") }}
+    {{ include("back/adminMaps.twig") }}
+    {{ include("back/adminUsers.twig") }}
 
 </main>
 {% endblock %}
