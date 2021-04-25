@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use Pam\Controller\MainController;
-use Pam\Model\Factory\ModelFactory;
+use Pam\Model\ModelFactory;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -24,38 +24,10 @@ class MapController extends MainController
         $this->redirect("atlas");
     }
 
-    /**
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    public function createMethod()
-    {
-        if ($this->getSecurity()->checkIsAdmin() !== true) {
-            $this->redirect("home");
-        }
-
-        if (!empty($this->getPost()->getPostArray())) {
-            $this->setMapData();
-            $this->setMapName();
-            $this->setMapImage();
-
-            ModelFactory::getModel("Map")->createData($this->data);
-            $this->getSession()->createAlert("New map created successfully !", "green");
-
-            $this->redirect("admin");
-        }
-
-        $atlases = ModelFactory::getModel("Atlas")->listData();
-
-        return $this->render("back/map/createMap.twig", ["atlases" => $atlases]);
-    }
-
     private function setMapData()
     {
-        $this->data["description"]  = (string) trim($this->getPost()->getPostVar("description"));
-        $this->data["atlas_id"]     = (int) $this->getPost()->getPostVar("atlas_id");
+        $this->data["description"]  = (string) trim($this->getPost("description"));
+        $this->data["atlas_id"]     = (int) $this->getPost("atlas_id");
     }
 
     private function setMapName()
@@ -83,12 +55,45 @@ class MapController extends MainController
 
     private function setMapImage()
     {
-        $this->getFiles()->uploadFile("img/atlas/", $this->data["map_name"]);
+        $this->getUploadedFile("img/atlas/", $this->data["map_name"]);
 
-        $img        = "img/atlas/" . $this->data["map_name"] . $this->getFiles()->setFileExtension();
-        $thumbnail  = "img/thumbnails/tn_". $this->data["map_name"] . $this->getFiles()->setFileExtension();
+        $img        = "img/atlas/" . $this->data["map_name"] . $this->getExtension();
+        $thumbnail  = "img/thumbnails/tn_". $this->data["map_name"] . $this->getExtension();
 
-        $this->getImage()->makeThumbnail($img, 300, $thumbnail);
+        $this->getThumbnail($img, 300, $thumbnail);
+    }
+
+    /**
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function createMethod()
+    {
+        if ($this->checkAdmin() !== true) {
+            $this->redirect("home");
+        }
+
+        if ($this->checkArray($this->getPost())) {
+
+            $this->setMapData();
+            $this->setMapName();
+            $this->setMapImage();
+
+            ModelFactory::getModel("Map")->createData($this->data);
+
+            $this->setSession([
+                "New map created successfully !", 
+                "green"
+            ]);
+
+            $this->redirect("admin");
+        }
+
+        $atlases = ModelFactory::getModel("Atlas")->listData();
+
+        return $this->render("back/map/createMap.twig", ["atlases" => $atlases]);
     }
 
     /**
@@ -99,22 +104,30 @@ class MapController extends MainController
      */
     public function updateMethod()
     {
-        if ($this->getSecurity()->checkIsAdmin() !== true) {
+        if ($this->checkAdmin() !== true) {
             $this->redirect("home");
         }
 
-        $map = ModelFactory::getModel("Map")->readData($this->getGet()->getGetVar("id"));
+        $map = ModelFactory::getModel("Map")->readData($this->getGet("id"));
 
-        if (!empty($this->getPost()->getPostArray())) {
+        if ($this->checkArray($this->getPost())) {
             $this->setMapData();
 
-            if (!empty($this->getFiles()->getFileVar("name"))) {
+            if (!empty($this->getFiles("name"))) {
+
                 $this->data["map_name"] = $map["map_name"];
                 $this->setMapImage();
             }
 
-            ModelFactory::getModel("Map")->updateData($this->getGet()->getGetVar("id"), $this->data);
-            $this->getSession()->createAlert("Successful modification of the selected map !", "blue");
+            ModelFactory::getModel("Map")->updateData(
+                $this->getGet("id"), 
+                $this->data
+            );
+
+            $this->setSession([
+                "Successful modification of the selected map !", 
+                "blue"
+            ]);
 
             $this->redirect("admin");
         }
@@ -124,17 +137,21 @@ class MapController extends MainController
         return $this->render("back/map/updateMap.twig", [
             "atlases"   => $atlases,
             "map"       => $map
-            ]);
+        ]);
     }
 
     public function deleteMethod()
     {
-        if ($this->getSecurity()->checkIsAdmin() !== true) {
+        if ($this->checkAdmin() !== true) {
             $this->redirect("home");
         }
 
-        ModelFactory::getModel("Map")->deleteData($this->getGet()->getGetVar("id"));
-        $this->getSession()->createAlert("Map actually deleted !", "red");
+        ModelFactory::getModel("Map")->deleteData($this->getGet("id"));
+
+        $this->setSession([
+            "Map actually deleted !", 
+            "red"
+        ]);
 
         $this->redirect("admin");
     }

@@ -32,9 +32,9 @@ class MarsController extends MainController
 
     private function getParams()
     {
-        if (!empty($this->getPost()->getPostArray())) {
-            $this->rover    = (string) $this->getPost()->getPostVar("rover");
-            $this->date     = (string) $this->getPost()->getPostVar("date");
+        if ($this->checkArray($this->getPost())) {
+            $this->rover    = (string) $this->getPost("rover");
+            $this->date     = (string) $this->getPost("date");
         }
     }
 
@@ -56,7 +56,7 @@ class MarsController extends MainController
             . "&api_key="
             . NASA_API;
 
-        $mars = $this->getCurl()->getApiData($query);
+        $mars = $this->getApiData($query);
         $mars = $mars["photos"];
 
         $params = [
