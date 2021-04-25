@@ -1,0 +1,75 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Hubble Videos{% endblock %}
+
+{% block description %}List of Videos from Hubble Space Telescope{% endblock %}
+
+{% block main %}
+{% if not videos %}
+    {{ redirect('hubble') }}
+{% endif %}
+
+<main class="container-90tn-80sm">
+    <ul class="row placo-evenly plait-center">
+        <li>
+            <a class="btn-blue" 
+                href="{{ url('hubble!videos', {'page': getGet('page') - 1}) }}" 
+                title="Go to the Previous Page">
+                <i class="far fa-arrow-alt-circle-left fa-2x"></i>
+            </a>
+        </li>
+        <li class="deco">
+            Page {{ getGet('page') }}
+        </li>
+        <li>
+            <a class="btn-blue" 
+                href="{{ url('hubble!videos', {'page': getGet('page') + 1}) }}" 
+                title="Go to the Next Page">
+                <i class="far fa-arrow-alt-circle-right fa-2x"></i>
+            </a>
+        </li>
+    </ul>
+
+    <ul>
+        {% for video in videos %}
+            <li>
+                <form method="post" 
+                    action={{ url('hubble!video', {'id': video.id}) }}>
+                    <label for="item">
+                        {{ video.name }}
+                    </label>
+                    <input name="item" 
+                        type="hidden" 
+                        value="{{ video.id }}">
+                    <br>
+                    <input class="button-brown" 
+                        type="submit" 
+                        value="#{{ video.id }}" 
+                        title="Watch the Video {{ video.name }} ({{ video.id }})">
+                </form>
+                <i class="fas fa-minus fa-lg"></i>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <ul class="row placo-evenly plait-center">
+        <li>
+            <a class="btn-blue" 
+                href="{{ url('hubble!videos', {'page': getGet('page') - 1}) }}" 
+                title="Go to the Previous Page">
+                <i class="far fa-arrow-alt-circle-left fa-2x"></i>
+            </a>
+        </li>
+        <li class="deco">
+            Page {{ getGet('page') }}
+        </li>
+        <li>
+            <a class="btn-blue" 
+                href="{{ url('hubble!videos', {'page': getGet('page') + 1}) }}" 
+                title="Go to the Next Page">
+                <i class="far fa-arrow-alt-circle-right fa-2x"></i>
+            </a>
+        </li>
+    </ul>
+</main>
+{% endblock %}
