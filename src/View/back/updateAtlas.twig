@@ -42,7 +42,7 @@
                     <input id="published_year" 
                         name="published_year" 
                         type="number" 
-                        value="{{ atlas.year}}"
+                        value="{{ atlas.published_year|trim('0', 'left')}}"
                         required>
                 </li>
                 <li>
