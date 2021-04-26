@@ -32,11 +32,25 @@ class UserController extends MainController
 
     // ******************** SETTERS ******************** \\
 
+    private function setUserData()
+    {
+        $this->user["name"]     = (string) trim($this->getPost("name"));
+        $this->user["email"]    = (string) trim($this->getPost("email"));
+    }
+
+    private function setUserImage()
+    {
+        $this->user["image"] = $this->getString($this->user["name"]) . $this->getExtension();
+
+        $this->getUploadedFile("img/user/", $this->getString($this->user["name"]));
+        $this->getThumbnail("img/user/" . $this->user["image"], 150);
+    }
+
     private function setUpdateData()
     {
         $this->setUserData();
 
-        if ($this->checkArray($this->getFiles(), "name")) {
+        if ($this->checkArray($this->getFiles("file"), "name")) {
             $this->setUserImage();
         }
 
@@ -85,20 +99,6 @@ class UserController extends MainController
             $this->getPost("new-pass"), 
             PASSWORD_DEFAULT
         );
-    }
-
-    private function setUserData()
-    {
-        $this->user["name"]     = (string) trim($this->getPost("name"));
-        $this->user["email"]    = (string) trim($this->getPost("email"));
-    }
-
-    private function setUserImage()
-    {
-        $this->user["image"] = $this->getString($this->user["name"]) . $this->getExtension();
-
-        $this->getUploadedFile("img/user/", $this->getString($this->user["name"]));
-        $this->getThumbnail("img/user/" . $this->user["image"], 150);
     }
 
     // ******************** CRUD ******************** \\
