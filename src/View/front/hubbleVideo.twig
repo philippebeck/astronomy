@@ -5,7 +5,7 @@
 {% block description %}
 {{ video["name"] }} from 
 {{ video["mission"]|capitalize }} Mission & 
-{{ cleanString(video["collection"]) }} Collection
+{{ getString(video["collection"]) }} Collection
 {% endblock %}
 
 {% block main %}
@@ -56,11 +56,11 @@
     <ul>
         <li itemprop="isPartOf">
             Collection : 
-            {{ cleanString(video["collection"]) }}
+            {{ getString(video["collection"]) }}
         </li>
         <li>
             Mission : 
-            {{ cleanString(video["mission"]) }}
+            {{ getString(video["mission"]) }}
         </li>
     </ul>
 
