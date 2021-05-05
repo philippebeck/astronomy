@@ -1,0 +1,32 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Nasa{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block main %}
+<main>
+    <form class="form" 
+        method="post" 
+        action="{{ url('nasa') }}">
+        <fieldset>
+            <legend>
+                <i class="fas fa-rocket fa-2x"></i>
+            </legend>
+            <label for="search">
+                <i class="fas fa-search fa-2x"></i> 
+                Search
+            </label>
+            <input id="search" name="search" type="text">
+            <input type="submit" value="Send">
+        </fieldset>
+    </form>
+    <ul>
+        {% for item in nasa %}
+            {% for link in item["links"] %}
+                <img src="{{ link["href"] }}" alt="#">                
+            {% endfor %}
+        {% endfor %}
+    </ul>
+</main>
+{% endblock %}
