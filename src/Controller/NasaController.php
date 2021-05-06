@@ -36,11 +36,11 @@ class NasaController extends MainController
         $this->setSearch();
         $this->setQuery();
 
-        $nasa = $this->getApiData($this->query);
-        $nasa = $nasa["collection"];
-        $nasa = $nasa["items"];
+        $nasa       = $this->getApiData($this->query);
+        $collection = $nasa["collection"];
+        $items      = $collection["items"];
 
-        return $this->render("front/nasa.twig", ["nasa" => $nasa]);
+        return $this->render("front/nasa.twig", ["items" => $items]);
     }
 
     // ******************** SETTERS ******************** \\
