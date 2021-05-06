@@ -18,21 +18,26 @@
                         placeholder="Type the research you want !">
                 </li>
                 <li>
-                    <input type="submit" value="Search">
+                    <input type="submit" 
+                        value="Search">
                 </li>
             </ul>
         </fieldset>
     </form>
     <ul class="grid-2lg-4wd">
+
         {% for item in items %}
-        <li>
-            <figure>
-                <img src="{{ item["links"][0]["href"] }}" 
-                    alt="#">
-                <figcaption>{{ item["data"][0]["description"] }}</figcaption>
-            </figure>   
-        </li>             
+            <li>
+                <figure>
+                    <img src="{{ item["links"][0]["href"] }}" 
+                        alt="#">
+                    <figcaption>
+                        {{ item["data"][0]["description"]|slice(0, 100) }}...
+                    </figcaption>
+                </figure>   
+            </li>             
         {% endfor %}
+
     </ul>
 </main>
 {% endblock %}
