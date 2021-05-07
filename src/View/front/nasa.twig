@@ -28,13 +28,16 @@
 
         {% for item in items %}
             <li>
-                <section class="card-primary" 
+                <a href="{{ url('nasa!asset', {'id': item["data"][0]["nasa_id"]}) }}"
                     title="{{ item["data"][0]["description"] }}">
-                    <img src="{{ item["links"][0]["href"] }}" 
-                        alt="{{ item["data"][0]["description_508"] }}">
-                    <h3>{{ getString(item["data"][0]["title"]) }}</h3>
-                    <p>{{ getString(item["data"][0]["description"]) }}</p>
-                </section>   
+                    <section class="card-primary" 
+                        title="{{ item["data"][0]["description"] }}">
+                        <img src="{{ item["links"][0]["href"] }}" 
+                            alt="{{ item["data"][0]["description_508"] }}">
+                        <h3>{{ getString(item["data"][0]["title"]) }}</h3>
+                        <p>{{ getString(item["data"][0]["description"]) }}</p>
+                    </section>
+                </a>
             </li>             
         {% endfor %}
 
