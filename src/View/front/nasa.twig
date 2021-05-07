@@ -28,13 +28,16 @@
 
         {% for item in items %}
             <li>
-                <figure>
-                    <img src="{{ item["links"][0]["href"] }}" 
-                        alt="#">
-                    <figcaption>
-                        {{ item["data"][0]["description"]|slice(0, 100) }}...
-                    </figcaption>
-                </figure>   
+                <a href="{{ url('nasa!asset', {'id': item["data"][0]["nasa_id"]}) }}"
+                    title="{{ item["data"][0]["description"] }}">
+                    <section class="card-primary" 
+                        title="{{ item["data"][0]["description"] }}">
+                        <img src="{{ item["links"][0]["href"] }}" 
+                            alt="{{ item["data"][0]["description_508"] }}">
+                        <h3>{{ getString(item["data"][0]["title"]) }}</h3>
+                        <p>{{ getString(item["data"][0]["description"]) }}</p>
+                    </section>
+                </a>
             </li>             
         {% endfor %}
 

@@ -28,6 +28,20 @@ a {
   --link-color: var(--secondary);
 }
 
+[class*="card"] {
+  --card-margin: 5px;
+  --card-border-radius: 5px;
+  --card-box-shadow: unset;
+  --card-title-text-shadow: unset;
+  --card-child-border-radius: 5px;
+  --card-hover-transform: unset;
+}
+
+.card-primary > p {
+  max-height: 300px;
+  overflow: scroll;
+}
+
 .head {
   --head-background-color: var(--grey);
 }
