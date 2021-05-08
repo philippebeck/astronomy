@@ -37,7 +37,7 @@ class NasaController extends MainController
     public function defaultMethod()
     {
         $this->endPoint = "search?q=";
-        $this->param   = "nebula";
+        $this->param    = "nebula";
 
         $this->setSearch();
         $this->setQuery();
@@ -55,18 +55,34 @@ class NasaController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function assetMethod()
+    public function imageMethod()
     {
-        $this->endPoint = "asset/";
+        $this->endPoint = "image/";
 
-        $this->setAsset();
+        $this->setMedia();
         $this->setQuery();
 
-        $asset      = $this->getApiData($this->query);
-        $collection = $asset["collection"];
-        $items      = $collection["items"];
+        $image = $this->getApiData($this->query);
 
-        return $this->render("front/nasaAsset.twig", ["items" => $items]);
+        return $this->render("front/nasaImage.twig", ["image" => $image]);
+    }
+
+    /**
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function videoMethod()
+    {
+        $this->endPoint = "video/";
+
+        $this->setMedia();
+        $this->setQuery();
+
+        $video = $this->getApiData($this->query);
+
+        return $this->render("front/nasaVideo.twig", ["video" => $video]);
     }
 
     // ******************** SETTERS ******************** \\
@@ -78,7 +94,7 @@ class NasaController extends MainController
         }
     }
 
-    private function setAsset()
+    private function setMedia()
     {
         if ($this->checkArray($this->getGet(), "id")) {
             $this->param = $this->getGet("id");
@@ -87,6 +103,12 @@ class NasaController extends MainController
 
     private function setQuery()
     {
-        $this->query = "https://images-api.nasa.gov/" . $this->endPoint . $this->param;
+        if ($this->endPoint !== "search?q=") {
+            $this->query = "https://images-assets.nasa.gov/" . $this->endPoint . $this->param . "/metadata.json";
+        }
+
+        if ($this->endPoint === "search?q=") {
+            $this->query = "https://images-api.nasa.gov/" . $this->endPoint . $this->param;
+        }
     }
 }
