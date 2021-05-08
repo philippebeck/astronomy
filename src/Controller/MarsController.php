@@ -26,7 +26,7 @@ class MarsController extends MainController
     private function setDate()
     {
         if ($this->date === null) {
-            $this->date = date("Y-m-d", strtotime("-5 days"));
+            $this->date = date("Y-m-d", strtotime("-1 day"));
         }
     }
 
