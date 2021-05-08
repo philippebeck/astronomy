@@ -24,18 +24,35 @@
             </ul>
         </fieldset>
     </form>
+
     <ul class="grid-2lg-4wd">
 
         {% for item in items %}
             <li>
-                <a href="{{ url('nasa!asset', {'id': item["data"][0]["nasa_id"]}) }}"
-                    title="{{ item["data"][0]["description"] }}">
-                    <section class="card-primary" 
-                        title="{{ item["data"][0]["description"] }}">
+                {% if item["data"][0]["media_type"] == "video" %}
+                    <a href="{{ url('nasa!video', {'id': item["data"][0]["nasa_id"]}) }}"
+                        title="Watch {{ getString(item["data"][0]["title"]) }} Page">
+                {% else %}
+                    <a href="{{ url('nasa!image', {'id': item["data"][0]["nasa_id"]}) }}"
+                        title="Watch {{ getString(item["data"][0]["title"]) }} Page">
+                {% endif %}
+                    <section class="card-primary">
+
                         <img src="{{ item["links"][0]["href"] }}" 
-                            alt="{{ item["data"][0]["description_508"] }}">
-                        <h3>{{ getString(item["data"][0]["title"]) }}</h3>
-                        <p>{{ getString(item["data"][0]["description"]) }}</p>
+                            alt="{{ item["data"][0]["description"] }}">
+                        <h3>
+                            {{ getString(item["data"][0]["title"]) }}
+                        </h3>
+                        <p>
+                            {% if item["data"][0]["media_type"] == "image" %}
+                                <i class="fas fa-image fa-lg"></i>
+                            {% else %}
+                                <i class="fas fa-video fa-lg"></i>
+                            {% endif %}
+
+                            {{ item["data"][0]["center"] }}
+                            ({{ item["data"][0]["date_created"][0:10] }})
+                        </p>
                     </section>
                 </a>
             </li>             
