@@ -37,11 +37,6 @@ a {
   --card-hover-transform: unset;
 }
 
-.card-primary > p {
-  max-height: 300px;
-  overflow: scroll;
-}
-
 .head {
   --head-background-color: var(--grey);
 }

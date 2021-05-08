@@ -1,0 +1,36 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}{{ getString(getGet("id")) }}{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block main %}
+<main>
+    <a class="btn-primary mar-bot-lg"
+        href="{{ url("nasa") }}"
+        title="Go back to Search Page">
+        <i class="fas fa-backward fa-2x"></i>
+    </a>
+
+    <figure class="container-90tn-80md-70lg-60wd">
+
+        <a href="https://images-assets.nasa.gov/image/{{ getGet("id") }}/{{ getGet("id") }}~orig.jpg"
+            title="Watch the Original Picture">
+
+            <img class="bord-secondary"
+            src="https://images-assets.nasa.gov/image/{{ getGet("id") }}/{{ getGet("id") }}~small.jpg"
+                alt="#">
+        </a>
+
+        <figcaption>
+            <h2>
+                {{ getString(image["AVAIL:Title"]) }} 
+                ({{ image["AVAIL:DateCreated"] }})
+            </h2>
+            <p class="align-justify">
+                {{ image["AVAIL:Description"]|raw }}
+            </p>
+        </figcaption>
+    </figure>
+</main>
+{% endblock %}
