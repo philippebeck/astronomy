@@ -1,0 +1,40 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}{{ getString(getGet("id")) }}{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block main %}
+<main>
+    <a class="btn-primary mar-bot-lg"
+        href="{{ url("nasa") }}"
+        title="Go back to Search Page">
+        <i class="fas fa-backward fa-2x"></i>
+    </a>
+
+    <figure class="container-90tn-80md-70lg-60wd">
+
+        <video class="bord-curve" 
+            controls>
+            <source src="https://images-assets.nasa.gov/video/{{ getGet("id") }}/{{ getGet("id") }}~orig.mp4" 
+                type="video/mp4">
+            <p>
+                Sorry, your browser doesn't support embedded videos. 
+                <a href="https://images-assets.nasa.gov/video/{{ getGet("id") }}/{{ getGet("id") }}~orig.mp4">
+                    Here you can download it !
+                </a>
+            </p>
+        </video>
+
+        <figcaption>
+            <h2>
+                {{ getString(video["AVAIL:Title"]) }} 
+                ({{ video["AVAIL:DateCreated"] }})
+            </h2>
+            <p class="align-justify">
+                {{ video["AVAIL:Description"]|raw }}
+            </p>
+        </figcaption>
+    </figure>
+</main>
+{% endblock %}
