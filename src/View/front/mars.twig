@@ -64,13 +64,13 @@
 
         <section>
             <h3>
-                {{ mars[0]["rover"]["name"] }} 
-                ({{ mars[0]["earth_date"] }})
+                {{ photos[0]["rover"]["name"] }} 
+                ({{ photos[0]["earth_date"] }})
             </h3>
 
             <figure class="grid-2md-3lg-4xl-5wd cursor-cross">
 
-                {% for photo in mars %}
+                {% for photo in photos %}
                     <figure>
                         <a class="button-secondary"
                             href="{{ photo["img_src"] }}" 
