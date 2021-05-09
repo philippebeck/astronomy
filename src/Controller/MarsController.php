@@ -14,7 +14,7 @@ use Twig\Error\SyntaxError;
 class MarsController extends MainController
 {
     /**
-     * @var null
+     * @var string
      */
     private $rover = "perseverance";
 
@@ -23,20 +23,10 @@ class MarsController extends MainController
      */
     private $date = null;
 
-    private function setDate()
-    {
-        if ($this->date === null) {
-            $this->date = date("Y-m-d", strtotime("-1 day"));
-        }
-    }
-
-    private function getParams()
-    {
-        if ($this->checkArray($this->getPost())) {
-            $this->rover    = (string) $this->getPost("rover");
-            $this->date     = (string) $this->getPost("date");
-        }
-    }
+    /**
+     * @var string
+     */
+    private $query = "";
 
     /**
      * @return string
@@ -47,17 +37,17 @@ class MarsController extends MainController
     public function defaultMethod()
     {
         $this->setDate();
-        $this->getParams();
+        $this->setParams();
+        $this->setQuery();
 
-        $query = "https://api.nasa.gov/mars-photos/api/v1/rovers/"
-            . $this->rover
-            . "/photos?earth_date=" 
-            . $this->date
-            . "&api_key="
-            . NASA_API;
+        $photos = $this->getPhotos();
 
-        $mars = $this->getApiData($query);
-        $mars = $mars["photos"];
+        if (!$this->checkArray($photos)) {
+            $this->date = date("Y-m-d", strtotime("-2 days"));
+
+            $this->setQuery();
+            $photos = $this->getPhotos();
+        }
 
         $params = [
             "rover" => $this->rover,
@@ -65,8 +55,46 @@ class MarsController extends MainController
         ];
 
         return $this->render("front/mars.twig", [
-            "mars"      => $mars,
+            "photos"    => $photos,
             "params"    => $params
         ]);
+    }
+
+    /**
+     * @return array
+     */
+    private function getPhotos()
+    {
+        $mars = $this->getApiData($this->query);
+
+        return $mars["photos"];
+    }
+
+     // *********************************************** \\
+    // ******************** SETTERS ******************** \\
+
+    private function setDate()
+    {
+        if ($this->date === null) {
+            $this->date = date("Y-m-d", strtotime("-1 day"));
+        }
+    }
+
+    private function setParams()
+    {
+        if ($this->checkArray($this->getPost())) {
+            $this->rover    = (string) $this->getPost("rover");
+            $this->date     = (string) $this->getPost("date");
+        }
+    }
+
+    private function setQuery()
+    {
+        $this->query = "https://api.nasa.gov/mars-photos/api/v1/rovers/"
+            . $this->rover
+            . "/photos?earth_date=" 
+            . $this->date
+            . "&api_key="
+            . NASA_API;
     }
 }
