@@ -39,14 +39,15 @@
                     <section class="card-primary">
 
                         <img src="{{ item["links"][0]["href"] }}" 
-                            alt="{{ item["data"][0]["description"] }}">
+                            alt="{{ item["data"][0]["title"] }} Image">
                         <h3>
                             {{ getString(item["data"][0]["title"]) }}
                         </h3>
                         <p>
                             {% if item["data"][0]["media_type"] == "image" %}
                                 <i class="fas fa-image fa-lg"></i>
-                            {% else %}
+
+                            {% elseif item["data"][0]["media_type"] == "video" %}
                                 <i class="fas fa-video fa-lg"></i>
                             {% endif %}
 
