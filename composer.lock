@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "devsagency/pam",
-            "version": "5.0.2",
+            "version": "5.0.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/devsagency/pam.git",
-                "reference": "1c3de94ddcbd821ee1a119b884f2d08b2ca0edf5"
+                "url": "https://github.com/philippebeck/pam.git",
+                "reference": "e6c30f82f1fdd6d7b1b169504e91262f541d3e77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/devsagency/pam/zipball/1c3de94ddcbd821ee1a119b884f2d08b2ca0edf5",
-                "reference": "1c3de94ddcbd821ee1a119b884f2d08b2ca0edf5",
+                "url": "https://api.github.com/repos/philippebeck/pam/zipball/e6c30f82f1fdd6d7b1b169504e91262f541d3e77",
+                "reference": "e6c30f82f1fdd6d7b1b169504e91262f541d3e77",
                 "shasum": ""
             },
             "require": {
@@ -69,7 +69,7 @@
                 "superglobals",
                 "twig"
             ],
-            "time": "2021-04-25T15:54:01+00:00"
+            "time": "2022-03-29T17:36:30+00:00"
         },
         {
             "name": "doctrine/lexer",
