@@ -16,8 +16,8 @@
   "repository": "github:philippebeck/astronomy",
   "bugs": "https://github.com/philippebeck/astronomy/issues",
   "dependencies": {
+    "animadio": "^5.5.0"
     "@fortawesome/fontawesome-free": "^6.2.1",
-    "animadio": "^5.0.5"
   },
   "author": {
     "name": "Philippe Beck",
